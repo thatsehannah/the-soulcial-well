@@ -1,14 +1,42 @@
+import { Sparkles } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import LinkButton from "./LinkButton";
 
 const Hero = () => {
   return (
-    <section className='h-[100vh]'>
+    <section className='flex flex-col justify-between h-[100vh] relative p-4'>
       <Image
         src='/herobg.png'
         alt='hands reaching'
         fill
+        priority
+        className='absolute -z-10 aspect-square'
       />
+      <div>
+        <div className='w-full flex justify-center gap-2'>
+          <p className='text-6xl lg:text-8xl font-medium text-primary'>
+            The Soulcial
+          </p>
+          <Sparkles className='text-primary w-7 lg:w-13 h-7 lg:h-13 fill-primary' />
+        </div>
+        <div className='text-center'>
+          <p className='text-6xl lg:text-8xl font-script text-primary'>Well</p>
+        </div>
+        <div className='text-center mt-6'>
+          <p className='text-2xl lg:text-4xl text-primary-foreground tracking-tighter'>
+            Bringing back community
+          </p>
+        </div>
+      </div>
+      <div className='grid grid-cols-2 place-items-center gap-8'>
+        <LinkButton text='about us' />
+        <LinkButton text='connect with us' />
+        <LinkButton text='our work' />
+        <LinkButton text='join our giveaway' />
+        <LinkButton text='collabs' />
+        <LinkButton text='read our blog' />
+      </div>
     </section>
   );
 };
