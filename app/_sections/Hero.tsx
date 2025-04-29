@@ -1,6 +1,6 @@
 import { Sparkles } from "lucide-react";
 import React from "react";
-import LinkButton from "../../components/LinkButton";
+import LinkButton from "../_components/LinkButton";
 
 const Hero = () => {
   return (
