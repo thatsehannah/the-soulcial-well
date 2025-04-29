@@ -22,12 +22,30 @@ const Hero = () => {
         </div>
       </div>
       <div className='grid grid-cols-2 place-items-center gap-8'>
-        <LinkButton text='about us' />
-        <LinkButton text='connect with us' />
-        <LinkButton text='our work' />
-        <LinkButton text='join our giveaway' />
-        <LinkButton text='collabs' />
-        <LinkButton text='read our blog' />
+        <LinkButton
+          text='about us'
+          link='/about'
+        />
+        <LinkButton
+          text='connect with us'
+          link='/connect'
+        />
+        <LinkButton
+          text='our work'
+          link='our-work'
+        />
+        <LinkButton
+          text='join our giveaway'
+          link='giveaway'
+        />
+        <LinkButton
+          text='collabs'
+          link='collabs'
+        />
+        <LinkButton
+          text='read our blog'
+          link='blog'
+        />
       </div>
     </section>
   );
