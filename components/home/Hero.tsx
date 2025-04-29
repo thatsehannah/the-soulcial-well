@@ -1,21 +1,13 @@
 import { Sparkles } from "lucide-react";
-import Image from "next/image";
 import React from "react";
 import LinkButton from "./LinkButton";
 
 const Hero = () => {
   return (
-    <section className='flex flex-col justify-between h-[100vh] relative p-4'>
-      <Image
-        src='/herobg.png'
-        alt='hands reaching'
-        fill
-        priority
-        className='absolute -z-10 aspect-square'
-      />
+    <section className='flex flex-col justify-around lg:justify-between h-[100vh] p-4 bg-[url(/herobg.png)] bg-center bg-no-repeat bg-contain lg:bg-cover'>
       <div>
         <div className='w-full flex justify-center gap-2'>
-          <p className='text-6xl lg:text-8xl font-medium text-primary'>
+          <p className='text-6xl lg:text-8xl font-medium text-primary tracking-[-.08em]'>
             The Soulcial
           </p>
           <Sparkles className='text-primary w-7 lg:w-13 h-7 lg:h-13 fill-primary' />
