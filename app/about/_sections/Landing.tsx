@@ -3,11 +3,11 @@ import React from "react";
 
 const Landing = () => {
   return (
-    <section className='p-12 h-[100vh]'>
+    <section className='p-12'>
       <p className='text-4xl lg:text-6xl text-center'>
         How We <span className='font-script'>Started</span>
       </p>
-      <div className='grid grid-cols-1 lg:grid-cols-3 mt-12 w-full gap-12 p-8'>
+      <div className='grid grid-cols-1 lg:grid-cols-3 lg:mt-8 mt-4 w-full lg:gap-12 lg:p-8 p-2'>
         <div className='flex justify-center items-center col-span-1'>
           <div className='lg:block hidden'>
             <Image
@@ -18,7 +18,7 @@ const Landing = () => {
             />
           </div>
         </div>
-        <div className='grid gap-4 text-xl col-span-2 px-30'>
+        <div className='grid gap-4 text-xl col-span-2 lg:px-30 p-6'>
           <p>
             At The Soulcial Well, we believe that self-care is more than solo
             rituals—it’s about meaningful connection, shared experiences, and
