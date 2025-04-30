@@ -3,7 +3,7 @@ import React from "react";
 
 const Landing = () => {
   return (
-    <section className='p-12'>
+    <section className='p-12 h-[100vh]'>
       <p className='text-4xl lg:text-6xl text-center'>
         How We <span className='font-script'>Started</span>
       </p>
