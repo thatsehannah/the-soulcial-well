@@ -20,7 +20,7 @@ const LeadershipMember = ({
   const splitAboutText = aboutText.split("\n");
 
   return (
-    <article>
+    <article className='border-b-2 border-white'>
       <div className='grid lg:grid-cols-3 grid-cols-1'>
         <div className='bg-primary flex flex-col justify-center p-8'>
           <div className='overflow-hidden mb-4'>
@@ -29,7 +29,7 @@ const LeadershipMember = ({
               alt='leadership member photo'
               height={400}
               width={400}
-              className='object-cover -mb-81'
+              className='object-cover'
             />
           </div>
           <div className='mb-6'>
