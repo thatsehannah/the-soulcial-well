@@ -20,3 +20,9 @@ export type StaffInfo = {
   linkToResume?: string;
   aboutText: string;
 };
+
+export type CoreValueItem = {
+  imageSrc: string;
+  title: string;
+  text: string;
+};
