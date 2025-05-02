@@ -3,7 +3,7 @@
 
 @theme {
   --color-main-foreground: oklch(0.45 0.0794 48.29);
-  --color-hero-bg: oklch(0.99 0.0073 80.72);
+  --color-main-bg: oklch(0.99 0.0085 84.57);
   --color-primary: oklch(0.85 0.1763 106.75);
   --color-dark-green: oklch(0.41 0.0753 145.12);
 

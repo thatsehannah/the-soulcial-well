@@ -4,7 +4,7 @@ import LinkButton from "../_components/LinkButton";
 
 const Hero = () => {
   return (
-    <section className='bg-hero-bg flex flex-col justify-around lg:justify-between h-[100vh] p-4 bg-[url(/herobg.png)] bg-center bg-no-repeat bg-contain lg:bg-cover'>
+    <section className='flex flex-col justify-around lg:justify-between h-[100vh] p-4 bg-[url(/herobg.png)] bg-center bg-no-repeat bg-contain lg:bg-cover'>
       <div>
         <div className='w-full flex justify-center gap-2'>
           <p className='text-6xl lg:text-8xl font-medium text-primary tracking-[-.08em]'>
