@@ -1,23 +1,23 @@
 import SvgFacebook from "@/components/Facebook";
 import SvgInstagram from "@/components/Instagram";
 import SvgX from "@/components/X";
-import { StaffInfo } from "@/utils/types";
+import { TeamMemberInfo } from "@/utils/types";
 import { Mail } from "lucide-react";
 import Image from "next/image";
 
-type LeadershipMemberProps = StaffInfo;
+type TeamMemberProps = TeamMemberInfo;
 
-const LeadershipMember = ({
+const TeamMember = ({
   aboutMeSubtitle,
   imageSrc,
   honorific,
   firstName,
   lastName,
   title,
-  aboutText,
+  bio,
   recentEducation,
-}: LeadershipMemberProps) => {
-  const splitAboutText = aboutText.split("\n");
+}: TeamMemberProps) => {
+  const splitBio = bio.split("\n");
 
   return (
     <article className='border-b-2 border-white'>
@@ -55,7 +55,7 @@ const LeadershipMember = ({
           <p className='font-script text-5xl'>About Me</p>
           <p className='font-bold text-[1rem]'>{aboutMeSubtitle}</p>
           <div className='flex flex-col gap-4 w-3/4'>
-            {splitAboutText.map((line, idx) => {
+            {splitBio.map((line, idx) => {
               return (
                 <p
                   key={idx}
@@ -87,4 +87,4 @@ const LeadershipMember = ({
   );
 };
 
-export default LeadershipMember;
+export default TeamMember;

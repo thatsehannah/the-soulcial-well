@@ -1,10 +1,10 @@
-import LeadershipMember from "../_components/LeadershipMember";
-import { staffInfo } from "../_data/staffInfo.ts";
+import TeamMember from "./_components/TeamMember";
+import { teamMemberInfo } from "./_data/teamMemberInfo";
 
-const Leadership = () => {
+const TheTeamPage = () => {
   return (
-    <section>
-      {staffInfo.map((staff, idx) => {
+    <main>
+      {teamMemberInfo.map((member, idx) => {
         const {
           imageSrc,
           honorific,
@@ -14,11 +14,11 @@ const Leadership = () => {
           connections,
           aboutMeSubtitle,
           recentEducation,
-          aboutText,
-        } = staff;
+          bio,
+        } = member;
 
         return (
-          <LeadershipMember
+          <TeamMember
             key={idx}
             imageSrc={imageSrc}
             honorific={honorific}
@@ -28,12 +28,12 @@ const Leadership = () => {
             connections={connections}
             aboutMeSubtitle={aboutMeSubtitle}
             recentEducation={recentEducation}
-            aboutText={aboutText}
+            bio={bio}
           />
         );
       })}
-    </section>
+    </main>
   );
 };
 
-export default Leadership;
+export default TheTeamPage;

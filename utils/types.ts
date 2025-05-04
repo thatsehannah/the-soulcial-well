@@ -1,4 +1,4 @@
-export type StaffInfo = {
+export type TeamMemberInfo = {
   imageSrc: string;
   honorific?: string;
   firstName: string;
@@ -18,7 +18,7 @@ export type StaffInfo = {
     school: string;
   };
   linkToResume?: string;
-  aboutText: string;
+  bio: string;
 };
 
 export type CoreValueItem = {
