@@ -4,7 +4,7 @@ import React from "react";
 const MissionVision = () => {
   return (
     <section className='flex lg:flex-row flex-col lg:h-[100vh]'>
-      <div className='lg:w-1/2 w-full flex flex-col items-center justify-center p-20 gap-12'>
+      <div className='lg:w-1/2 w-full flex flex-col items-center justify-center p-20 gap-17'>
         <p className='text-5xl lg:text-6xl'>
           Our <span className='font-script'>Mission</span>
         </p>
@@ -15,7 +15,7 @@ const MissionVision = () => {
             fill
           />
         </div>
-        <p className='text-lg'>
+        <p className='text-lg text-justify'>
           At The Soulcial Well, we believe that self-care is more powerful when
           shared. We create immersive self-care and holistic wellness
           experiences that blend connection, community, personal growth, and
@@ -35,7 +35,7 @@ const MissionVision = () => {
             fill
           />
         </div>
-        <p className='text-lg text-white'>
+        <p className='text-lg text-white text-justify'>
           Our vision is to create a transformative community that inspires and
           uplifts individuals from all walks of life. Through impactful events,
           rejuvenating retreats, and supportive workshops, The Soulcial Well
