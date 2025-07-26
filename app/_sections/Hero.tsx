@@ -23,28 +23,28 @@ const Hero = () => {
       </div>
       <div className='grid grid-cols-2 place-items-center gap-8'>
         <LinkButton
+          text='home'
+          link='/'
+        />
+        <LinkButton
+          text='offerings'
+          link='/offerings'
+        />
+        <LinkButton
           text='about us'
           link='/about'
         />
         <LinkButton
-          text='connect with us'
+          text='soul tools'
+          link='/soul-tools'
+        />
+        <LinkButton
+          text='experiences'
+          link='/experiences'
+        />
+        <LinkButton
+          text='connect'
           link='/connect'
-        />
-        <LinkButton
-          text='our work'
-          link='our-work'
-        />
-        <LinkButton
-          text='join our giveaway'
-          link='giveaway'
-        />
-        <LinkButton
-          text='collabs'
-          link='collabs'
-        />
-        <LinkButton
-          text='read our blog'
-          link='blog'
         />
       </div>
     </section>
