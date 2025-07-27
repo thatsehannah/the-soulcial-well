@@ -7,15 +7,30 @@ type ExperienceProps = {
 };
 
 const Experience = ({ title, description }: ExperienceProps) => {
-  const formatText = (text: string) => {
-    const splitText = text.split(" ");
+  const formatTitle = (rawTitle: string) => {
+    //for titles with a comma
+    const splitTitleWithComma = rawTitle.split(",");
 
-    if (splitText[1] === "&" || splitText[1] === "+") {
+    if (splitTitleWithComma.length > 1) {
       return (
         <p className='text-6xl text-white text-center'>
-          {splitText[0]} {splitText[1]}{" "}
+          {splitTitleWithComma[0]}
+          {", "}
           <span className='font-script text-main-foreground'>
-            {splitText.slice(2)}
+            {splitTitleWithComma[1]}
+          </span>
+        </p>
+      );
+    }
+
+    const splitTitle = rawTitle.split(" ");
+
+    if (splitTitle[1] === "&" || splitTitle[1] === "+") {
+      return (
+        <p className='text-6xl text-white text-center'>
+          {splitTitle[0]} {splitTitle[1]}{" "}
+          <span className='font-script text-main-foreground'>
+            {splitTitle.slice(2)}
           </span>
         </p>
       );
@@ -23,9 +38,9 @@ const Experience = ({ title, description }: ExperienceProps) => {
 
     return (
       <p className='text-6xl text-white text-center'>
-        {splitText[0]}{" "}
+        {splitTitle[0]}{" "}
         <span className='font-script text-main-foreground'>
-          {splitText.slice(1).join(" ")}
+          {splitTitle.slice(1).join(" ")}
         </span>
       </p>
     );
@@ -33,12 +48,12 @@ const Experience = ({ title, description }: ExperienceProps) => {
 
   return (
     <section className='bg-primary p-12'>
-      <div>{formatText(title)}</div>
-      <div className='grid grid-cols-1 lg:grid-cols-3 lg:mt-8 mt-4 lg:w-2/3 w-full lg:gap-12 lg:p-8 p-2 justify-center items-center mx-auto my-auto'>
+      <div>{formatTitle(title)}</div>
+      <div className='grid grid-cols-1 lg:grid-cols-6 lg:mt-8 mt-4 lg:w-2/3 w-full lg:gap-12 lg:p-8 p-2 justify-center items-center mx-auto my-auto'>
         <FilmRoll />
 
-        <div className='grid gap-4 text-3xl col-span-2 lg:px-30 p-6'>
-          <p className='text-white'>{description}</p>
+        <div className='gap-4 text-3xl lg:col-span-5 lg:px-30 p-6'>
+          <p className='text-white whitespace-pre-wrap'>{description}</p>
         </div>
       </div>
     </section>
