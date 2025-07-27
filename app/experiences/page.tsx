@@ -12,7 +12,7 @@ const ExperiencesPage = () => {
         <p className='text-4xl lg:text-8xl text-center font-script'>
           Experiences
         </p>
-        <div className='grid grid-cols-1 lg:grid-cols-3 lg:mt-8 mt-4 lg:w-2/3 w-full lg:gap-12 lg:p-8 p-2 justify-center items-center mx-auto my-auto'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 lg:mt-8 mt-4 lg:w-2/3 w-full lg:gap-12 lg:p-8 p-2 justify-center items-center'>
           <div className='flex justify-center items-center col-span-1'>
             <div className=''>
               <Image
@@ -39,6 +39,7 @@ const ExperiencesPage = () => {
         <Experience
           title={exp.title}
           description={exp.description}
+          images={exp.images}
           key={index}
         />
       ))}

@@ -4,9 +4,10 @@ import FilmRoll from "./FilmRoll";
 type ExperienceProps = {
   title: string;
   description: string;
+  images: string[];
 };
 
-const Experience = ({ title, description }: ExperienceProps) => {
+const Experience = ({ title, description, images }: ExperienceProps) => {
   const formatTitle = (rawTitle: string) => {
     //for titles with a comma
     const splitTitleWithComma = rawTitle.split(",");
@@ -50,7 +51,7 @@ const Experience = ({ title, description }: ExperienceProps) => {
     <section className='bg-primary p-12'>
       <div>{formatTitle(title)}</div>
       <div className='grid grid-cols-1 lg:grid-cols-6 lg:mt-8 mt-4 lg:w-2/3 w-full lg:gap-12 lg:p-8 p-2 justify-center items-center mx-auto my-auto'>
-        <FilmRoll />
+        <FilmRoll images={images} />
 
         <div className='gap-4 text-3xl lg:col-span-5 lg:px-30 p-6'>
           <p className='text-white whitespace-pre-wrap'>{description}</p>
