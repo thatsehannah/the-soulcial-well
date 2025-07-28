@@ -7,28 +7,32 @@ const ExperiencesPage = () => {
   const experiences = experienceData;
 
   return (
-    <main className='bg-[#f2f4e6] h-dvh'>
+    <main className='bg-[#f2f4e6] h-full'>
       <section className='pt-12 flex flex-col justify-center items-center'>
-        <p className='text-4xl lg:text-8xl text-center font-script'>
+        <p className='text-7xl lg:text-8xl text-center font-script'>
           Experiences
         </p>
-        <div className='grid grid-cols-1 lg:grid-cols-3 lg:my-8 my-4 w-3/4 lg:gap-12 lg:p-8 p-2 justify-center items-center'>
-          <div className='relative flex justify-center items-center col-span-1'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 lg:my-8 my-4 w-3/4 lg:p-8 p-2 items-center lg:gap-12'>
+          <div className='relative mx-auto my-auto lg:block hidden'>
             <Image
               src='/assets/experiences-camera.png'
               alt='camera'
-              height={300}
-              width={300}
+              height={400}
+              width={400}
             />
           </div>
 
-          <div className='grid gap-4 text-3xl col-span-2 lg:px-12 p-6'>
-            <p className='text-[#ddd520]'>
-              Each Soulcial Well experience is more than just an event -
-              it&apos;s a moment of community, joy, and self-discovery. Click on
-              any icon below to revisit the vibes, view highlights, and feel the
-              energy from past gatherings. Your next favorite memory might just
-              be one click away.
+          <div className='col-span-2 lg:p-12 p-6'>
+            <p className='text-[#ddd520] lg:text-3xl text-lg font-bold lg:font-normal text-center lg:text-start'>
+              Each{" "}
+              <em>
+                <b>Soulcial Well</b>
+              </em>{" "}
+              experience is more than just an event - it&apos;s a moment of
+              community, joy, and self-discovery. Click on any icon below to
+              revisit the vibes, view highlights, and feel the energy from past
+              gatherings. Your next favorite memory might just be one click
+              away.
             </p>
           </div>
         </div>
