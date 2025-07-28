@@ -7,13 +7,13 @@ const ExperiencesPage = () => {
   const experiences = experienceData;
 
   return (
-    <main className='bg-[#f2f4e6] h-full'>
-      <section className='pt-12 flex flex-col justify-center items-center'>
-        <p className='text-7xl lg:text-8xl text-center font-script'>
+    <main className='bg-[#f2f4e6]'>
+      <section className='pt-12 flex flex-col justify-center items-center h-[100vh]'>
+        <p className='lg:text-9xl text-8xl text-center font-script'>
           Experiences
         </p>
         <div className='grid grid-cols-1 lg:grid-cols-3 lg:my-8 my-4 w-3/4 lg:p-8 p-2 items-center lg:gap-12'>
-          <div className='relative mx-auto my-auto lg:block hidden'>
+          <div className='relative mx-auto my-auto'>
             <Image
               src='/assets/experiences-camera.png'
               alt='camera'
@@ -23,7 +23,7 @@ const ExperiencesPage = () => {
           </div>
 
           <div className='col-span-2 lg:p-12 p-6'>
-            <p className='text-[#ddd520] lg:text-3xl text-lg font-bold lg:font-normal text-center lg:text-start'>
+            <p className='text-main-foreground lg:text-3xl text-lg text-center lg:text-start'>
               Each{" "}
               <em>
                 <b>Soulcial Well</b>
@@ -42,6 +42,7 @@ const ExperiencesPage = () => {
           title={exp.title}
           description={exp.description}
           images={exp.images}
+          index={index}
           key={index}
         />
       ))}
