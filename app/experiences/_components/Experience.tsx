@@ -49,11 +49,10 @@ const Experience = ({ title, description, images }: ExperienceProps) => {
 
   return (
     <section className='bg-primary p-12'>
-      <div>{formatTitle(title)}</div>
-      <div className='flex lg:mt-8 mt-4 w-full lg:gap-12 justify-center'>
+      <div className='mb-8'>{formatTitle(title)}</div>
+      <div className='flex lg:my-8 my-4 w-full lg:gap-12 justify-center'>
         <FilmRoll images={images} />
-
-        <div className='text-3xl w-1/2 lg:px-30 p-6'>
+        <div className='text-3xl w-1/2 lg:px-12 p-6'>
           <p className='text-white whitespace-pre-wrap'>{description}</p>
         </div>
       </div>

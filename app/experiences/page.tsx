@@ -8,23 +8,21 @@ const ExperiencesPage = () => {
 
   return (
     <main className='bg-[#f2f4e6] h-dvh'>
-      <section className='p-12 flex flex-col justify-center items-center'>
+      <section className='pt-12 flex flex-col justify-center items-center'>
         <p className='text-4xl lg:text-8xl text-center font-script'>
           Experiences
         </p>
-        <div className='grid grid-cols-1 lg:grid-cols-3 lg:mt-8 mt-4 lg:w-2/3 w-full lg:gap-12 lg:p-8 p-2 justify-center items-center'>
-          <div className='flex justify-center items-center col-span-1'>
-            <div className=''>
-              <Image
-                src='/assets/experiences-camera.png'
-                alt='camera'
-                height={400}
-                width={400}
-              />
-            </div>
+        <div className='grid grid-cols-1 lg:grid-cols-3 lg:my-8 my-4 w-3/4 lg:gap-12 lg:p-8 p-2 justify-center items-center'>
+          <div className='relative flex justify-center items-center col-span-1'>
+            <Image
+              src='/assets/experiences-camera.png'
+              alt='camera'
+              height={300}
+              width={300}
+            />
           </div>
 
-          <div className='grid gap-4 text-3xl col-span-2 lg:px-30 p-6'>
+          <div className='grid gap-4 text-3xl col-span-2 lg:px-12 p-6'>
             <p className='text-[#ddd520]'>
               Each Soulcial Well experience is more than just an event -
               it&apos;s a moment of community, joy, and self-discovery. Click on
