@@ -5,25 +5,38 @@ import { TeamMemberInfo } from "@/utils/types";
 import { Mail } from "lucide-react";
 import Image from "next/image";
 
-type TeamMemberProps = TeamMemberInfo;
+type TeamMemberProps = {
+  member: TeamMemberInfo;
+  index: number;
+};
 
-const TeamMember = ({
-  aboutMeSubtitle,
-  imageSrc,
-  honorific,
-  firstName,
-  lastName,
-  title,
-  bio,
-  recentEducation,
-}: TeamMemberProps) => {
+const TeamMember = ({ member, index }: TeamMemberProps) => {
+  const isEvenSection = index % 2 === 0;
+  const fontColor = isEvenSection ? "main-foreground" : "white";
+
+  const {
+    imageSrc,
+    honorific,
+    firstName,
+    lastName,
+    title,
+    connections,
+    aboutMeSubtitle,
+    recentEducation,
+    bio,
+  } = member;
+
   const splitBio = bio.split("\n");
 
   return (
     <article className='border-b-2 border-white'>
       <div className='grid lg:grid-cols-3 grid-cols-1'>
-        <div className='bg-primary flex flex-col justify-center p-8'>
-          <div className='overflow-hidden mb-4'>
+        <div
+          className={`${
+            isEvenSection ? "bg-primary" : "bg-dark-green"
+          } flex flex-col justify-center p-8`}
+        >
+          <div className='relative overflow-hidden mb-4 flex justify-center'>
             <Image
               src={imageSrc}
               alt='leadership member photo'
@@ -32,22 +45,22 @@ const TeamMember = ({
               className='object-cover'
             />
           </div>
-          <div className='mb-6'>
-            <p className='text-2xl'>
+          <div className='mb-6 text-center'>
+            <p className={`text-2xl text-${fontColor}`}>
               <span className='font-bold text-[28px]'>{honorific}</span>{" "}
               <span className='font-script text-[34px]'>{firstName}</span>{" "}
               {lastName}
             </p>
-            <p className='text-[18px]'>{title}</p>
+            <p className={`text-[18px] text-${fontColor}`}>{title}</p>
           </div>
           <hr className='text-white' />
           <div className='mt-12 ml-6 flex flex-col gap-2'>
-            <p className='text-[12px]'>Connect with me</p>
-            <div className='flex gap-4'>
-              <Mail className='h-4 w-4' />
-              <SvgInstagram className='h-4 w-4 stroke-main-foreground fill-main-foreground' />
-              <SvgX className='h-4 w-4 stroke-main-foreground fill-main-foreground' />
-              <SvgFacebook className='h-4 w-4 stroke-main-foreground fill-main-foreground' />
+            <p className={`text-[12px] text-${fontColor}`}>Connect with me</p>
+            <div className={`flex gap-4 fill-${fontColor} stroke-${fontColor}`}>
+              <Mail className={`h-4 w-4 text-${fontColor}`} />
+              <SvgInstagram className='h-4 w-4' />
+              <SvgX className='h-4 w-4' />
+              <SvgFacebook className='h-4 w-4' />
             </div>
           </div>
         </div>
@@ -75,7 +88,13 @@ const TeamMember = ({
                 <p className='font-bold'>{recentEducation.degree}</p>
                 <p>{recentEducation.school}</p>
               </div>
-              <div className='flex bg-dark-green justify-center items-center text-white w-55'>
+              <div
+                className={`flex ${
+                  isEvenSection
+                    ? "bg-dark-green text-white"
+                    : "bg-primary text-main-foreground"
+                } justify-center items-center w-55`}
+              >
                 Resume
               </div>
             </div>

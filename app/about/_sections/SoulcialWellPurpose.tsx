@@ -35,7 +35,7 @@ const SoulcialWellPurpose = () => {
             fill
           />
         </div>
-        <p className='text-lg text-white text-justify'>
+        <p className='text-lg text-justify'>
           Our vision is to create a transformative community that inspires and
           uplifts individuals from all walks of life. Through impactful events,
           rejuvenating retreats, and supportive workshops, The Soulcial Well
