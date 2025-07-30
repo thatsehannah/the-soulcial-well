@@ -1,5 +1,5 @@
 import TeamMember from "../_components/TeamMember";
-import { teamMemberInfo } from "../_data/teamMemberInfo";
+import { teamMemberInfo } from "../_data/teamMembers";
 
 const SoulcialWellTeam = () => {
   return (

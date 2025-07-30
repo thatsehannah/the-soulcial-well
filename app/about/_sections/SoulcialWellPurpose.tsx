@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const MissionVision = () => {
+const SoulcialWellPurpose = () => {
   return (
     <section className='flex lg:flex-row flex-col lg:h-[100vh]'>
       <div className='lg:w-1/2 w-full flex flex-col items-center justify-center p-20 gap-17'>
@@ -49,4 +49,4 @@ const MissionVision = () => {
   );
 };
 
-export default MissionVision;
+export default SoulcialWellPurpose;
