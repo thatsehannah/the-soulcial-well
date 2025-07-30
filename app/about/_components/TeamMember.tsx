@@ -1,6 +1,3 @@
-import SvgFacebook from "@/components/Facebook";
-import SvgInstagram from "@/components/Instagram";
-import SvgX from "@/components/X";
 import { TeamMemberInfo } from "@/utils/types";
 import { Mail } from "lucide-react";
 import Image from "next/image";
@@ -57,10 +54,7 @@ const TeamMember = ({ member, index }: TeamMemberProps) => {
           <div className='mt-12 ml-6 flex flex-col gap-2'>
             <p className={`text-[12px] text-${fontColor}`}>Connect with me</p>
             <div className={`flex gap-4 fill-${fontColor} stroke-${fontColor}`}>
-              <Mail className={`h-4 w-4 text-${fontColor}`} />
-              <SvgInstagram className='h-4 w-4' />
-              <SvgX className='h-4 w-4' />
-              <SvgFacebook className='h-4 w-4' />
+              <Mail className={`text-${fontColor}`} />
             </div>
           </div>
         </div>

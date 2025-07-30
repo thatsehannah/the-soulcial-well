@@ -9,10 +9,6 @@ export const teamMemberInfo: TeamMemberInfo[] = [
     title: "Founder, Soulcial Wellness Architect",
     connections: {
       email: "",
-      instagramProfile: "",
-      xProfile: "",
-      facebookProfile: "",
-      linkedInProfile: "",
     },
     aboutMeSubtitle:
       "Personal growth, deep connections, and intentional living.",
@@ -33,10 +29,6 @@ export const teamMemberInfo: TeamMemberInfo[] = [
     title: "Connection Curator",
     connections: {
       email: "",
-      instagramProfile: "",
-      xProfile: "",
-      facebookProfile: "",
-      linkedInProfile: "",
     },
     aboutMeSubtitle: "Good vibes, great convos, and building community.",
     recentEducation: {
