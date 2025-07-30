@@ -15,7 +15,7 @@ const SoulcialWellPurpose = () => {
             fill
           />
         </div>
-        <p className='text-lg text-justify'>
+        <p className='text-xl text-justify'>
           At The Soulcial Well, we believe that self-care is more powerful when
           shared. We create immersive self-care and holistic wellness
           experiences that blend connection, community, personal growth, and
@@ -25,7 +25,7 @@ const SoulcialWellPurpose = () => {
         </p>
       </div>
       <div className='lg:w-1/2 w-full flex flex-col items-center justify-center p-20 bg-primary gap-12'>
-        <p className='text-5xl lg:text-6xl'>
+        <p className='relative text-5xl lg:text-6xl after:bg-[url("/assets/circle-stroke.svg")] after:absolute lg:after:-left-16 after:-left-13 lg:after:-top-15 after:-top-16 after:w-[155%] after:h-45 after:bg-no-repeat after:bg-contain after:bg-center'>
           Our <span className='font-script'>Vision</span>
         </p>
         <div className='lg:w-56 w-48 lg:h-56 h-48 relative'>
@@ -35,7 +35,7 @@ const SoulcialWellPurpose = () => {
             fill
           />
         </div>
-        <p className='text-lg text-justify'>
+        <p className='text-xl text-justify'>
           Our vision is to create a transformative community that inspires and
           uplifts individuals from all walks of life. Through impactful events,
           rejuvenating retreats, and supportive workshops, The Soulcial Well

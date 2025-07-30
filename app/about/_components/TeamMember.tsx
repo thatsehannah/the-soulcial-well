@@ -57,7 +57,9 @@ const TeamMember = ({ member, index }: TeamMemberProps) => {
           </div>
         </div>
         <div className='flex flex-col gap-2 p-8 lg:col-span-2'>
-          <p className='font-script text-5xl text-center'>About Me</p>
+          <p className='font-script text-5xl lg:text-start text-center'>
+            About Me
+          </p>
           <p className='font-bold text-[1rem]'>{aboutMeSubtitle}</p>
           <div className='flex flex-col gap-4 lg:w-3/4 w-full'>
             <p className='text-lg whitespace-pre-wrap'>{bio}</p>
