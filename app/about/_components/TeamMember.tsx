@@ -23,8 +23,6 @@ const TeamMember = ({ member, index }: TeamMemberProps) => {
     bio,
   } = member;
 
-  const splitBio = bio.split("\n");
-
   return (
     <article className='border-b-2 border-white'>
       <div className='grid lg:grid-cols-3 grid-cols-1'>
@@ -59,22 +57,13 @@ const TeamMember = ({ member, index }: TeamMemberProps) => {
           </div>
         </div>
         <div className='flex flex-col gap-2 p-8 lg:col-span-2'>
-          <p className='font-script text-5xl'>About Me</p>
+          <p className='font-script text-5xl text-center'>About Me</p>
           <p className='font-bold text-[1rem]'>{aboutMeSubtitle}</p>
-          <div className='flex flex-col gap-4 w-3/4'>
-            {splitBio.map((line, idx) => {
-              return (
-                <p
-                  key={idx}
-                  className='text-lg'
-                >
-                  {line}
-                </p>
-              );
-            })}
+          <div className='flex flex-col gap-4 lg:w-3/4 w-full'>
+            <p className='text-lg whitespace-pre-wrap'>{bio}</p>
           </div>
           <div className='mt-8'>
-            <hr className='text-dark-green w-2/3 mb-4' />
+            <hr className='text-dark-green lg:w-2/3 w-full mb-4' />
             <p className='font-bold'>Education</p>
             <div className='flex gap-12 mt-4'>
               <p>{recentEducation.year}</p>
@@ -92,7 +81,7 @@ const TeamMember = ({ member, index }: TeamMemberProps) => {
                 Resume
               </div>
             </div>
-            <hr className='text-dark-green w-2/3 mt-4' />
+            <hr className='text-dark-green lg:w-2/3 w-full mt-4' />
           </div>
         </div>
       </div>

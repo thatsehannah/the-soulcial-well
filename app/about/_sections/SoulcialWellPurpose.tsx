@@ -5,7 +5,7 @@ const SoulcialWellPurpose = () => {
   return (
     <section className='flex lg:flex-row flex-col lg:h-[100vh]'>
       <div className='lg:w-1/2 w-full flex flex-col items-center justify-center p-20 gap-17'>
-        <p className='text-5xl lg:text-6xl'>
+        <p className='relative text-5xl lg:text-6xl after:bg-[url("/assets/underline-stroke-yellow.svg")] after:absolute after:left-0 after:-bottom-9 after:w-full after:h-13 after:bg-no-repeat after:bg-contain after:bg-center'>
           Our <span className='font-script'>Mission</span>
         </p>
         <div className='lg:w-56 w-48 lg:h-56 h-48 relative'>

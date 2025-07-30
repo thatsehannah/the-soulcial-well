@@ -24,10 +24,10 @@ const Offerings = () => {
     <main>
       <section className='grid lg:grid-cols-2 grid-cols-1 gap-2 w-full lg:p-32 p-16'>
         <div className='flex flex-col justify-center items-center p-8'>
-          <p className='text-7xl text-center mb-12 text-main-foreground'>
+          <p className='relative text-7xl text-center mb-12 text-main-foreground after:bg-[url("/assets/underline-stroke.svg")] after:absolute after:left-0 lg:after:-bottom-9 after:-bottom-9 after:w-full after:h-13 after:bg-no-repeat after:bg-contain after:bg-center'>
             Offerings
           </p>
-          <div className='flex flex-col gap-3'>
+          <div className='flex flex-col gap-3 mt-6'>
             {offerings.map((offering, idx) => (
               <OfferingPill
                 text={offering}
