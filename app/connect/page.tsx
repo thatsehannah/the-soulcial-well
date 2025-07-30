@@ -1,23 +1,21 @@
 import Image from "next/image";
 import React from "react";
 
-const Contact = () => {
+const Connect = () => {
   return (
     <main>
       <section className='grid lg:grid-cols-2 grid-cols-1 gap-2 w-full lg:p-32 p-16'>
         <div className='flex justify-center items-center lg:p-8 relative'>
-          <div>
-            <Image
-              src='/assets/contact.svg'
-              alt='contact image'
-              height={600}
-              width={600}
-            />
-          </div>
+          <Image
+            src='/assets/connect.svg'
+            alt='connect image'
+            height={600}
+            width={600}
+          />
         </div>
         <div className='flex flex-col justify-center items-center p-8'>
           <p className='text-4xl lg:text-7xl text-center mb-6 text-primary'>
-            Contact Us
+            Connect With Us
           </p>
           <div className='flex flex-col gap-2 text-center text-lg font-bold'>
             <p>PO Box 568, Anywhere, USA 12345</p>
@@ -39,4 +37,4 @@ const Contact = () => {
   );
 };
 
-export default Contact;
+export default Connect;
