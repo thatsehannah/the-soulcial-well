@@ -1,24 +1,14 @@
 import Image from "next/image";
 import React from "react";
 
-const Landing = () => {
+const SoulcialWellOrigins = () => {
   return (
     <section className='p-12'>
-      <p className='text-4xl lg:text-6xl text-center'>
-        How We <span className='font-script'>Started</span>
-      </p>
       <div className='grid grid-cols-1 lg:grid-cols-3 lg:mt-8 mt-4 w-full lg:gap-12 lg:p-8 p-2'>
-        <div className='flex justify-center items-center col-span-1'>
-          <div className='lg:block hidden'>
-            <Image
-              src='/about-landing.svg'
-              alt='cross with logo inside'
-              height={500}
-              width={500}
-            />
-          </div>
-        </div>
         <div className='grid gap-4 text-xl col-span-2 lg:px-30 p-6'>
+          <p className='text-4xl lg:text-6xl text-center'>
+            How We <span className='font-script'>Started</span>
+          </p>
           <p>
             At The Soulcial Well, we believe that self-care is more than solo
             rituals—it’s about meaningful connection, shared experiences, and
@@ -46,9 +36,19 @@ const Landing = () => {
             ✨
           </p>
         </div>
+        <div className='flex justify-center items-center col-span-1'>
+          <div className='lg:block hidden'>
+            <Image
+              src='/about-landing.svg'
+              alt='cross with logo inside'
+              height={500}
+              width={500}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );
 };
 
-export default Landing;
+export default SoulcialWellOrigins;

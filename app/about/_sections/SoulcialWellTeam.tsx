@@ -1,9 +1,12 @@
-import TeamMember from "./_components/TeamMember";
-import { teamMemberInfo } from "./_data/teamMemberInfo";
+import TeamMember from "../_components/TeamMember";
+import { teamMemberInfo } from "../_data/teamMemberInfo";
 
-const TheTeamPage = () => {
+const SoulcialWellTeam = () => {
   return (
     <main>
+      <p className='text-4xl lg:text-6xl text-center mb-4'>
+        Meet <span className='font-script'>The Team</span>
+      </p>
       {teamMemberInfo.map((member, idx) => {
         const {
           imageSrc,
@@ -36,4 +39,4 @@ const TheTeamPage = () => {
   );
 };
 
-export default TheTeamPage;
+export default SoulcialWellTeam;

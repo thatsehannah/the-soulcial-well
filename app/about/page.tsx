@@ -1,12 +1,14 @@
 import React from "react";
-import Landing from "./_sections/Landing";
 import SoulcialWellOverview from "./_sections/SoulcialWellOverview";
+import SoulcialWellOrigins from "./_sections/SoulciallWellOrigins";
+import SoulcialWellTeam from "./_sections/SoulcialWellTeam";
 
 const About = () => {
   return (
     <main>
       <SoulcialWellOverview />
-      <Landing />
+      <SoulcialWellOrigins />
+      <SoulcialWellTeam />
     </main>
   );
 };
