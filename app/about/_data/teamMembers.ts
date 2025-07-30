@@ -46,4 +46,45 @@ When she is not rallying folks to give public comment or speaking at conferences
 ✨ Ready to community? Connect with Shantay and step into a world where wellness is anything but routine.
 `,
   },
+  {
+    imageSrc: "/staff-images/jassmyn.png",
+    firstName: "Jassmyn",
+    lastName: "Stevens",
+    title: "Operations Alchemist",
+    connections: {
+      email: "",
+    },
+    aboutMeSubtitle:
+      "Personal growth, deep connections, and intentional living",
+    recentEducation: {
+      year: "2023",
+      degree: "Doctorate of Clinical Forensic Psychology",
+      school: "The Chicago School",
+    },
+    bio: `Jassmyn classifies herself as someone who has a deep curiosity about the world. She is passionate about exploring diverse perspectives and uncovering what connects us. Jassmyn strives to build meaningful relationships and promote wellbeing in both personal and professional spaces.
+
+✨ Ready to re-think self-care? Connect with Jassmyn and step into a world where wellness is anything but routine.
+`,
+  },
+  {
+    imageSrc: "/staff-images/tisnue.png",
+    firstName: "Tisnue",
+    lastName: "Jean-Baptiste",
+    title: "Insight & Design Strategist",
+    connections: {
+      email: "",
+    },
+    aboutMeSubtitle: "Compassion, curiosity, and creativity",
+    recentEducation: {
+      year: "2023",
+      degree: "Doctorate of Clinical Forensic Psychology",
+      school: "The Chicago School",
+    },
+    bio: `Tisnue Jean-Baptiste is a doctoral student at Rice University in Psychology. She studes how stigmatized employees overcome overwhelming experiences. Her name means "strength" in Amharic which is an attribute she finds personally and professionally meaningful.
+
+As a psychologist she finds it important to identify personal strengths to broaden thinking and build resources. Thus as a human being, one our most valuable resources is our network of social support which is what lead Tisnue to The Soulcial Well. She enjoys crocheting, listening to audiobooks, and going to live music events in Houston.
+
+✨ Ready to re-think self-care? Connect with Tisnue and step into a world where wellness is anything but routine.
+`,
+  },
 ];
