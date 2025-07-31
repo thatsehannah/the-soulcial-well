@@ -6,6 +6,7 @@ import LinkButton from "../_components/LinkButton";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
+import Image from "next/image";
 
 const Hero = () => {
   useGSAP(() => {
@@ -28,15 +29,31 @@ const Hero = () => {
         duration: 0.8,
       })
       .to(".linkButton", {
-        duration: 1,
+        duration: 0.95,
         opacity: 1,
-        stagger: 0.1,
-        ease: "power1.inOut",
+        stagger: 0.2,
+        ease: "bounce",
       });
   });
 
   return (
-    <section className='flex flex-col justify-around lg:justify-between h-[100vh] p-4 bg-[url(/herobg.png)] bg-center bg-no-repeat bg-contain lg:bg-cover'>
+    <section className='flex flex-col justify-around lg:justify-between h-[100vh] p-4 bg-center bg-no-repeat bg-contain lg:bg-cover relative'>
+      <div className='absolute left-0 top-96 lg:w-218 w-48 lg:h-78 h-20'>
+        <Image
+          src='/assets/leftarm.png'
+          alt='left arm'
+          fill
+          quality={100}
+        />
+      </div>
+      <div className='absolute right-0 top-88 lg:top-63 lg:w-216 w-48 lg:h-81 h-20'>
+        <Image
+          src='/assets/rightarm.png'
+          alt='left arm'
+          fill
+          quality={100}
+        />
+      </div>
       <div>
         <div className='w-full flex justify-center gap-2 title'>
           <p className='text-6xl lg:text-8xl font-medium text-primary tracking-[-.08em]'>
