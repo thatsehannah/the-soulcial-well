@@ -15,11 +15,24 @@ const Hero = () => {
       ease: "power1.inOut",
     });
 
+    gsap.from(".left-arm", {
+      left: -900,
+      duration: 1.6,
+      ease: "power1.inOut",
+    });
+
+    gsap.from(".right-arm", {
+      right: -900,
+      duration: 1.6,
+      ease: "power1.inOut",
+    });
+
     timeline
       .from(titleSplit.chars, {
         opacity: 0,
         yPercent: -50,
         duration: 1.2,
+        delay: 1.2,
         ease: "expo.out",
         stagger: 0.05,
       })
@@ -31,14 +44,14 @@ const Hero = () => {
       .to(".linkButton", {
         duration: 0.95,
         opacity: 1,
-        stagger: 0.2,
+        stagger: 0.14,
         ease: "bounce",
       });
   });
 
   return (
     <section className='flex flex-col justify-around lg:justify-between h-[100vh] p-4 bg-center bg-no-repeat bg-contain lg:bg-cover relative'>
-      <div className='absolute left-0 top-96 lg:w-218 w-48 lg:h-78 h-20'>
+      <div className='absolute left-0 top-96 lg:w-218 w-48 lg:h-78 h-20 left-arm'>
         <Image
           src='/assets/leftarm.png'
           alt='left arm'
@@ -46,7 +59,7 @@ const Hero = () => {
           quality={100}
         />
       </div>
-      <div className='absolute right-0 top-88 lg:top-63 lg:w-216 w-48 lg:h-81 h-20'>
+      <div className='absolute right-0 top-94 lg:top-63 lg:w-216 w-48 lg:h-81 h-20 right-arm'>
         <Image
           src='/assets/rightarm.png'
           alt='left arm'
