@@ -17,13 +17,13 @@ const Hero = () => {
 
     gsap.from(".left-arm", {
       left: -900,
-      duration: 1.6,
+      duration: 2.2,
       ease: "power1.inOut",
     });
 
     gsap.from(".right-arm", {
       right: -900,
-      duration: 1.6,
+      duration: 2.2,
       ease: "power1.inOut",
     });
 
@@ -31,10 +31,15 @@ const Hero = () => {
       .from(titleSplit.chars, {
         opacity: 0,
         yPercent: -50,
-        duration: 1.2,
-        delay: 1.2,
+        duration: 0.8,
+        delay: 1.6,
         ease: "expo.out",
         stagger: 0.05,
+      })
+      .from(".sparkles", {
+        opacity: 0,
+        scale: 1.2,
+        duration: 0.6,
       })
       .from(".subtitle", {
         opacity: 0,
@@ -44,14 +49,14 @@ const Hero = () => {
       .to(".linkButton", {
         duration: 0.95,
         opacity: 1,
-        stagger: 0.14,
+        stagger: 0.08,
         ease: "bounce",
       });
   });
 
   return (
-    <section className='flex flex-col justify-around lg:justify-between h-[100vh] p-4 bg-center bg-no-repeat bg-contain lg:bg-cover relative'>
-      <div className='absolute left-0 top-96 lg:w-218 w-48 lg:h-78 h-20 left-arm'>
+    <section className='flex flex-col justify-around lg:justify-between h-[100vh] p-4 relative'>
+      <div className='absolute left-0 lg:top-[39vh] top-[46%] lg:w-[44vw] w-48 lg:h-78 h-20 left-arm'>
         <Image
           src='/assets/leftarm.png'
           alt='left arm'
@@ -59,7 +64,7 @@ const Hero = () => {
           quality={100}
         />
       </div>
-      <div className='absolute right-0 top-94 lg:top-63 lg:w-216 w-48 lg:h-81 h-20 right-arm'>
+      <div className='absolute right-0 lg:top-[25vh] top-[42%] lg:w-[46vw] w-48 lg:h-81 h-20 right-arm'>
         <Image
           src='/assets/rightarm.png'
           alt='left arm'
@@ -72,7 +77,7 @@ const Hero = () => {
           <p className='text-6xl lg:text-8xl font-medium text-primary tracking-[-.08em]'>
             The Soulcial
           </p>
-          <Sparkles className='text-primary w-7 lg:w-13 h-7 lg:h-13 fill-primary' />
+          <Sparkles className='text-primary w-7 lg:w-13 h-7 lg:h-13 fill-primary sparkles' />
         </div>
         <div className='text-center title'>
           <p className='text-6xl lg:text-8xl font-script text-primary'>Well</p>
@@ -83,7 +88,7 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      <div className='grid grid-cols-2 place-items-center gap-8'>
+      <div className='grid grid-cols-2 place-items-center gap-8 mb-8 '>
         <LinkButton
           text='home'
           link='/'
