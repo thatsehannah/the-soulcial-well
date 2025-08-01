@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import NavbarWrapper from "@/components/NavbarWrapper";
 
 export const metadata: Metadata = {
   title: "The Soulcial Well",
@@ -14,6 +15,7 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className='antialiased bg-main-bg text-main-foreground font-main relative'>
+        <NavbarWrapper />
         {children}
       </body>
     </html>
