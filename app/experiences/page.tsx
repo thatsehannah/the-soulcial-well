@@ -2,12 +2,14 @@ import Image from "next/image";
 import React from "react";
 import Experience from "./_components/Experience";
 import { experienceData } from "./_data/experienceData";
+import Navbar from "@/components/Navbar";
 
 const ExperiencesPage = () => {
   const experiences = experienceData;
 
   return (
     <main className='bg-[#f2f4e6]'>
+      <Navbar />
       <section className='pt-12 flex flex-col justify-center items-center h-[100vh]'>
         <p className='lg:text-9xl text-8xl text-center font-script'>
           Experiences
