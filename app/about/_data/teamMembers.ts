@@ -87,4 +87,24 @@ As a psychologist she finds it important to identify personal strengths to broad
 ✨ Ready to re-think self-care? Connect with Tisnue and step into a world where wellness is anything but routine.
 `,
   },
+  {
+    imageSrc: "/staff-images/bianca.png",
+    firstName: "Bianca",
+    lastName: "Wentt",
+    title: "Clinical Catalyst",
+    connections: {
+      email: "",
+    },
+    aboutMeSubtitle: "Unlearning, relearning, and growing - together.",
+    recentEducation: {
+      year: "",
+      degree: "",
+      school: "",
+    },
+    bio: `Bianca is a Licensed Mental Health Counselor (LMHC) from Mt. Vernon, NY, with a deep curiosity for what shapes us and why it matters. She holds a BA in Psychology from Georgia State University and an MA in Forensic Mental Health Counseling from John Jay College.
+
+She’s worked with justice-involved youth and adults with serious mental illness, always centering trauma-informed and culturally sensitive care. Bianca creates spaces where people feel safe, seen, and empowered to grow.
+
+Outside the therapy room, you’ll find her trying new recipes, getting lost in a book, or recharging somewhere in NYC. Her approach is real, grounded, and compassionate—always holding space for folks to show up exactly as they are.`,
+  },
 ];
