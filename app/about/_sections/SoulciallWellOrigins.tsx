@@ -3,10 +3,10 @@ import React from "react";
 
 const SoulcialWellOrigins = () => {
   return (
-    <section className='p-12'>
-      <div className='grid grid-cols-1 lg:grid-cols-3 lg:mt-8 mt-4 w-full lg:gap-12 lg:p-8 p-2'>
+    <section className='lg:p-32 pt-30 pb-12 px-4'>
+      <div className='grid grid-cols-1 lg:grid-cols-3 lg:mt-8 mt-4 w-full lg:gap-12'>
         <div className='grid gap-4 text-xl col-span-2 lg:px-30 p-6'>
-          <p className='text-4xl lg:text-6xl text-center'>
+          <p className='text-5xl lg:text-6xl text-center mb-4'>
             How We <span className='font-script'>Started</span>
           </p>
           <p>

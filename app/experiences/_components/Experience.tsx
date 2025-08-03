@@ -58,7 +58,7 @@ const Experience = ({ title, description, images, index }: ExperienceProps) => {
       <div className='mb-8'>{formatTitle(title)}</div>
       <div className='flex lg:flex-row flex-col lg:my-8 my-4 w-full lg:gap-12 justify-center items-center'>
         <FilmRoll images={images} />
-        <div className='lg:text-[28px] lg:leading-9 leading-7 text-lg lg:w-1/2 w-full lg:px-12 p-6'>
+        <div className='lg:text-[28px] lg:leading-9 leading-7 text-lg lg:w-1/2 w-full lg:px-12 p-4'>
           <p
             className={`${
               isEvenSection ? "text-main-foreground" : "text-white"

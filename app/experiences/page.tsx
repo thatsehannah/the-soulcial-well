@@ -2,30 +2,28 @@ import Image from "next/image";
 import React from "react";
 import Experience from "./_components/Experience";
 import { experienceData } from "./_data/experienceData";
-import Navbar from "@/components/Navbar";
 
 const ExperiencesPage = () => {
   const experiences = experienceData;
 
   return (
     <main className='bg-[#f2f4e6]'>
-      <Navbar />
-      <section className='pt-12 flex flex-col justify-center items-center h-[100vh]'>
+      <section className='flex flex-col justify-center items-center lg:p-32 py-40 px-16'>
         <p className='lg:text-9xl text-8xl text-center font-script'>
           Experiences
         </p>
-        <div className='grid grid-cols-1 lg:grid-cols-3 lg:my-8 my-4 w-3/4 lg:p-8 p-2 items-center lg:gap-12'>
-          <div className='relative mx-auto my-auto'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 lg:my-8 my-4 w-3/4 items-center lg:gap-22 '>
+          <div className='relative mx-auto my-auto lg:h-80 h-62 lg:w-92 w-68'>
             <Image
               src='/assets/experiences-camera.png'
               alt='camera'
-              height={400}
-              width={400}
+              fill
+              quality={100}
             />
           </div>
 
-          <div className='col-span-2 lg:p-12 p-6'>
-            <p className='text-main-foreground lg:text-3xl text-lg text-center lg:text-start'>
+          <div className='col-span-2 lg:p-12 py-6'>
+            <p className='text-main-foreground lg:text-2xl text-lg text-center lg:text-start'>
               Each{" "}
               <em>
                 <b>Soulcial Well</b>

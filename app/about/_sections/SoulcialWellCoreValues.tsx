@@ -5,10 +5,10 @@ import CoreValue from "../_components/CoreValue";
 const SoulcialWellCoreValues = () => {
   return (
     <section className='p-12'>
-      <p className='text-4xl lg:text-6xl text-center text-primary'>
+      <p className='text-5xl lg:text-6xl text-center text-primary'>
         Our Core <span className='font-script'>Values</span>
       </p>
-      <p className='mt-6 text-center text-2xl lg:text-3xl'>
+      <p className='mt-6 text-center text-2xl'>
         At The Soulcial Well, our core values drive everything we do. They
         reflect our commitment to holistic well-being, personal growth, and
         meaningful connections, ensuring that each experience empowers and

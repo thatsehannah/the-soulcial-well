@@ -27,8 +27,8 @@ export const coreValues: CoreValueItem[] = [
     text: "Crafting experiences with depth, purpose, and meaning.",
   },
   {
-    title: "joyful engagement",
-    imageSrc: "/core-values/joyful-engagement.png",
+    title: "playfulness",
+    imageSrc: "/core-values/playfulness.png",
     text: "Making self-care, wellness, and personal growth engaging, fun, and transformative.",
   },
 ];

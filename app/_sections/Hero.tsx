@@ -56,7 +56,7 @@ const Hero = () => {
 
   return (
     <section className='flex flex-col justify-around lg:justify-between h-[100vh] p-4 relative'>
-      <div className='absolute left-0 lg:top-[39vh] top-[46%] lg:w-[44vw] w-48 lg:h-78 h-20 left-arm'>
+      <div className='absolute left-0 xl:top-[38%] lg:top-[36%] top-[43%] w-[44vw] xl:h-66 lg:h-48 h-20 left-arm'>
         <Image
           src='/assets/leftarm.png'
           alt='left arm'
@@ -64,7 +64,7 @@ const Hero = () => {
           quality={100}
         />
       </div>
-      <div className='absolute right-0 lg:top-[25vh] top-[42%] lg:w-[46vw] w-48 lg:h-81 h-20 right-arm'>
+      <div className='absolute right-0 xl:top-[27%] lg:top-[27%] top-[39%] w-[46vw] xl:h-68 lg:h-48 h-20 right-arm'>
         <Image
           src='/assets/rightarm.png'
           alt='left arm'
@@ -73,17 +73,17 @@ const Hero = () => {
         />
       </div>
       <div>
-        <div className='w-full flex justify-center gap-2 title'>
-          <p className='text-6xl lg:text-8xl font-medium text-primary tracking-[-.08em]'>
+        <div className='w-full flex justify-center gap-1 title'>
+          <p className='xl:text-8xl text-6xl font-medium text-primary tracking-[-.08em]'>
             The Soulcial
           </p>
-          <Sparkles className='text-primary w-7 lg:w-13 h-7 lg:h-13 fill-primary sparkles' />
+          <Sparkles className='text-primary ml-2 w-7 xl:w-12 h-7 xl:h-12 fill-primary sparkles' />
         </div>
         <div className='text-center title'>
-          <p className='text-6xl lg:text-8xl font-script text-primary'>Well</p>
+          <p className='xl:text-8xl text-6xl font-script text-primary'>Well</p>
         </div>
-        <div className='text-center mt-6 subtitle'>
-          <p className='text-2xl lg:text-4xl text-primary-foreground tracking-tighter'>
+        <div className='text-center mt-6 lg:mt-4 subtitle'>
+          <p className='xl:text-3xl text-2xl text-primary-foreground tracking-tighter'>
             Bringing back community
           </p>
         </div>

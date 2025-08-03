@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const SoulcialWellOverview = () => {
   return (
-    <section className='p-8'>
+    <section className='lg:p-32 pt-30 pb-12 px-4'>
       <div className='grid grid-cols-1 lg:grid-cols-3 lg:mt-8 mt-4 w-full lg:gap-12 lg:p-8 p-2'>
         <div className='flex justify-center items-center col-span-1'>
           <div className='lg:block hidden'>
@@ -15,7 +15,7 @@ const SoulcialWellOverview = () => {
           </div>
         </div>
         <div className='grid gap-4 text-xl col-span-2 lg:px-30 p-6'>
-          <p className='text-4xl lg:text-6xl text-center mb-4'>
+          <p className='text-5xl lg:text-6xl text-center mb-4'>
             At The <span className='font-script'>Soulcial Well</span>
           </p>
           <p>

@@ -4,7 +4,7 @@ import React from "react";
 const Connect = () => {
   return (
     <main>
-      <section className='grid lg:grid-cols-2 grid-cols-1 gap-2 w-full lg:p-32 p-16'>
+      <section className='grid lg:grid-cols-2 grid-cols-1 gap-2 w-full lg:p-32 py-40 px-16'>
         <div className='flex justify-center items-center lg:p-8 relative'>
           <Image
             src='/assets/connect.svg'

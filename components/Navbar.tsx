@@ -3,10 +3,10 @@
 import { navLinks } from "@/utils/navLinks";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Menu, Sparkles, X } from "lucide-react";
+import { Sparkles } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Navbar = () => {
   const currentPath = usePathname();
@@ -17,6 +17,11 @@ const Navbar = () => {
   const middleBar = useRef<HTMLDivElement>(null);
   const bottomBar = useRef<HTMLDivElement>(null);
   const navTl = useRef<gsap.core.Timeline | null>(null);
+  const menuTl = useRef<gsap.core.Timeline | null>(null);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [currentPath]);
 
   useGSAP(() => {
     navTl.current = gsap.timeline({ paused: true });
@@ -39,13 +44,33 @@ const Navbar = () => {
       );
   }, []);
 
+  useGSAP(() => {
+    menuTl.current = gsap.timeline({ paused: true });
+
+    menuTl.current
+      .to(".menu", {
+        opacity: 1,
+        height: "fit-content",
+        duration: 0.25,
+        ease: "power2.inOut",
+      })
+      .to(".menu-item", {
+        opacity: 1,
+        stagger: 0.1,
+        duration: 0.1,
+        ease: "power2.inOut",
+      });
+  }, []);
+
   const handleClick = () => {
     setIsOpen((prev) => {
       const newIsOpen = !prev;
       if (newIsOpen) {
         navTl.current?.play();
+        menuTl.current?.play();
       } else {
         navTl.current?.reverse();
+        menuTl.current?.reverse();
       }
 
       return newIsOpen;
@@ -53,57 +78,57 @@ const Navbar = () => {
   };
 
   return (
-    <div className='bg-dark-green lg:w-3/4 w-[95vw] z-10 shadow-2xl h-18 rounded-[3rem] mt-8 mx-auto flex justify-between px-8 py-2'>
-      <div className='flex flex-col items-center justify-center'>
-        <Link
-          href='/'
-          className='w-full flex justify-center gap-2 title'
-        >
-          <p className='text-2xl font-medium text-primary tracking-[-.08em]'>
-            The Soulcial <span className='font-script'>Well</span>
-          </p>
-          <Sparkles className='text-primary w-3 h-3 fill-primary ml-1' />
-        </Link>
-      </div>
-      <div
-        className='flex flex-col justify-center items-center gap-[6px] lg:hover:cursor-pointer'
-        onClick={handleClick}
-      >
-        <div
-          ref={topBar}
-          className='bg-primary h-0.5 w-9 rounded-full'
-        />
-        <div
-          ref={middleBar}
-          className='bg-primary h-0.5 w-9 rounded-full'
-        />
-        <div
-          ref={bottomBar}
-          className='bg-primary h-0.5 w-9 rounded-full'
-        />
-      </div>
-      <div className='z-20 h-screen bg-primary/20 backdrop-blur-lg w-1/4 absolute top-0 -right-[100%] pl-10'>
-        <div className='w-full place-items-end mt-12 pr-5 lg:hover:cursor-pointer'>
-          <X className='border-2 rounded-lg p-1 w-8 h-8' />
+    <div className='relative'>
+      <div className='bg-dark-green lg:w-3/4 w-[95vw] z-20 shadow-lg h-18 rounded-[3rem] flex justify-between px-8 py-2 absolute top-4 left-0 right-0 mx-auto'>
+        <div className='flex flex-col items-center justify-center'>
+          <Link
+            href='/'
+            className='w-full flex justify-center gap-2 title'
+          >
+            <p className='text-2xl font-medium text-primary tracking-[-.08em]'>
+              The Soulcial <span className='font-script'>Well</span>
+            </p>
+            <Sparkles className='text-primary w-3 h-3 fill-primary ml-1' />
+          </Link>
         </div>
-        <div className='flex gap-16 flex-col mt-12'>
-          {navLinks.map((item, idx) => {
-            const isActive = currentPath === item.link;
+        <div
+          className='flex flex-col justify-center items-center gap-[6px] lg:hover:cursor-pointer'
+          onClick={handleClick}
+        >
+          <div
+            ref={topBar}
+            className='bg-primary h-0.5 w-9 rounded-full'
+          />
+          <div
+            ref={middleBar}
+            className='bg-primary h-0.5 w-9 rounded-full'
+          />
+          <div
+            ref={bottomBar}
+            className='bg-primary h-0.5 w-9 rounded-full'
+          />
+        </div>
+        <div className='opacity-0 absolute -z-10 h-fit bg-primary/20 backdrop-blur-lg lg:w-1/4 w-1/2 top-18 right-8 rounded-b-3xl menu'>
+          <div className='flex gap-12 flex-col py-10 px-8'>
+            {navLinks.map((item, idx) => {
+              const isActive = currentPath === item.link;
 
-            return (
-              <Link
-                href={item.link}
-                className={`text-4xl lg:hover:scale-110 transition-all ease-linear font-bold w-fit ${
-                  isActive
-                    ? "bg-primary text-main-foreground rounded-full p-3 text-4xl"
-                    : "bg-none text-dark-green"
-                }`}
-                key={idx}
-              >
-                <p>{item.text}</p>
-              </Link>
-            );
-          })}
+              return (
+                <Link
+                  href={item.link}
+                  className={`opacity-0 text-2xl lg:hover:scale-110 transition-all ease-linear font-bold w-fit ${
+                    isActive
+                      ? "bg-primary text-main-foreground rounded-full p-2"
+                      : "bg-none text-dark-green"
+                  } menu-item`}
+                  key={idx}
+                  onClick={handleClick}
+                >
+                  <p>{item.text}</p>
+                </Link>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
