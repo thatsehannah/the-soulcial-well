@@ -7,13 +7,13 @@ type CoreValueProps = CoreValueItem;
 const CoreValue = ({ title, imageSrc, text }: CoreValueProps) => {
   return (
     <div className='flex flex-col items-center pt-8 pb-4'>
-      <div className='w-65 h-65 flex justify-center items-center mb-2 p-2'>
+      <div className='w-65 h-65 flex justify-center items-center mb-2 p-2 relative'>
         <Image
           src={imageSrc}
           alt={`${title} core value`}
-          height={350}
-          width={350}
+          fill
           className='object-cover'
+          quality={100}
         />
       </div>
       <p className='text-primary font-bold text-3xl text-center capitalize'>
