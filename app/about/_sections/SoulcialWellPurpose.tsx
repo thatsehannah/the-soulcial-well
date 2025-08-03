@@ -3,50 +3,47 @@ import React from "react";
 
 const SoulcialWellPurpose = () => {
   return (
-    <section className=''>
-      <div className='flex lg:flex-row flex-col'>
-        <div className='lg:w-1/2 w-full flex flex-col items-center justify-center p-20 gap-17'>
-          <p className='relative text-5xl lg:text-6xl after:bg-[url("/assets/underline-stroke-yellow.svg")] after:absolute after:left-0 after:-bottom-9 after:w-full after:h-13 after:bg-no-repeat after:bg-contain after:bg-center'>
-            Our <span className='font-script'>Mission</span>
-          </p>
-          <div className='lg:w-56 w-48 lg:h-56 h-48 relative'>
-            <Image
-              src='/assets/our-mission.png'
-              alt='4 piece puzzle'
-              fill
-            />
-          </div>
-          <p className='text-xl text-justify'>
-            At The Soulcial Well, we believe that self-care is more powerful
-            when shared. We create immersive self-care and holistic wellness
-            experiences that blend connection, community, personal growth, and
-            creativity. Through thoughtfully curated events, we provide safe,
-            engaging spaces where people can connect, recharge, and cultivate
-            meaningful relationships that enhance their well-being.
-          </p>
+    <section className='flex lg:flex-row flex-col'>
+      <div className='lg:w-1/2 w-full flex flex-col items-center justify-center lg:p-32 pt-16 pb-12 px-12 gap-18'>
+        <p className='relative text-5xl lg:text-6xl after:bg-[url("/assets/underline-stroke-yellow.svg")] after:absolute after:left-0 after:-bottom-9 after:w-full after:h-13 after:bg-no-repeat after:bg-contain after:bg-center'>
+          Our <span className='font-script'>Mission</span>
+        </p>
+        <div className='lg:w-56 w-48 lg:h-56 h-48 relative'>
+          <Image
+            src='/assets/our-mission.png'
+            alt='4 piece puzzle'
+            fill
+          />
         </div>
-        <div className='lg:w-1/2 w-full flex flex-col items-center justify-center p-20 bg-primary gap-12'>
-          <p className='relative text-5xl lg:text-6xl after:bg-[url("/assets/circle-stroke.svg")] after:absolute lg:after:-left-16 after:-left-13 lg:after:-top-15 after:-top-16 after:w-[155%] after:h-45 after:bg-no-repeat after:bg-contain after:bg-center'>
-            Our <span className='font-script'>Vision</span>
-          </p>
-          <div className='lg:w-56 w-52 lg:h-56 h-52 relative'>
-            <Image
-              src='/assets/our-vision.png'
-              alt='eyeball'
-              fill
-            />
-          </div>
-          <p className='text-xl text-justify'>
-            Our vision is to create a transformative community that inspires and
-            uplifts individuals from all walks of life. Through impactful
-            events, rejuvenating retreats, and supportive workshops, The
-            Soulcial Well strives to be a beacon of mental wellness, where
-            people can connect, heal, and grow. We aim to foster a future where
-            happiness, personal growth, and meaningful connections are within
-            reach for all, and everyone feels empowered to thrive in their own
-            journey.
-          </p>
+        <p className='text-xl text-justify'>
+          At The Soulcial Well, we believe that self-care is more powerful when
+          shared. We create immersive self-care and holistic wellness
+          experiences that blend connection, community, personal growth, and
+          creativity. Through thoughtfully curated events, we provide safe,
+          engaging spaces where people can connect, recharge, and cultivate
+          meaningful relationships that enhance their well-being.
+        </p>
+      </div>
+      <div className='lg:w-1/2 w-full flex flex-col items-center justify-center bg-primary lg:p-32 pt-16 pb-12 px-12 gap-8'>
+        <p className='relative text-5xl lg:text-6xl after:bg-[url("/assets/circle-stroke.svg")] after:absolute lg:after:-left-16 after:-left-13 lg:after:-top-15 after:-top-16 after:w-[155%] after:h-45 after:bg-no-repeat after:bg-contain after:bg-center'>
+          Our <span className='font-script'>Vision</span>
+        </p>
+        <div className='lg:w-56 w-52 lg:h-56 h-52 relative'>
+          <Image
+            src='/assets/our-vision.png'
+            alt='eyeball'
+            fill
+          />
         </div>
+        <p className='text-xl text-justify'>
+          Our vision is to create a transformative community that inspires and
+          uplifts individuals from all walks of life. Through impactful events,
+          rejuvenating retreats, and supportive workshops, The Soulcial Well
+          strives to be a beacon of mental wellness, where people can connect,
+          heal, and grow. We aim to foster a future where happiness, personal
+          growth, and meaningful connections are within reach for all, and
+          everyone feels empowered to thrive in their own journey.
+        </p>
       </div>
     </section>
   );
