@@ -16,9 +16,11 @@ const CoreValue = ({ title, imageSrc, text }: CoreValueProps) => {
           className='object-cover'
         />
       </div>
-      <p className='text-primary font-bold text-2xl capitalize'>{title}</p>
+      <p className='text-primary font-bold text-3xl text-center capitalize'>
+        {title}
+      </p>
       <hr className='bg-main-foreground w-48 my-3 border-0 h-[2px]' />
-      <p className='text-[1rem] w-3/4 text-center leading-5'>{text}</p>
+      <p className='text-xl w-3/4 text-center leading-7'>{text}</p>
     </div>
   );
 };
