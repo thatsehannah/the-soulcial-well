@@ -1,3 +1,7 @@
+"use client";
+
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
 import Image from "next/image";
 import React from "react";
 
@@ -20,6 +24,22 @@ const Offerings = () => {
     "Group Therapy & Support Circles",
   ];
 
+  useGSAP(() => {
+    gsap.from("#offering-pill", {
+      duration: 1.2,
+      display: "hidden",
+      opacity: 0,
+      stagger: 0.08,
+      ease: "bounce",
+    });
+
+    gsap.from("#offering-image", {
+      opacity: 0,
+      delay: 0.5,
+      ease: "power1.inOut",
+    });
+  });
+
   return (
     <main className='xl:p-32 pt-38 pb-12 px-7'>
       <section className='grid lg:grid-cols-2 grid-cols-1 gap-2 w-full'>
@@ -29,15 +49,19 @@ const Offerings = () => {
           </p>
           <div className='flex flex-col gap-3 mt-6'>
             {offerings.map((offering, idx) => (
-              <OfferingPill
-                text={offering}
+              <div
                 key={idx}
-              />
+                id='offering-pill'
+                className='block'
+              >
+                <OfferingPill text={offering} />
+              </div>
             ))}
           </div>
         </div>
         <div>
           <Image
+            id='offering-image'
             src='/assets/offerings.svg'
             alt='offerings image'
             height={600}
