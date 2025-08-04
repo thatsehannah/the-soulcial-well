@@ -12,8 +12,8 @@ export const navLinks = [
     link: "/offerings",
   },
   {
-    text: "Connect",
-    link: "/connect",
+    text: "Contact",
+    link: "/contact",
   },
   {
     text: "Soul Tools",

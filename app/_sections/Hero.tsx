@@ -110,8 +110,8 @@ const Hero = () => {
           link='/experiences'
         />
         <LinkButton
-          text='connect'
-          link='/connect'
+          text='contact'
+          link='/contact'
         />
       </div>
     </section>
