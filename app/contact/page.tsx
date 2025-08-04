@@ -16,8 +16,8 @@ import React from "react";
 
 const Contact = () => {
   return (
-    <main>
-      <section className='grid lg:grid-cols-2 grid-cols-1 gap-2 w-full lg:p-32 py-40 px-16'>
+    <main className='xl:p-32 pt-38 pb-12 px-7'>
+      <section className='grid lg:grid-cols-2 grid-cols-1 gap-2 w-full'>
         <div className='flex justify-center items-center lg:p-8 relative'>
           <Image
             src='/assets/connect.svg'
@@ -31,7 +31,7 @@ const Contact = () => {
           <p className='relative text-5xl lg:text-6xl text-center text-primary after:bg-[url("/assets/underline-stroke-brown.svg")] after:absolute after:left-0 lg:after:-bottom-13 after:-bottom-9 after:w-full after:h-13 after:bg-no-repeat after:bg-contain after:bg-center'>
             Contact <span className='font-script'>Us</span>
           </p>
-          <div className='flex flex-col p-8 bg-main-foreground rounded-4xl h-fit w-xl text-lg mt-20'>
+          <div className='flex flex-col p-8 bg-main-foreground rounded-4xl h-fit lg:w-xl w-full text-lg mt-20'>
             <Input
               type='text'
               placeholder='Name'
