@@ -1,6 +1,5 @@
 "use client";
 
-import { Sparkles } from "lucide-react";
 import React from "react";
 import LinkButton from "../_components/LinkButton";
 import gsap from "gsap";
@@ -36,11 +35,6 @@ const Hero = () => {
         ease: "expo.out",
         stagger: 0.05,
       })
-      .from(".sparkles", {
-        opacity: 0,
-        scale: 1.2,
-        duration: 0.6,
-      })
       .from(".subtitle", {
         opacity: 0,
         yPercent: 100,
@@ -72,17 +66,26 @@ const Hero = () => {
           quality={100}
         />
       </div>
-      <div>
-        <div className='w-full flex justify-center gap-1 title'>
-          <p className='xl:text-8xl text-6xl font-medium text-primary tracking-[-.08em]'>
-            The Soulcial
+      <div className='w-fit mx-auto xl:mt-3'>
+        <div className='w-full gap-1 title'>
+          <p className='xl:text-6xl text-4xl text-primary tracking-[-.08em] ml-5'>
+            The
           </p>
-          <Sparkles className='text-primary ml-2 w-7 xl:w-12 h-7 xl:h-12 fill-primary sparkles' />
         </div>
-        <div className='text-center title'>
-          <p className='xl:text-8xl text-6xl font-script text-primary'>Well</p>
+        <div className='flex text-center title gap-1 -mt-7'>
+          <p className='xl:text-8xl text-6xl text-primary'>
+            <span className='font-script text-primary-foreground'>soul</span>
+            cial well{" "}
+          </p>
+          <Image
+            src='/assets/logo-default.png'
+            alt='icon'
+            height={105}
+            width={105}
+            quality={100}
+          />
         </div>
-        <div className='text-center mt-6 lg:mt-4 subtitle'>
+        <div className='text-center mt-6 lg:mt-8 subtitle'>
           <p className='xl:text-3xl text-2xl text-primary-foreground tracking-tighter'>
             Bringing back community
           </p>

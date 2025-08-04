@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import React from "react";
 
@@ -9,7 +11,10 @@ const SoulcialWellOrigins = () => {
           <p className='text-5xl lg:text-6xl text-center mb-8'>
             How We <span className='font-script'>Started</span>
           </p>
-          <div className='xl:hidden flex justify-center items-center mb-8'>
+          <div
+            id='origins-img'
+            className='xl:hidden flex justify-center items-center mb-8'
+          >
             <Image
               src='/about-landing.svg'
               alt='cross with logo inside'

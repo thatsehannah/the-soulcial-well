@@ -3,7 +3,7 @@
 import { navLinks } from "@/utils/navLinks";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Sparkles } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useRef, useState } from "react";
@@ -79,12 +79,16 @@ const Navbar = () => {
         <div className='flex flex-col items-center justify-center'>
           <Link
             href='/'
-            className='w-full flex justify-center gap-2 title'
+            className='flex items-center justify-center title ml-6 mt-2'
           >
-            <p className='text-2xl font-medium text-primary tracking-[-.08em]'>
-              The Soulcial <span className='font-script'>Well</span>
-            </p>
-            <Sparkles className='text-primary w-3 h-3 fill-primary ml-1' />
+            <Image
+              src='/assets/logo-color.png'
+              alt='logo'
+              height={70}
+              width={70}
+              quality={100}
+              className='absolute'
+            />
           </Link>
         </div>
         <div
