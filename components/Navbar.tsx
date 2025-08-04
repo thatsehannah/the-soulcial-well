@@ -6,7 +6,7 @@ import gsap from "gsap";
 import { Sparkles } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 const Navbar = () => {
   const currentPath = usePathname();
@@ -18,10 +18,6 @@ const Navbar = () => {
   const bottomBar = useRef<HTMLDivElement>(null);
   const navTl = useRef<gsap.core.Timeline | null>(null);
   const menuTl = useRef<gsap.core.Timeline | null>(null);
-
-  useEffect(() => {
-    setIsOpen(false);
-  }, [currentPath]);
 
   useGSAP(() => {
     navTl.current = gsap.timeline({ paused: true });
@@ -50,9 +46,9 @@ const Navbar = () => {
     menuTl.current
       .to(".menu", {
         opacity: 1,
-        height: "fit-content",
         duration: 0.25,
         ease: "power2.inOut",
+        display: "block",
       })
       .to(".menu-item", {
         opacity: 1,
@@ -63,8 +59,8 @@ const Navbar = () => {
   }, []);
 
   const handleClick = () => {
-    setIsOpen((prev) => {
-      const newIsOpen = !prev;
+    setIsOpen(() => {
+      const newIsOpen = !isOpen;
       if (newIsOpen) {
         navTl.current?.play();
         menuTl.current?.play();
@@ -108,7 +104,7 @@ const Navbar = () => {
             className='bg-primary h-0.5 w-9 rounded-full'
           />
         </div>
-        <div className='opacity-0 absolute -z-10 h-fit bg-primary/20 backdrop-blur-lg lg:w-1/4 w-1/2 top-18 right-8 rounded-b-3xl menu'>
+        <div className='opacity-0 absolute -z-10 h-fit bg-primary/20 backdrop-blur-lg lg:w-1/4 w-1/2 top-18 right-8 rounded-b-3xl menu hidden'>
           <div className='flex gap-12 flex-col py-10 px-8'>
             {navLinks.map((item, idx) => {
               const isActive = currentPath === item.link;
