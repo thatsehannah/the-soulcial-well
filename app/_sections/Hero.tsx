@@ -35,17 +35,30 @@ const Hero = () => {
         ease: "expo.out",
         stagger: 0.05,
       })
+      .from(
+        ".logo",
+        {
+          opacity: 0,
+          yPercent: 50,
+          duration: 0.8,
+        },
+        "<"
+      )
       .from(".subtitle", {
         opacity: 0,
         yPercent: 100,
         duration: 0.8,
       })
-      .to(".linkButton", {
-        duration: 0.95,
-        opacity: 1,
-        stagger: 0.08,
-        ease: "bounce",
-      });
+      .to(
+        ".linkButton",
+        {
+          duration: 0.95,
+          opacity: 1,
+          stagger: 0.08,
+          ease: "bounce",
+        },
+        "<"
+      );
   });
 
   return (
@@ -72,18 +85,19 @@ const Hero = () => {
             The
           </p>
         </div>
-        <div className='flex text-center title gap-1 -mt-7'>
+        <div className='flex items-center text-center title -mt-7'>
           <p className='xl:text-8xl text-6xl text-primary'>
             <span className='font-script text-primary-foreground'>soul</span>
             cial well{" "}
           </p>
-          <Image
-            src='/assets/logo-default.png'
-            alt='icon'
-            height={105}
-            width={105}
-            quality={100}
-          />
+          <div className='relative xl:h-22 h-14 xl:w-22 w-14 logo'>
+            <Image
+              src='/assets/logo-default.png'
+              alt='icon'
+              fill
+              quality={100}
+            />
+          </div>
         </div>
         <div className='text-center mt-6 lg:mt-8 subtitle'>
           <p className='xl:text-3xl text-2xl text-primary-foreground tracking-tighter'>

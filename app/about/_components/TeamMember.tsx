@@ -1,5 +1,4 @@
 import { TeamMemberInfo } from "@/utils/types";
-import { Mail } from "lucide-react";
 import Image from "next/image";
 
 type TeamMemberProps = {
@@ -18,9 +17,7 @@ const TeamMember = ({ member, index }: TeamMemberProps) => {
     firstName,
     lastName,
     title,
-    connections,
     aboutMeSubtitle,
-    recentEducation,
     bio,
   } = member;
 
