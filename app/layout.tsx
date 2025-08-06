@@ -5,6 +5,29 @@ import NavbarWrapper from "@/components/NavbarWrapper";
 export const metadata: Metadata = {
   title: "The Soulcial Well",
   description: "Bringing back community",
+  openGraph: {
+    title: "The Soulcial Well",
+    description: "Bringing back community",
+    url: "https://www.thesoulcialwell.org",
+    images: [
+      {
+        url: "https://www.thesoulcialwell.org/about-landing.svg",
+        width: 1200,
+        height: 640,
+        alt: "The Soulcial Well",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Soulcial Well",
+    description: "Bringing back community",
+    images: ["https://www.thesoulcialwell.org/about-landing.svg"],
+  },
+  icons: {
+    icon: "./favicon.ico",
+  },
 };
 
 export default function RootLayout({
