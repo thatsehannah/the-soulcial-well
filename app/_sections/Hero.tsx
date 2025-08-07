@@ -92,7 +92,7 @@ const Hero = () => {
           </p>
           <div className='relative xl:h-22 h-14 xl:w-22 w-14 logo'>
             <Image
-              src='/assets/logo-default.png'
+              src='/assets/logo-default.svg'
               alt='icon'
               fill
               quality={100}

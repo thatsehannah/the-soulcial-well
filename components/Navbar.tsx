@@ -82,7 +82,7 @@ const Navbar = () => {
             className='flex items-center justify-center title ml-6 mt-2'
           >
             <Image
-              src='/assets/logo-color.png'
+              src='/assets/logo-color.svg'
               alt='logo'
               height={70}
               width={70}
