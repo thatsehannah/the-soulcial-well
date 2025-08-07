@@ -1,29 +1,44 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Card from "./_components/Card";
 import Image from "next/image";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
 const SoulTools = () => {
+  const convoCards = [
+    "/convo-cards/card1.svg",
+    "/convo-cards/card2.svg",
+    "/convo-cards/card3.svg",
+    "/convo-cards/card4.svg",
+    "/convo-cards/card5.svg",
+  ];
+  const [currentConvoCard, setCurrentConvoCard] = useState(0);
+  const currentCardRef = useRef(null);
+
+  useEffect(() => {
+    const totalConvoCards = convoCards.length;
+
+    const cycleConvoCards = setTimeout(() => {
+      const newIndex =
+        (currentConvoCard + totalConvoCards + 1) % totalConvoCards;
+      setCurrentConvoCard(newIndex);
+    }, 5000);
+
+    return () => clearTimeout(cycleConvoCards);
+  }, [currentConvoCard]);
+
   useGSAP(() => {
-    const imgs = document.querySelectorAll(".convo-img");
-    gsap.fromTo(
-      imgs,
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        x: (idx) => 50 * idx,
-        y: (idx) => 50 * idx,
-        zIndex: (idx) => imgs.length * idx,
-        duration: (idx) => 0.5 * idx + 1,
-        ease: "power2.inOut",
-      }
-    );
-  }, []);
+    const cycleTimeline = gsap.timeline();
+
+    cycleTimeline.from(currentCardRef.current, {
+      opacity: 0,
+      xPercent: -50,
+      duration: 0.9,
+      ease: "power1.inOut",
+    });
+  }, [currentConvoCard]);
 
   return (
     <main className='xl:p-32 pt-38 pb-12 px-7'>
@@ -34,40 +49,28 @@ const SoulTools = () => {
             Conversations
           </span>
         </p>
-        <div className='flex lg:flex-row flex-col gap-8'>
-          <div className='lg:h-180 h-106 lg:w-1/2 relative flex justify-center p-4 overflow-hidden'>
-            <div className='absolute flex justify-center items-center lg:h-[30rem] h-[18rem] lg:w-[30rem] w-[18rem] lg:left-32 left-10 convo-img'>
+        <div className='flex lg:flex-row flex-col justify-around items-center gap-2 mb-30'>
+          <div className='lg:w-1/2 flex justify-center'>
+            <div
+              ref={currentCardRef}
+              className={`h-90 w-90 relative flex justify-center lg:p-4 p-16 my-12 lg:mb-0`}
+            >
               <Image
-                src='/convo-cards/card3.png'
-                alt='candid conversation card'
-                fill
-                quality={100}
-              />
-            </div>
-            <div className='absolute flex justify-center items-center lg:h-[30rem] h-[18rem] lg:w-[30rem] w-[18rem] lg:left-32 left-10 convo-img'>
-              <Image
-                src='/convo-cards/card2.png'
-                alt='candid conversation card'
-                fill
-                quality={100}
-              />
-            </div>
-            <div className='absolute flex justify-center items-center lg:h-[30rem] h-[18rem] lg:w-[30rem] w-[18rem] lg:left-32 left-10 convo-img'>
-              <Image
-                src='/convo-cards/card1.png'
-                alt='candid conversation card'
+                src={convoCards[currentConvoCard]}
+                alt='conversation card'
                 fill
                 quality={100}
               />
             </div>
           </div>
           <div className='lg:w-1/2'>
-            <p className='lg:text-4xl text-2xl'>
-              Candid Conversations is a culturally rooted wellness model
-              designed to foster deep, purposeful dialogue that moves beyound
-              surface-level small talk. It&apos;s about creating safe, inclusive
-              spaces where people can explore their identities, emotions, and
-              relationships through storytelling, reflection, and connection.
+            <p className='lg:text-3xl text-2xl'>
+              <span className='font-bold italic'>Candid Conversations</span> is
+              a culturally rooted wellness model designed to foster deep,
+              purposeful dialogue that moves beyound surface-level small talk.
+              It&apos;s about creating safe, inclusive spaces where people can
+              explore their identities, emotions, and relationships through
+              storytelling, reflection, and connection.
             </p>
           </div>
         </div>
