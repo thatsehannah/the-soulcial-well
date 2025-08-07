@@ -16,7 +16,7 @@ const SoulcialWellOrigins = () => {
             className='xl:hidden flex justify-center items-center mb-8'
           >
             <Image
-              src='/about-landing.svg'
+              src='/assets/origins.svg'
               alt='cross with logo inside'
               height={500}
               width={500}
@@ -53,7 +53,7 @@ const SoulcialWellOrigins = () => {
         <div className='flex justify-center items-center xl:col-span-1'>
           <div className='xl:flex hidden'>
             <Image
-              src='/about-landing.svg'
+              src='/assets/origins.svg'
               alt='cross with logo inside'
               height={500}
               width={500}
