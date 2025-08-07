@@ -7,13 +7,13 @@ const ExperiencesPage = () => {
   const experiences = experienceData;
 
   return (
-    <main className='bg-[#f2f4e6]'>
-      <section className='flex flex-col justify-center items-center lg:p-32 py-40 px-16'>
+    <main>
+      <section className='flex flex-col justify-center items-center lg:p-32 py-40 px-16 bg-[#f2f4e6]'>
         <p className='lg:text-9xl text-8xl text-center font-script'>
           Experiences
         </p>
-        <div className='grid grid-cols-1 lg:grid-cols-3 lg:my-8 my-4 w-3/4 items-center lg:gap-22 '>
-          <div className='relative mx-auto my-auto lg:h-80 h-62 lg:w-92 w-68'>
+        <div className='grid grid-cols-1 lg:grid-cols-3 lg:my-8 my-4 items-center lg:gap-22 '>
+          <div className='relative mx-auto my-auto lg:h-68 h-62 lg:w-90 w-68'>
             <Image
               src='/assets/experiences-camera.png'
               alt='camera'
