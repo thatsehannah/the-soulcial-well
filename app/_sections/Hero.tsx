@@ -59,7 +59,7 @@ const Hero = () => {
         },
         "<"
       );
-  });
+  }, []);
 
   return (
     <section className='flex flex-col justify-around lg:justify-between h-[100vh] p-4 relative'>
