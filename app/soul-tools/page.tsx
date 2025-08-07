@@ -75,18 +75,6 @@ const SoulTools = () => {
           </div>
         </div>
         <div className='grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 xl:gap-16 gap-6'>
-          {/* <Card>
-            <p className='font-bold text-2xl text-center'>
-              What is Candid Conversations?
-            </p>
-            <p className='text-xl mt-4'>
-              Candid Conversations is a culturally rooted wellness model
-              designed to foster deep, purposeful dialogue that moves beyound
-              surface-level small talk. It&apos;s about creating safe, inclusive
-              spaces where people can explore their identities, emotions, and
-              relationships through storytelling, reflection, and connection.
-            </p>
-          </Card> */}
           <Card>
             <p className='font-bold text-2xl text-center'>Why It Matters</p>
             <p className='text-xl mt-4'>
