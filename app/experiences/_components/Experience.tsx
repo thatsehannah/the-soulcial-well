@@ -1,14 +1,17 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import FilmRoll from "./FilmRoll";
+import { ExperienceItem } from "@/utils/types";
+import { getImagesFromStorage } from "@/utils/getImagesFromStorage";
 
 type ExperienceProps = {
-  title: string;
-  description: string;
-  images: string[];
+  item: ExperienceItem;
   index: number;
 };
 
-const Experience = ({ title, description, images, index }: ExperienceProps) => {
+const Experience = ({ item, index }: ExperienceProps) => {
+  const [images, setImages] = useState<string[]>([]);
   const isEvenSection = index % 2 === 0;
 
   const formatTitle = (rawTitle: string) => {
@@ -49,13 +52,22 @@ const Experience = ({ title, description, images, index }: ExperienceProps) => {
     );
   };
 
+  useEffect(() => {
+    const fetchImages = async () => {
+      const urls = await getImagesFromStorage(item.storageBucket!);
+      setImages(urls);
+    };
+
+    fetchImages();
+  }, []);
+
   return (
     <section
       className={`${
         isEvenSection ? "bg-primary" : "bg-dark-green"
       } px-12 py-24`}
     >
-      <div className='mb-8'>{formatTitle(title)}</div>
+      <div className='mb-8'>{formatTitle(item.title)}</div>
       <div className='flex lg:flex-row flex-col lg:my-8 my-4 w-full lg:gap-12 justify-center items-center'>
         <FilmRoll images={images} />
         <div className='lg:text-[28px] lg:leading-9 leading-7 text-lg lg:w-1/2 w-full lg:px-12 p-4'>
@@ -64,7 +76,7 @@ const Experience = ({ title, description, images, index }: ExperienceProps) => {
               isEvenSection ? "text-main-foreground" : "text-white"
             } whitespace-pre-wrap font-medium`}
           >
-            {description}
+            {item.description}
           </p>
         </div>
       </div>

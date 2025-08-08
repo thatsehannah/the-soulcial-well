@@ -26,3 +26,9 @@ export type CoreValueItem = {
   title: string;
   text: string;
 };
+
+export type ExperienceItem = {
+  title: string;
+  description: string;
+  storageBucket?: string;
+};

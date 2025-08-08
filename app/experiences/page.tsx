@@ -4,7 +4,10 @@ import Experience from "./_components/Experience";
 import { experienceData } from "./_data/experienceData";
 
 const ExperiencesPage = () => {
-  const experiences = experienceData;
+  //only getting the experiences that have photos in the storage bucket in firebase
+  const experiences = experienceData.filter(
+    (item) => item.storageBucket !== undefined
+  );
 
   return (
     <main>
@@ -38,13 +41,12 @@ const ExperiencesPage = () => {
         </div>
       </section>
       {experiences.map((exp, index) => (
-        <Experience
-          title={exp.title}
-          description={exp.description}
-          images={exp.images}
-          index={index}
-          key={index}
-        />
+        <div key={index}>
+          <Experience
+            item={exp}
+            index={index}
+          />
+        </div>
       ))}
     </main>
   );
