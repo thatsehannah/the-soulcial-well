@@ -50,7 +50,7 @@ const Contact = () => {
 
   return (
     <main className='xl:p-32 pt-38 pb-12 px-7'>
-      <section className='grid lg:grid-cols-2 grid-cols-1 gap-2 w-full'>
+      <section className='grid lg:grid-cols-2 grid-cols-1 gap-4 w-full'>
         <div className='flex justify-center items-center lg:p-8 relative'>
           <Image
             src='/assets/connect.svg'
@@ -64,8 +64,11 @@ const Contact = () => {
           <p className='relative text-5xl lg:text-6xl text-center text-primary after:bg-[url("/assets/underline-stroke-brown.svg")] after:absolute after:left-0 after:-bottom-8 after:w-full after:h-13 after:bg-no-repeat after:bg-contain after:bg-center'>
             Contact <span className='font-script'>Us</span>
           </p>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <div className='flex flex-col p-8 bg-main-foreground rounded-4xl h-fit lg:w-xl w-full text-lg mt-20'>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className='h-fit lg:w-xl w-full'
+          >
+            <div className='flex flex-col p-8 bg-main-foreground rounded-4xl text-lg mt-20'>
               <div>
                 <Input
                   type='text'
@@ -83,7 +86,7 @@ const Contact = () => {
                 <Input
                   type='email'
                   placeholder='Email'
-                  className='bg-main-bg mt-3 placeholder:font-script placeholder:text-xl text-black'
+                  className='bg-main-bg lg:mt-3 mt-5 placeholder:font-script placeholder:text-xl text-black'
                   {...register("email")}
                 />
                 {errors.email && (
@@ -100,7 +103,7 @@ const Contact = () => {
                     clearErrors("service");
                   }}
                 >
-                  <SelectTrigger className='w-full mt-3 bg-main-bg data-[placeholder]:font-script data-[placeholder]:text-xl text-black'>
+                  <SelectTrigger className='w-full lg:mt-3 mt-5 bg-main-bg data-[placeholder]:font-script data-[placeholder]:text-xl text-black'>
                     <SelectValue
                       className='text-black'
                       placeholder='Service interested in'
