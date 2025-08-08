@@ -63,7 +63,7 @@ const Hero = () => {
 
   return (
     <section className='flex flex-col justify-around lg:justify-between h-[100vh] p-4 relative'>
-      <div className='absolute left-0 xl:top-[34%] lg:top-[36%] top-[43%] w-[44vw] xl:h-60 lg:h-48 h-20 left-arm'>
+      <div className='absolute left-0 xl:top-[34%] lg:top-[36%] md:top-[37%] top-[43%] w-[44vw] xl:h-60 lg:h-48 md:h-30 h-20 left-arm'>
         <Image
           src='/assets/leftarm.png'
           alt='left arm'
@@ -71,7 +71,7 @@ const Hero = () => {
           quality={100}
         />
       </div>
-      <div className='absolute right-0 xl:top-[24%] lg:top-[27%] top-[39%] w-[45vw] xl:h-55 lg:h-48 h-20 right-arm'>
+      <div className='absolute right-0 xl:top-[24%] lg:top-[27%] md:top-[32%] top-[39%] w-[45vw] xl:h-55 lg:h-48 md:h-27 h-20 right-arm'>
         <Image
           src='/assets/rightarm.png'
           alt='left arm'
