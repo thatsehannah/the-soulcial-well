@@ -14,7 +14,7 @@ const SoulcialWellCoreValues = () => {
         meaningful connections, ensuring that each experience empowers and
         supports you on your journey.
       </p>
-      <div className='grid lg:grid-cols-3 grid-cols-1 gap-4 lg:gap-12 xl:gap-4 xl:mt-8 mt-4'>
+      <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 lg:gap-12 xl:gap-4 xl:mt-8 mt-4'>
         {coreValues.map((value, idx) => {
           const { title, imageSrc, text } = value;
 
