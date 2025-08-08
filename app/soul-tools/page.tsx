@@ -53,7 +53,7 @@ const SoulTools = () => {
           <div className='lg:w-1/2 flex justify-center'>
             <div
               ref={currentCardRef}
-              className={`h-90 w-90 relative flex justify-center lg:p-4 p-16 my-12 lg:mb-0`}
+              className={`lg:h-90 h-75 lg:w-90 w-75 relative flex justify-center lg:p-4 p-16 my-12 lg:mb-0`}
             >
               <Image
                 src={convoCards[currentConvoCard]}
