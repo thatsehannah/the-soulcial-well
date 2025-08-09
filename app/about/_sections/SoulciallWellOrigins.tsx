@@ -45,10 +45,6 @@ const SoulcialWellOrigins = () => {
             journey alone. Ready to refill your well? Join us and experience
             self-care in a whole new way.
           </p>
-          <p className='text-center'>
-            ✨ Rethink self-care. Reconnect with yourself. Thrive in community.
-            ✨
-          </p>
         </div>
         <div className='flex justify-center items-center xl:col-span-1'>
           <div className='xl:flex hidden'>
