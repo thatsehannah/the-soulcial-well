@@ -18,6 +18,9 @@ import Image from "next/image";
 import React from "react";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
+import { NewMessage } from "@/utils/types";
+import { sendBatchEmails } from "@/utils/sendBatchEmails";
+import { toast } from "sonner";
 
 const contactSchema = yup.object({
   name: yup.string().required("Please enter your name"),
@@ -42,9 +45,11 @@ const Contact = () => {
   } = form;
   const selectedService = watch("service");
 
-  const onSubmit = (data: yup.InferType<typeof contactSchema>) => {
-    //TODO: hook up render email to send emails
-    console.log(data);
+  const onSubmit = async (data: NewMessage) => {
+    const response = await sendBatchEmails(data);
+    toast(<p className='text-lg'>{response?.message}</p>, {
+      description: response?.description,
+    });
     form.reset();
   };
 

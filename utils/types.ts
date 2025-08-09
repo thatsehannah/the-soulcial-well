@@ -32,3 +32,10 @@ export type ExperienceItem = {
   description: string;
   storageBucket?: string;
 };
+
+export type NewMessage = {
+  name: string;
+  email: string;
+  service: string;
+  message: string;
+};

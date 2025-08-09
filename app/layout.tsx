@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import NavbarWrapper from "@/components/NavbarWrapper";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "The Soulcial Well",
@@ -40,6 +41,10 @@ export default function RootLayout({
       <body className='antialiased bg-main-bg text-main-foreground font-main relative'>
         <NavbarWrapper />
         {children}
+        <Toaster
+          position='top-center'
+          toastOptions={{ classNames: { description: "!text-black" } }}
+        />
       </body>
     </html>
   );
