@@ -46,12 +46,19 @@ const Contact = () => {
   const selectedService = watch("service");
 
   const onSubmit = async (data: NewMessage) => {
-    const response = await sendBatchEmails(data);
-    toast.success(<p className='text-lg'>{response?.message}</p>, {
-      description: response?.description,
-    });
-    form.reset();
-    form.clearErrors();
+    try {
+      const response = await sendBatchEmails(data);
+      toast.success(<p className='text-lg'>{response?.message}</p>, {
+        description: response?.description,
+      });
+      form.reset();
+      form.clearErrors();
+    } catch (error) {
+      toast.error(<p className='text-lg'>Oh no!</p>, {
+        description:
+          error instanceof Error ? error.message : "An unknown error occurred.",
+      });
+    }
   };
 
   return (

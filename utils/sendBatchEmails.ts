@@ -33,7 +33,9 @@ export const sendBatchEmails = async (data: NewMessage) => {
         description: "Be on the lookout for a confirmation email!",
       };
     }
-  } catch (err) {
-    console.log(err);
+  } catch {
+    throw new Error(
+      "Sorry! An error occurred creating your appointment. Please try again later."
+    );
   }
 };
