@@ -1,9 +1,28 @@
 "use client";
 
 import Image from "next/image";
-import React from "react";
+import React, { useRef } from "react";
+import { ScrollTrigger } from "gsap/all";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const SoulcialWellOrigins = () => {
+  const imageRef = useRef(null);
+
+  useGSAP(() => {
+    gsap.from(imageRef.current, {
+      opacity: 0,
+      duration: 1,
+      delay: 0.5,
+      scrollTrigger: {
+        trigger: imageRef.current,
+        start: "top bottom",
+      },
+    });
+  }, []);
+
   return (
     <section className='xl:p-32 pt-8 pb-12 px-4 bg-[#f2f4e6]'>
       <div className='grid grid-cols-1 xl:grid-cols-3 xl:mt-8 mt-4 w-full lg:gap-12 xl:p-8 p-2'>
@@ -12,7 +31,7 @@ const SoulcialWellOrigins = () => {
             How We <span className='font-script'>Started</span>
           </p>
           <div
-            id='origins-img'
+            ref={imageRef}
             className='xl:hidden flex justify-center items-center mb-8'
           >
             <Image
@@ -47,13 +66,17 @@ const SoulcialWellOrigins = () => {
           </p>
         </div>
         <div className='flex justify-center items-center xl:col-span-1'>
-          <div className='xl:flex hidden'>
+          <div
+            ref={imageRef}
+            className='xl:flex hidden'
+          >
             <Image
               src='/assets/origins.svg'
               alt='cross with logo inside'
               height={500}
               width={500}
               quality={100}
+              priority
             />
           </div>
         </div>

@@ -79,13 +79,13 @@ const Hero = () => {
           quality={100}
         />
       </div>
-      <div className='w-fit mx-auto xl:mt-3'>
+      <div className='w-fit mx-auto xl:mt-3 p-2'>
         <div className='w-full gap-1 title'>
           <p className='xl:text-6xl text-4xl text-primary tracking-[-.08em] ml-5'>
             The
           </p>
         </div>
-        <div className='flex items-center text-center title -mt-7'>
+        <div className='flex items-center text-center title -mt-5'>
           <p className='xl:text-8xl text-6xl text-primary'>
             <span className='font-script text-primary-foreground'>soul</span>
             cial well{" "}

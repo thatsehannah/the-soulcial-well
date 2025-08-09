@@ -22,6 +22,7 @@ const ExperiencesPage = () => {
               alt='camera'
               fill
               quality={100}
+              priority
             />
           </div>
 

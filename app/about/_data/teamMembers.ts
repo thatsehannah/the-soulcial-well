@@ -55,7 +55,7 @@ When she is not rallying folks to give public comment or speaking at conferences
       email: "",
     },
     aboutMeSubtitle:
-      "Personal growth, deep connections, and intentional living",
+      "Meaningful connections, greater sense of self, community engagement.",
     recentEducation: {
       year: "2023",
       degree: "Doctorate of Clinical Forensic Psychology",
@@ -74,7 +74,7 @@ When she is not rallying folks to give public comment or speaking at conferences
     connections: {
       email: "",
     },
-    aboutMeSubtitle: "Compassion, curiosity, and creativity",
+    aboutMeSubtitle: "Compassion, curiosity, and creativity.",
     recentEducation: {
       year: "2023",
       degree: "Doctorate of Clinical Forensic Psychology",

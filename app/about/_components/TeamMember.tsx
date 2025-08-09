@@ -8,7 +8,8 @@ type TeamMemberProps = {
 
 const TeamMember = ({ member, index }: TeamMemberProps) => {
   const isEvenSection = index % 2 === 0;
-  const fontColor = isEvenSection ? "main-foreground" : "white";
+  const fontColor = isEvenSection ? "text-main-foreground" : "text-main-bg";
+  const hrColor = isEvenSection ? "bg-main-foreground" : "bg-main-bg";
   const backgroundColor = isEvenSection ? "bg-primary" : "bg-dark-green";
 
   const {
@@ -34,17 +35,18 @@ const TeamMember = ({ member, index }: TeamMemberProps) => {
               className='object-cover'
               quality={100}
               sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+              priority
             />
           </div>
           <div className='mb-6 text-center'>
-            <p className={`text-2xl text-${fontColor}`}>
+            <p className={`text-2xl ${fontColor}`}>
               <span className='font-bold'>{honorific}</span>{" "}
               <span className='font-script text-5xl'>{firstName}</span>{" "}
               {lastName}
             </p>
-            <p className={`text-xl text-${fontColor}`}>{title}</p>
+            <p className={`text-xl ${fontColor}`}>{title}</p>
           </div>
-          <hr className={`bg-${fontColor} h-[1px] lg:h-0 border-0`} />
+          <hr className={`${hrColor} h-[1px] lg:h-0 border-0`} />
           {/* <div className='mt-12 ml-6 flex flex-col gap-2'>
             <p className={`text-lg text-${fontColor}`}>Connect with me</p>
             <div className={`flex gap-4 fill-${fontColor} stroke-${fontColor}`}>
@@ -56,13 +58,13 @@ const TeamMember = ({ member, index }: TeamMemberProps) => {
           className={`flex flex-col gap-2 p-8 lg:col-span-2 justify-center lg:bg-main-bg ${backgroundColor}`}
         >
           <p
-            className={`font-bold text-2xl xl:text-primary-foreground text-${fontColor} mb-6`}
+            className={`font-bold text-2xl xl:text-primary-foreground ${fontColor} mb-6`}
           >
             {aboutMeSubtitle}
           </p>
           <div className='flex flex-col gap-4 xl:w-3/4 w-full pb-12'>
             <p
-              className={`text-xl whitespace-pre-wrap lg:text-primary-foreground text-${fontColor}`}
+              className={`text-xl whitespace-pre-wrap lg:text-primary-foreground ${fontColor}`}
             >
               {bio}
             </p>

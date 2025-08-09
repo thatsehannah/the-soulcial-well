@@ -25,6 +25,7 @@ const SoulcialWellOverview = () => {
             alt='cross with attendees image inside'
             height={500}
             width={500}
+            priority
           />
         </div>
         <div className='grid gap-4 text-xl xl:col-span-2 xl:px-30 p-6'>

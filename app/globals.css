@@ -50,11 +50,13 @@
 
   --font-main: "Times New Roman", Times, serif;
   --font-script: "Pinyon Script", cursive;
+  --main-background: var(--main-bg);
 }
 
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
+  --main-background: oklch(0.99 0.0085 84.57);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
