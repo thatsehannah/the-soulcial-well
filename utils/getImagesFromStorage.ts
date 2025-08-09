@@ -1,3 +1,5 @@
+"use server";
+
 import { getDownloadURL, listAll, ref } from "firebase/storage";
 import { storage } from "@/firebase";
 
