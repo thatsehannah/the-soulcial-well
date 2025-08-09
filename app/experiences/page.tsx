@@ -16,7 +16,7 @@ const ExperiencesPage = () => {
           Experiences
         </p>
         <div className='grid grid-cols-1 lg:grid-cols-3 lg:my-8 my-4 items-center lg:gap-22 '>
-          <div className='relative mx-auto my-auto lg:h-68 md:h-40 h-62 lg:w-90 md:w-60 w-68'>
+          <div className='relative mx-auto my-auto lg:h-68 md:h-40 h-45 lg:w-90 md:w-60 w-45'>
             <Image
               src='/assets/experiences.svg'
               alt='camera'
