@@ -49,6 +49,7 @@ True to Soulcial Well’s spirit, Colorful Connections reminded us that self-car
   },
   {
     title: "Brushes & Balance",
+    storageBucket: "brushes-balance",
     description: `Brushes & Balance was a free community wellness event curated by Dr. Wilma in partnership with Deep Centered Mental Health. Designed to highlight the therapeutic power of creative expression, the experience blended education, exploration, and engagement — offering attendees a meaningful introduction to art as a tool for emotional wellness.
 
 The evening included a discussion on how therapy supports personal growth, a Q&A with clinicians, and hands-on art activities that encouraged reflection, self-expression, and connection. Participants were invited into a supportive, judgment-free space where they could explore their feelings and walk away with both artwork and practical strategies for nurturing their mental health.
@@ -110,6 +111,7 @@ Saddle & Serenity reminded us that sometimes, serenity comes on four hooves.`,
   },
   {
     title: "Well Read",
+    storageBucket: "well-read",
     description: `Beginning virtually during COVID, the Soulcial Well Book Club creates a welcoming space for connection, reflection, and shared exploration through literature. As restrictions eased, the group transitioned to in-person gatherings in Houston, deepening community bonds and sparking thoughtful dialogue around selected books.
 
 This evolving experience combined the joy of reading with meaningful conversation — nurturing both the mind and the heart.`,
