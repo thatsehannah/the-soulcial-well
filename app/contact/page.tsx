@@ -47,10 +47,11 @@ const Contact = () => {
 
   const onSubmit = async (data: NewMessage) => {
     const response = await sendBatchEmails(data);
-    toast(<p className='text-lg'>{response?.message}</p>, {
+    toast.success(<p className='text-lg'>{response?.message}</p>, {
       description: response?.description,
     });
     form.reset();
+    form.clearErrors();
   };
 
   return (

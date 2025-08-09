@@ -43,7 +43,7 @@ export default function RootLayout({
         {children}
         <Toaster
           position='top-center'
-          toastOptions={{ classNames: { description: "!text-black" } }}
+          richColors
         />
       </body>
     </html>
