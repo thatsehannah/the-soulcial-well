@@ -71,7 +71,7 @@ const Hero = () => {
           quality={100}
         />
       </div>
-      <div className='absolute right-0 xl:top-[26%] lg:top-[27%] md:top-[35%] top-[39%] w-[43vw] xl:h-50 lg:h-48 md:h-27 h-20 right-arm'>
+      <div className='absolute right-0 xl:top-[27%] lg:top-[27%] md:top-[35%] top-[39%] w-[43vw] xl:h-50 lg:h-48 md:h-27 h-20 right-arm'>
         <Image
           src='/assets/rightarm.png'
           alt='left arm'

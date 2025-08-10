@@ -7,17 +7,34 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const ConvoPopUp = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dialogRef = useRef(null);
 
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setIsOpen(true);
-    }, 6500);
+    if (localStorage.getItem("visitedToday") === null) {
+      const timeout = setTimeout(() => {
+        setIsOpen(true);
+      }, 6500);
 
-    return () => clearTimeout(timeout);
+      return () => clearTimeout(timeout);
+    }
+  }, []);
+
+  useEffect(() => {
+    const previousVisitor = localStorage.getItem(
+      "visitedToday"
+    ) as unknown as boolean;
+    console.log("Checking previous visitor...");
+
+    if (previousVisitor === null) {
+      console.log("Setting visitedToday...");
+
+      localStorage.setItem("visitedToday", "true");
+      return;
+    }
   }, []);
 
   return (
@@ -25,7 +42,10 @@ const ConvoPopUp = () => {
       open={isOpen}
       onOpenChange={setIsOpen}
     >
-      <DialogContent className='min-w-[80%] border-4 border-primary text-center'>
+      <DialogContent
+        ref={dialogRef}
+        className='min-w-[80%] border-4 border-primary text-center'
+      >
         <DialogHeader>
           <DialogTitle className='font-normal lg:text-3xl text-3xl'>
             Your Daily{" "}
