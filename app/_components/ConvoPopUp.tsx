@@ -15,25 +15,12 @@ const ConvoPopUp = () => {
 
   useEffect(() => {
     if (localStorage.getItem("visitedToday") === null) {
+      localStorage.setItem("visitedToday", "true");
       const timeout = setTimeout(() => {
         setIsOpen(true);
       }, 6500);
 
       return () => clearTimeout(timeout);
-    }
-  }, []);
-
-  useEffect(() => {
-    const previousVisitor = localStorage.getItem(
-      "visitedToday"
-    ) as unknown as boolean;
-    console.log("Checking previous visitor...");
-
-    if (previousVisitor === null) {
-      console.log("Setting visitedToday...");
-
-      localStorage.setItem("visitedToday", "true");
-      return;
     }
   }, []);
 
