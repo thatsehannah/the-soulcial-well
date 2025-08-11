@@ -14,15 +14,22 @@ const ConvoPopUp = () => {
 
   useEffect(() => {
     const resetPopUpExpiry = () => {
-      const currentTime = Date.now();
+      const currentTime = new Date(Date.now());
+      let expiryTime: number;
+
+      //making this implementation flexible in the event i want to change the target time in the future
       const targetTime = new Date(currentTime).setHours(23, 59, 0, 0);
-      console.log("Target time: " + targetTime);
 
-      console.log("expiry calculation: " + (targetTime - currentTime));
-      const expiryTime = currentTime + (targetTime - currentTime).toString();
-      console.log("Getting ready to set expiryTime: " + expiryTime);
+      if (Date.now() > targetTime) {
+        const nextDay = new Date(currentTime).setDate(
+          currentTime.getDate() + 1
+        );
+        expiryTime = new Date(nextDay).setHours(23, 59, 0, 0); // Settign expiry time for next day
+      } else {
+        expiryTime = targetTime; // Setting expiry time for current day
+      }
 
-      localStorage.setItem("popUpExpiry", expiryTime);
+      localStorage.setItem("popUpExpiry", expiryTime.toString());
       const timeout = setTimeout(() => {
         setIsOpen(true);
       }, 6500);
@@ -35,10 +42,7 @@ const ConvoPopUp = () => {
     }
 
     const expiryTime = localStorage.getItem("popUpExpiry");
-    if (expiryTime && Date.now().toString() >= expiryTime) {
-      console.log(Date.now().toString() + " > " + expiryTime);
-      console.log("Removing expiryTime: " + expiryTime);
-      localStorage.removeItem("popUpExpiry");
+    if (expiryTime && Date.now() >= parseInt(expiryTime)) {
       resetPopUpExpiry();
     }
   }, []);
