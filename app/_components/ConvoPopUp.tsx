@@ -17,14 +17,13 @@ const ConvoPopUp = () => {
       const currentTime = new Date(Date.now());
       let expiryTime: number;
 
-      //making this implementation flexible in the event i want to change the target time in the future
-      const targetTime = new Date(currentTime).setHours(23, 59, 0, 0);
+      const targetTime = new Date(currentTime).setHours(8, 30, 0, 0);
 
+      //making this implementation flexible in the event i want to change the target time in the future
       if (Date.now() > targetTime) {
-        const nextDay = new Date(currentTime).setDate(
-          currentTime.getDate() + 1
-        );
-        expiryTime = new Date(nextDay).setHours(23, 59, 0, 0); // Settign expiry time for next day
+        const nextDay = new Date(currentTime);
+        nextDay.setDate(currentTime.getDate() + 1);
+        expiryTime = nextDay.setHours(8, 30, 0, 0); // Setting expiry time for next day
       } else {
         expiryTime = targetTime; // Setting expiry time for current day
       }
@@ -41,8 +40,8 @@ const ConvoPopUp = () => {
       resetPopUpExpiry();
     }
 
-    const expiryTime = localStorage.getItem("popUpExpiry");
-    if (expiryTime && Date.now() >= parseInt(expiryTime)) {
+    const currentExpiryTime = localStorage.getItem("popUpExpiry");
+    if (currentExpiryTime && Date.now() >= parseInt(currentExpiryTime)) {
       resetPopUpExpiry();
     }
   }, []);
