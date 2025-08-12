@@ -7,10 +7,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { getRandomCandidConvoQuestion } from "@/utils/getRandomCandidConvoQuestion";
 import React, { useEffect, useState } from "react";
 
 const ConvoPopUp = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [dailyQuestion, setDailyQuestion] = useState("");
 
   useEffect(() => {
     const resetPopUpExpiry = () => {
@@ -29,6 +31,9 @@ const ConvoPopUp = () => {
       }
 
       localStorage.setItem("popUpExpiry", expiryTime.toString());
+
+      //getting random question
+      setDailyQuestion(getRandomCandidConvoQuestion());
       const timeout = setTimeout(() => {
         setIsOpen(true);
       }, 6500);
@@ -63,9 +68,7 @@ const ConvoPopUp = () => {
             reflection question - just for you!
           </DialogDescription>
         </DialogHeader>
-        <p className='lg:text-5xl text-3xl font-bold'>
-          What&apos;s a version of me do I secretly miss?
-        </p>
+        <p className='lg:text-5xl text-3xl font-bold'>{dailyQuestion}</p>
       </DialogContent>
     </Dialog>
   );
