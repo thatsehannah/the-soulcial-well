@@ -1,18 +1,22 @@
 "use client";
 
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { Label } from "@/components/ui/label";
 import { getRandomCandidConvoQuestion } from "@/utils/getRandomCandidConvoQuestion";
 import React, { useEffect, useState } from "react";
 
 const ConvoPopUp = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dailyQuestion, setDailyQuestion] = useState("");
+  const [keepShowing, setKeepShowing] = useState(false);
 
   useEffect(() => {
     const resetPopUpExpiry = () => {
@@ -56,7 +60,7 @@ const ConvoPopUp = () => {
       open={isOpen}
       onOpenChange={setIsOpen}
     >
-      <DialogContent className='min-w-[80%] border-4 border-primary text-center'>
+      <DialogContent className='min-w-[50%] border-4 border-primary text-center'>
         <DialogHeader>
           <DialogTitle className='font-normal lg:text-3xl text-3xl'>
             Your Daily{" "}
@@ -69,6 +73,13 @@ const ConvoPopUp = () => {
           </DialogDescription>
         </DialogHeader>
         <p className='lg:text-5xl text-3xl font-bold'>{dailyQuestion}</p>
+        <DialogFooter>
+          <Checkbox
+            id='checkbox'
+            checked={keepShowing}
+          />
+          <Label htmlFor='checkbox'>Don&apos;t show me again today!</Label>
+        </DialogFooter>
       </DialogContent>
     </Dialog>
   );
