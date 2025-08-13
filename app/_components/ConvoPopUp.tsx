@@ -16,33 +16,58 @@ import React, { useEffect, useState } from "react";
 const ConvoPopUp = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dailyQuestion, setDailyQuestion] = useState("");
-  const [keepShowing, setKeepShowing] = useState(false);
+  const [showQuestion, setShowQuestion] = useState(false);
+
+  const dialogTimeout = () => {
+    const timeout = setTimeout(() => {
+      setIsOpen(true);
+    }, 6500);
+
+    return () => clearTimeout(timeout);
+  };
+
+  const handleOnCheckedChange = (checked: boolean) => {
+    setShowQuestion(checked);
+    sessionStorage.setItem("showQuestion", checked ? "false" : "true");
+  };
+
+  useEffect(() => {
+    const ssShowQuestion = sessionStorage.getItem("showQuestion");
+    if (ssShowQuestion && ssShowQuestion === "true") {
+      dialogTimeout();
+    }
+
+    const lsQotd = localStorage.getItem("qotd");
+    if (lsQotd) {
+      setDailyQuestion(lsQotd);
+    }
+  }, []);
 
   useEffect(() => {
     const resetPopUpExpiry = () => {
+      sessionStorage.setItem("showQuestion", "true");
       const currentTime = new Date(Date.now());
-      let expiryTime: number;
-
-      const targetTime = new Date(currentTime).setHours(8, 30, 0, 0);
+      const targetTime = new Date(currentTime).setHours(23, 59, 0, 0);
 
       //making this implementation flexible in the event i want to change the target time in the future
       if (Date.now() > targetTime) {
         const nextDay = new Date(currentTime);
         nextDay.setDate(currentTime.getDate() + 1);
-        expiryTime = nextDay.setHours(8, 30, 0, 0); // Setting expiry time for next day
+
+        localStorage.setItem(
+          "popUpExpiry",
+          nextDay.setHours(23, 59, 0, 0).toString()
+        ); // Setting expiry time for next day
       } else {
-        expiryTime = targetTime; // Setting expiry time for current day
+        localStorage.setItem("popUpExpiry", targetTime.toString()); // Setting expiry time for current day
       }
 
-      localStorage.setItem("popUpExpiry", expiryTime.toString());
-
       //getting random question
-      setDailyQuestion(getRandomCandidConvoQuestion());
-      const timeout = setTimeout(() => {
-        setIsOpen(true);
-      }, 6500);
+      const randomQuestion = getRandomCandidConvoQuestion();
+      setDailyQuestion(randomQuestion);
+      localStorage.setItem("qotd", randomQuestion);
 
-      return () => clearTimeout(timeout);
+      dialogTimeout();
     };
 
     if (localStorage.getItem("popUpExpiry") === null) {
@@ -76,7 +101,8 @@ const ConvoPopUp = () => {
         <DialogFooter>
           <Checkbox
             id='checkbox'
-            checked={keepShowing}
+            checked={showQuestion}
+            onCheckedChange={handleOnCheckedChange}
           />
           <Label htmlFor='checkbox'>Don&apos;t show me again today!</Label>
         </DialogFooter>
