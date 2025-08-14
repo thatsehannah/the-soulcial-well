@@ -95,6 +95,8 @@ const ConvoPopUp = () => {
               loop
               muted
               className='h-full w-full object-cover'
+              preload='metadata'
+              playsInline
             ></video>
             {/* <Image
               src='/assets/pop-up-image2.svg'
