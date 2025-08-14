@@ -11,6 +11,7 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { getRandomCandidConvoQuestion } from "@/utils/getRandomCandidConvoQuestion";
+// import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 const ConvoPopUp = () => {
@@ -85,27 +86,51 @@ const ConvoPopUp = () => {
       open={isOpen}
       onOpenChange={setIsOpen}
     >
-      <DialogContent className='min-w-[50%] border-4 border-primary text-center'>
-        <DialogHeader>
-          <DialogTitle className='font-normal lg:text-3xl text-3xl'>
-            Your Daily{" "}
-            <span className='font-script font-bold'>Candid Conversation</span>{" "}
-            ❤️
-          </DialogTitle>
-          <DialogDescription className='text-lg'>
-            Thank you for visiting. Take a moment to think about the following
-            reflection question - just for you!
-          </DialogDescription>
-        </DialogHeader>
-        <p className='lg:text-5xl text-3xl font-bold'>{dailyQuestion}</p>
-        <DialogFooter>
-          <Checkbox
-            id='checkbox'
-            checked={showQuestion}
-            onCheckedChange={handleOnCheckedChange}
-          />
-          <Label htmlFor='checkbox'>Don&apos;t show me again today!</Label>
-        </DialogFooter>
+      <DialogContent className='min-w-[60%] max-h-[90%] flex border-4 border-primary text-center md:p-0'>
+        <div className='w-1/2 md:block hidden overflow-hidden rounded-tl-md rounded-bl-md'>
+          <div className='w-full h-full overflow-hidden relative'>
+            <video
+              src='/assets/pop-up-video.mp4'
+              autoPlay
+              loop
+              muted
+              className='h-full w-full object-cover'
+            ></video>
+            {/* <Image
+              src='/assets/pop-up-image2.svg'
+              alt='pop up image'
+              fill
+              quality={100}
+              className='object-cover'
+              priority
+            /> */}
+          </div>
+        </div>
+        <div className='md:w-1/2 md:p-5 mx-auto my-auto'>
+          <DialogHeader>
+            <DialogTitle className='font-normal lg:text-3xl text-3xl mb-3 text-center'>
+              Your Daily{" "}
+              <span className='font-script font-bold'>
+                Candid Conversation
+              </span>{" "}
+            </DialogTitle>
+            <DialogDescription className='text-lg'>
+              Thank you for visiting. Take a moment to think about the following
+              reflection question - just for you!
+            </DialogDescription>
+          </DialogHeader>
+          <p className='lg:text-4xl text-3xl font-bold my-12'>
+            {dailyQuestion}
+          </p>
+          <DialogFooter>
+            <Checkbox
+              id='checkbox'
+              checked={showQuestion}
+              onCheckedChange={handleOnCheckedChange}
+            />
+            <Label htmlFor='checkbox'>Don&apos;t show me again today!</Label>
+          </DialogFooter>
+        </div>
       </DialogContent>
     </Dialog>
   );

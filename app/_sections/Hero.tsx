@@ -81,13 +81,15 @@ const Hero = () => {
       </div>
       <div className='w-fit mx-auto xl:mt-3 p-2'>
         <div className='w-full gap-1 title'>
-          <p className='xl:text-6xl text-4xl text-primary tracking-[-.08em] ml-5'>
+          <p className='xl:text-5xl text-3xl text-primary tracking-[-.08em] ml-5'>
             The
           </p>
         </div>
         <div className='flex items-center text-center title -mt-5'>
-          <p className='xl:text-8xl text-6xl text-primary'>
-            <span className='font-script text-primary-foreground'>soul</span>
+          <p className='xl:text-7xl text-5xl text-primary'>
+            <span className='font-script text-primary-foreground xl:text-8xl text-6xl'>
+              soul
+            </span>
             cial well{" "}
           </p>
           <div className='relative xl:h-22 h-14 xl:w-22 w-14 logo'>
