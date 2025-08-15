@@ -3,6 +3,7 @@ import "./globals.css";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import { Toaster } from "@/components/ui/sonner";
 import { Faustina, Parisienne } from "next/font/google";
+import ScrollToTopButton from "./_components/ScrollToTopButton";
 
 export const metadata: Metadata = {
   title: "The Soulcial Well",
@@ -62,6 +63,7 @@ export default function RootLayout({
           position='top-center'
           richColors
         />
+        <ScrollToTopButton />
       </body>
     </html>
   );
