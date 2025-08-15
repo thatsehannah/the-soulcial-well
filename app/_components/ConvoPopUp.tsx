@@ -86,8 +86,8 @@ const ConvoPopUp = () => {
       open={isOpen}
       onOpenChange={setIsOpen}
     >
-      <DialogContent className='min-w-[60%] max-h-[90%] flex border-4 border-primary text-center md:p-0'>
-        <div className='w-1/2 md:block hidden overflow-hidden rounded-tl-md rounded-bl-md'>
+      <DialogContent className='min-w-[60%] max-h-[90%] 2xl:min-w-[45%] 2xl:max-h-[70%] flex border-4 border-primary text-center md:p-0'>
+        <div className='w-1/2 lg:block hidden overflow-hidden rounded-tl-md rounded-bl-md'>
           <div className='w-full h-full overflow-hidden relative'>
             <video
               src='/assets/pop-up-video.mp4'
@@ -97,7 +97,7 @@ const ConvoPopUp = () => {
               className='h-full w-full object-cover'
               preload='metadata'
               playsInline
-            ></video>
+            />
             {/* <Image
               src='/assets/pop-up-image2.svg'
               alt='pop up image'
@@ -108,9 +108,9 @@ const ConvoPopUp = () => {
             /> */}
           </div>
         </div>
-        <div className='md:w-1/2 md:p-5 mx-auto my-auto'>
+        <div className='lg:w-1/2 lg:p-5 p-4 mx-auto my-auto'>
           <DialogHeader>
-            <DialogTitle className='font-normal lg:text-3xl text-3xl mb-3 text-center'>
+            <DialogTitle className='font-normal lg:text-3xl text-3xl mb-3 lg:text-center'>
               Your Daily{" "}
               <span className='font-script font-bold'>
                 Candid Conversation
