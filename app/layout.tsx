@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavbarWrapper from "@/components/NavbarWrapper";
 import { Toaster } from "@/components/ui/sonner";
+import { Faustina, Parisienne } from "next/font/google";
 
 export const metadata: Metadata = {
   title: "The Soulcial Well",
@@ -31,14 +32,30 @@ export const metadata: Metadata = {
   },
 };
 
+const faustina = Faustina({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-faustina",
+});
+
+const parisienne = Parisienne({
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-parisienne",
+  weight: "400",
+});
+
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en'>
-      <body className='antialiased bg-main-bg text-main-foreground font-main relative'>
+    <html
+      lang='en'
+      className={`${faustina.variable} ${parisienne.variable} antialiased`}
+    >
+      <body className='bg-main-bg text-main-foreground font-main relative'>
         <NavbarWrapper />
         {children}
         <Toaster

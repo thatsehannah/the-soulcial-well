@@ -7,7 +7,7 @@ type FilmRollProps = {
 
 const FilmRoll = ({ images }: FilmRollProps) => {
   return (
-    <div className='flex flex-col lg:w-auto md:w-[40%] w-[85%] md:h-180 h-200 overflow-y-scroll border-b-[32px] border-t-[16px] border-main-foreground rounded-lg'>
+    <div className='flex flex-col lg:w-auto md:w-[40%] w-[90%] md:h-180 h-200 overflow-y-scroll border-b-[32px] border-t-[16px] border-main-foreground rounded-lg'>
       <div className=''>
         {images.map((img, index) => (
           <div

@@ -42,7 +42,7 @@ const SoulTools = () => {
 
   return (
     <main>
-      <section className='xl:p-32 pt-38 pb-12 px-7'>
+      <section className='xl:p-32 pt-38 pb-12 px-12'>
         <p className='text-5xl lg:text-6xl text-primary text-center lg:mb-12 mb-6'>
           Candid{" "}
           <span className='font-script text-primary-foreground'>

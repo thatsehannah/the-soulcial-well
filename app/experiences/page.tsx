@@ -27,7 +27,7 @@ const ExperiencesPage = () => {
           </div>
 
           <div className='col-span-2 lg:p-12 py-6'>
-            <p className='text-main-foreground lg:text-2xl text-lg text-center lg:text-start'>
+            <p className='text-main-foreground lg:text-2xl text-xl text-center lg:text-start'>
               Each{" "}
               <em>
                 <b>Soulcial Well</b>

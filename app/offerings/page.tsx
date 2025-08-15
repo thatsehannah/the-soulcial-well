@@ -7,7 +7,7 @@ import React from "react";
 
 const OfferingPill = ({ text }: { text: string }) => {
   return (
-    <div className='text-center lg:text-xl text-lg lg:p-3 p-2 bg-primary w-96 font-bold rounded-4xl'>
+    <div className='text-center lg:text-xl text-lg lg:p-3 p-2 bg-primary lg:w-96 w-80 font-bold rounded-4xl'>
       {text}
     </div>
   );

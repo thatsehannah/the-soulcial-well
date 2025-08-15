@@ -86,7 +86,7 @@ const ConvoPopUp = () => {
       open={isOpen}
       onOpenChange={setIsOpen}
     >
-      <DialogContent className='min-w-[60%] max-h-[90%] 2xl:min-w-[45%] 2xl:max-h-[70%] flex border-4 border-primary text-center md:p-0'>
+      <DialogContent className='lg:min-w-[60%] lg:max-h-[90%] 2xl:min-w-[45%] 2xl:max-h-[70%] flex border-4 border-primary p-0'>
         <div className='w-1/2 lg:block hidden overflow-hidden rounded-tl-md rounded-bl-md'>
           <div className='w-full h-full overflow-hidden relative'>
             <video
@@ -108,23 +108,23 @@ const ConvoPopUp = () => {
             /> */}
           </div>
         </div>
-        <div className='lg:w-1/2 lg:p-5 p-4 mx-auto my-auto'>
-          <DialogHeader>
-            <DialogTitle className='font-normal lg:text-3xl text-3xl mb-3 lg:text-center'>
+        <div className='lg:w-1/2 p-6 flex flex-col justify-center'>
+          <DialogHeader className='text-start'>
+            <DialogTitle className='font-normal text-3xl mb-3'>
               Your Daily{" "}
               <span className='font-script font-bold'>
                 Candid Conversation
               </span>{" "}
             </DialogTitle>
-            <DialogDescription className='text-lg'>
+            <DialogDescription className='text-lg text-dark-green'>
               Thank you for visiting. Take a moment to think about the following
               reflection question - just for you!
             </DialogDescription>
           </DialogHeader>
-          <p className='lg:text-4xl text-3xl font-bold my-12'>
+          <p className='lg:text-4xl text-3xl font-bold lg:my-12 my-10 text-center'>
             {dailyQuestion}
           </p>
-          <DialogFooter>
+          <DialogFooter className='flex flex-row'>
             <Checkbox
               id='checkbox'
               checked={showQuestion}

@@ -43,26 +43,26 @@ const SoulcialWellOrigins = () => {
             />
           </div>
           <p>
-            At The Soulcial Well, we believe that self-care is more than solo
-            rituals—it’s about meaningful connection, shared experiences, and
-            holistic well-being. We create immersive, interactive experiences
-            that blend mental wellness, social connection, and personal growth,
-            making self-care engaging, dynamic, and fun.
+            The Soulcial Well began as a simple but powerful idea: what if
+            self-care didn’t have to be so isolating? As a mental health
+            professional deeply invested in community, healing, and holistic
+            wellness, I created The Soulcial Well to bridge the gap between
+            emotional growth and social connection.
           </p>
           <p>
-            Our approach is rooted in the idea that true well-being thrives in
-            community. Through thoughtfully designed events, creative
-            activities, and transformative conversations, we provide spaces
-            where people feel seen, heard, and empowered. Whether it’s deep
-            reflection, playful exploration, or offbeat conversations, we
-            challenge the idea that self-care has to be routine—because wellness
-            should be felt, not just practiced.
+            What started as small, intentional gatherings—rooted in candid
+            conversations, creativity, and joyful experiences—quickly grew into
+            a movement. Each event blends mental, emotional, physical, and
+            creative well-being with meaningful interaction, proving that
+            healing doesn’t always have to be heavy. Sometimes it looks like
+            laughter over a game of pickleball, reflection during a
+            candle-making session, or shared insight through a deck of
+            conversation cards.
           </p>
           <p>
-            At The Soulcial Well, we bridge the gap between self-discovery and
-            social connection, ensuring that no one has to navigate their
-            journey alone. Ready to refill your well? Join us and experience
-            self-care in a whole new way.
+            The Soulcial Well continues to grow, but our mission remains the
+            same: to hold space for people to explore themselves, connect with
+            others, and care for their whole selves—together.
           </p>
         </div>
         <div className='flex justify-center items-center xl:col-span-1'>
