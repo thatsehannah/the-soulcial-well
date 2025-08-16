@@ -9,56 +9,62 @@ import Image from "next/image";
 
 const Hero = () => {
   useGSAP(() => {
-    const titleSplit = new SplitText(".title", { type: "chars, words" });
-    const timeline = gsap.timeline({
-      ease: "power1.inOut",
-    });
+    document.fonts.ready.then(() => {
+      const subtitleSplit = new SplitText(".subtitle", {
+        type: "chars, words",
+      });
 
-    gsap.from(".left-arm", {
-      left: -900,
-      duration: 2.2,
-      ease: "power1.inOut",
-    });
+      const timeline = gsap.timeline({
+        ease: "power1.inOut",
+      });
 
-    gsap.from(".right-arm", {
-      right: -900,
-      duration: 2.2,
-      ease: "power1.inOut",
-    });
+      gsap.from(".left-arm", {
+        left: -900,
+        duration: 2.2,
+        ease: "power1.inOut",
+      });
 
-    timeline
-      .from(titleSplit.chars, {
-        opacity: 0,
-        yPercent: -50,
-        duration: 0.8,
-        delay: 1.6,
-        ease: "expo.out",
-        stagger: 0.05,
-      })
-      .from(
-        ".logo",
-        {
+      gsap.from(".right-arm", {
+        right: -900,
+        duration: 2.2,
+        ease: "power1.inOut",
+      });
+
+      timeline
+        .from(".heroTitle", {
           opacity: 0,
-          yPercent: 50,
+          yPercent: -50,
           duration: 0.8,
-        },
-        "<"
-      )
-      .from(".subtitle", {
-        opacity: 0,
-        yPercent: 100,
-        duration: 0.8,
-      })
-      .to(
-        ".linkButton",
-        {
-          duration: 0.95,
-          opacity: 1,
-          stagger: 0.08,
-          ease: "bounce",
-        },
-        "<"
-      );
+          delay: 1.6,
+          ease: "expo.out",
+          overflow: "visible",
+        })
+        .from(
+          ".logo",
+          {
+            opacity: 0,
+            yPercent: 50,
+            duration: 0.8,
+          },
+          "<"
+        )
+        .from(subtitleSplit.chars, {
+          opacity: 0,
+          yPercent: 100,
+          duration: 0.4,
+          stagger: 0.05,
+        })
+        .to(
+          ".linkButton",
+          {
+            duration: 0.95,
+            opacity: 1,
+            stagger: 0.08,
+            ease: "bounce",
+          },
+          "<"
+        );
+    });
   }, []);
 
   return (
@@ -80,14 +86,14 @@ const Hero = () => {
         />
       </div>
       <div className='w-fit mx-auto xl:mt-3 p-2'>
-        <div className='w-full gap-1 title'>
-          <p className='xl:text-5xl text-3xl text-primary tracking-[-.08em] ml-5'>
+        <div className='w-full gap-1'>
+          <p className='xl:text-5xl text-3xl text-primary tracking-[-.08em] ml-5 heroTitle'>
             The
           </p>
         </div>
-        <div className='flex items-center text-center title -mt-5'>
-          <p className='xl:text-7xl text-5xl text-primary'>
-            <span className='font-script text-primary-foreground xl:text-8xl text-6xl'>
+        <div className='flex items-center text-center -mt-5'>
+          <p className='xl:text-7xl text-5xl text-primary heroTitle'>
+            <span className='font-script text-primary-foreground xl:text-8xl text-6xl will-change-transform'>
               soul
             </span>
             cial well{" "}
@@ -101,8 +107,8 @@ const Hero = () => {
             />
           </div>
         </div>
-        <div className='text-center mt-6 lg:mt-8 subtitle'>
-          <p className='xl:text-3xl text-2xl text-primary-foreground tracking-tighter'>
+        <div className='text-center mt-6 lg:mt-8'>
+          <p className='subtitle xl:text-3xl text-2xl text-primary-foreground tracking-tighter'>
             Bringing back community
           </p>
         </div>
