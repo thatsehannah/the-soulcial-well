@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     url: "https://www.thesoulcialwell.org",
     images: [
       {
-        url: "https://www.thesoulcialwell.org/about-landing.svg",
+        url: "https://www.thesoulcialwell.org/assets/origins.svg",
         width: 1200,
         height: 640,
         alt: "The Soulcial Well",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Soulcial Well",
     description: "Bringing back community",
-    images: ["https://www.thesoulcialwell.org/about-landing.svg"],
+    images: ["https://www.thesoulcialwell.org/assets/origins.svg"],
   },
   icons: {
     icon: "./favicon.ico",
