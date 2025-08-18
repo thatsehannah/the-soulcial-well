@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     url: "https://www.thesoulcialwell.org",
     images: [
       {
-        url: "https://www.thesoulcialwell.org/assets/sharing-logo.png",
+        url: "https://www.thesoulcialwell.org/open-graph.png",
         width: 1200,
         height: 640,
         alt: "The Soulcial Well",
@@ -26,12 +26,12 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "The Soulcial Well",
     description: "Bringing back community",
-    images: ["https://www.thesoulcialwell.org/assets/sharing-logo.png"],
+    images: ["https://www.thesoulcialwell.org/open-graph.png"],
   },
   icons: {
     icon: "./favicon.ico",
-    shortcut: "https://www.thesoulcialwell.org/assets/sharing-logo.png",
-    apple: "https://www.thesoulcialwell.org/assets/sharing-logo.png",
+    shortcut: "https://www.thesoulcialwell.org/open-graph.png",
+    apple: "https://www.thesoulcialwell.org/open-graph.png",
   },
   keywords: [
     "self care",
