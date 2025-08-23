@@ -11,7 +11,8 @@ const Footer = () => {
       </a>
       <div>
         <p className='text-xs'>
-          All rights reserved. The Soulcial Well <sup>&copy;</sup>
+          All rights reserved. &copy; - {new Date().getFullYear()} - The
+          Soulcial Well
         </p>
         <p className='text-xs text-center'>
           Built by{" "}
