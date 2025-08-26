@@ -2,7 +2,7 @@ import SvgInstagram from "./Instagram";
 
 const Footer = () => {
   return (
-    <div className='flex w-full h-24 bg-main-bg justify-between items-center px-8 py-3'>
+    <footer className='flex w-full h-24 bg-main-bg justify-between items-center px-8 py-3'>
       <a
         href='https://www.instagram.com/thesoulcialwell'
         target='_blank'
@@ -28,7 +28,7 @@ const Footer = () => {
           <sup>&copy;</sup>.
         </p>
       </div>
-    </div>
+    </footer>
   );
 };
 
