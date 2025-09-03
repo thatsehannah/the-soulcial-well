@@ -2,12 +2,15 @@ export const experienceData: {
   title: string;
   description: string;
   storageBucket?: string;
+  current: boolean;
+  upcomingDescription?: string;
 }[] = [
   {
     title: "The Self Luv Affair",
     storageBucket: "self-luv-affair",
     description:
       "This is where it all began. The Self Love Affair was an immersive wellness experience created by women, for women — blending intentional self-care with community, creativity, and connection. Guests moved through soul-soothing practices like sound baths and yoga, crafted personalized body scrubs based on their unique needs, and engaged in a powerful conversation circle centered on self-love and care. With Candid Conversation cards guiding the dialogue, this event set the tone for what The Soulcial Well would become: a space for self-exploration, emotional honesty, and joyful healing — all with a playful, affirming twist.",
+    current: false,
   },
   {
     title: "The Takeoff",
@@ -15,6 +18,7 @@ export const experienceData: {
     description: `Designed to launch the year with intention and inspiration, The Takeoff was a creative and grounding experience for those ready to dream boldly and move with purpose. Through guided reflection, open dialogue, and vision board creation, participants explored their goals across life domains — career, wellness, relationships, personal growth, and more.
 
 The experience wove together practical goal-setting tools with soulful elements like visualization meditation, Candid Conversations, and intentional imagery. We explored what it means to set goals that feel aligned, revisit them with grace, and stay emotionally present through the journey — even when timelines shift. With food, laughter, and community energy at the center, The Takeoff reminded us that manifestation starts with vision, but takes flight with connection.`,
+    current: false,
   },
   {
     title: "Rooted + Radiant",
@@ -22,6 +26,7 @@ The experience wove together practical goal-setting tools with soulful elements 
     description: `This intimate brunch was held in celebration of Women’s History Month — honoring womanhood in all its layers: soft, strong, reflective, and ever-evolving. Held at the beautifully curated Wabi and Rose, Rooted & Radiant invited women to connect over good food, meaningful dialogue, and shared presence.
 
 Each guest received a journal with a unique reflective question designed to spark self-inquiry. After time for personal reflection, we came together in a group conversation — listening deeply, sharing vulnerably, and honoring what surfaced in one another’s stories. The experience was filled with laughter, heartfelt connection, and a sense of collective grounding. It was a reminder that healing, celebration, and sisterhood can all live at the same table.`,
+    current: false,
   },
   {
     title: "Nurture & Nourish",
@@ -30,6 +35,7 @@ Each guest received a journal with a unique reflective question designed to spar
 Participants chose personalized scents based on their emotional and energetic needs, creating candles that served as both ritual and reminder. Each guest received a curated goodie bag with a journal, pen, affirmation card, and scent satchel to carry the experience forward.
 
 After candle making, we transitioned to an intimate outdoor restaurant setting, where the evening continued with food, warmth, and Candid Conversations — open dialogue centered on self-care, identity, and community. The experience reminded us that self-care is not only internal — it’s relational, sensory, and deeply communal.`,
+    current: false,
   },
   {
     title: "Mindful Match",
@@ -38,6 +44,7 @@ After candle making, we transitioned to an intimate outdoor restaurant setting, 
 Using thoughtfully curated Candid Conversation cards, participants were paired for rounds of pickleball and meaningful, low-pressure dialogue. The experience emphasized teamwork, vulnerability, and play, creating space for connection without performance or pretense.
 
 With good food, fresh air, and community energy throughout, Mindful Match reminded us that self-care can be active, joyful, and shared — and that meaningful connection often begins with simply showing up.`,
+    current: false,
   },
   {
     title: "Colorful Connections",
@@ -46,6 +53,7 @@ With good food, fresh air, and community energy throughout, Mindful Match remind
 From the hum of music to the pop of color on canvas, the evening invited participants to relax, explore, and connect — with themselves and one another. Drinks in hand and brushes moving freely, attendees tapped into the therapeutic power of art, while soaking in the joy of a playful, no-pressure atmosphere.
 
 True to Soulcial Well’s spirit, Colorful Connections reminded us that self-care can be fun, expressive, and rooted in community — one glowing brushstroke at a time.`,
+    current: false,
   },
   {
     title: "Brushes & Balance",
@@ -55,6 +63,7 @@ True to Soulcial Well’s spirit, Colorful Connections reminded us that self-car
 The evening included a discussion on how therapy supports personal growth, a Q&A with clinicians, and hands-on art activities that encouraged reflection, self-expression, and connection. Participants were invited into a supportive, judgment-free space where they could explore their feelings and walk away with both artwork and practical strategies for nurturing their mental health.
 
 Brushes & Balance was a reminder that healing can be creative, community-driven, and accessible to all.`,
+    current: false,
   },
   {
     title: "Roots & Rhythms",
@@ -63,6 +72,7 @@ Brushes & Balance was a reminder that healing can be creative, community-driven,
 Laughter and joy filled the space as we moved into game night, featuring rounds of Black trivia that honored Black history, culture, and contributions — sparking both spirited competition and meaningful reflection. Guests also participated in a curated book exchange spotlighting works by Black authors, deepening the celebration through shared stories and voices.
 
 It was an evening of good food, deep roots, and collective joy — a celebration of freedom, togetherness, and the power of shared stories.`,
+    current: false,
   },
   {
     title: "Icebreaker",
@@ -72,6 +82,7 @@ It was an evening of good food, deep roots, and collective joy — a celebration
 Candid Conversation starter cards, interactive games, and a supportive atmosphere turned simple introductions into powerful exchanges. Laughter, curiosity, and ease filled the room as participants realized that connection doesn’t have to be forced — it just has to be intentional.
 
 Icebreaker reminded us that when we drop the performance and lean into presence, we don’t just meet people — we see them.`,
+    current: false,
   },
   {
     title: "Love Lingo",
@@ -81,6 +92,7 @@ Icebreaker reminded us that when we drop the performance and lean into presence,
 The evening culminated in a collaborative art project, where guests visually expressed their primary love language — creating a shared piece that reflected the diversity and beauty of how we each give and receive care.
 
 With laughter, curiosity, and emotional honesty in the room, Love Lingo reminded us that love isn’t one-size-fits-all — and when we better understand our own “lingo,” we can show up more fully for ourselves and others.`,
+    current: false,
   },
   {
     title: "From Her, For Her",
@@ -90,6 +102,7 @@ With laughter, curiosity, and emotional honesty in the room, Love Lingo reminded
 Guests enjoyed a custom trivia game, “Who’s That Girl?”, sparking laughter and pride as they recognized inspiring women and personal stories. Each participant received a propagated plant cutting, symbolizing rooted growth and the ongoing nourishment required to thrive in self and sisterhood.
 
 Through personalized journal prompts and heartfelt group conversations, surrounded by food and fellowship, From Her, For Her reminded us that nurturing ourselves and each other is a vital part of our shared story.`,
+    current: false,
   },
   {
     title: "Garden Groove",
@@ -99,6 +112,7 @@ Through personalized journal prompts and heartfelt group conversations, surround
 Following the movement, the gathering transitioned to a relaxed picnic with Candid Conversations, where guests shared stories, reflections, and laughter in a nurturing space. This blend of physical expression and heartfelt dialogue honored wellness as a holistic journey — nourishing body, mind, and community.
 
 Garden Groove reminded us that true wellness thrives in movement and meaningful connection.`,
+    current: false,
   },
   {
     title: "Saddle & Serenity",
@@ -108,6 +122,7 @@ Garden Groove reminded us that true wellness thrives in movement and meaningful 
 The event honored the deep bond between humans and horses—using equine energy to foster emotional balance, reduce stress, and inspire inner serenity. Guided mindfulness and reflective exercises complemented the hands-on moments, inviting guests to slow down and reconnect. True to Soulcial Well’s spirit, the event closed with a relaxed picnic and Candid Conversations, fostering connection, community, and healing.
 
 Saddle & Serenity reminded us that sometimes, serenity comes on four hooves.`,
+    current: false,
   },
   {
     title: "Well Read",
@@ -115,5 +130,14 @@ Saddle & Serenity reminded us that sometimes, serenity comes on four hooves.`,
     description: `Beginning virtually during COVID, the Soulcial Well Book Club creates a welcoming space for connection, reflection, and shared exploration through literature. As restrictions eased, the group transitioned to in-person gatherings in Houston, deepening community bonds and sparking thoughtful dialogue around selected books.
 
 This evolving experience combined the joy of reading with meaningful conversation — nurturing both the mind and the heart.`,
+    current: false,
+  },
+  {
+    title: "Hue & You",
+    storageBucket: "hue-you",
+    description: "",
+    upcomingDescription:
+      "On September 20th at 11AM, we’re bringing a vibrant wellness experience to the Atlanta Beltline. We’ll begin with a grounding meditation, then step into a Color Walk — an interactive journey where colors spark reflection, mindfulness, and play as you move through each hue with intention. To close, we’ll gather for refreshing herbal drinks crafted by a local herbalist to re-up on electrolytes and seal in the glow of connection and renewal.",
+    current: true,
   },
 ];

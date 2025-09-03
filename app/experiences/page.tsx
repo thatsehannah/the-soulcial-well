@@ -2,11 +2,12 @@ import Image from "next/image";
 import React from "react";
 import Experience from "./_components/Experience";
 import { experienceData } from "./_data/experienceData";
+import CurrentExperience from "./_components/CurrentExperience";
 
 const ExperiencesPage = () => {
   //only getting the experiences that have photos in the storage bucket in firebase
   const experiences = experienceData.filter(
-    (item) => item.storageBucket !== undefined
+    (item) => item.storageBucket !== undefined && item.current === false
   );
 
   return (
@@ -40,6 +41,9 @@ const ExperiencesPage = () => {
             </p>
           </div>
         </div>
+      </section>
+      <section>
+        <CurrentExperience />
       </section>
       {experiences.map((exp, index) => (
         <div key={index}>
