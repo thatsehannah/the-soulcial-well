@@ -92,7 +92,7 @@ const UpcomingExperiences = ({ experiences }: UpcomingExperienceProps) => {
     <div className='bg-main-foreground px-12 py-24'>
       <div className='mb-8'>
         <p className='lg:text-6xl text-5xl text-white text-center font-script'>
-          Upcoming Events
+          Upcoming Experiences
         </p>
       </div>
       <div className='flex justify-between items-center'>
