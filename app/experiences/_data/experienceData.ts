@@ -141,6 +141,7 @@ This evolving experience combined the joy of reading with meaningful conversatio
     linkToRsvp:
       "https://www.eventbrite.com/e/hue-you-color-walk-tickets-1657375698329?aff=ebdsoporgprofile",
   },
+  // FOR TESTING PURPOSES
   // {
   //   title: "Test",
   //   storageBucket: "hue-you",

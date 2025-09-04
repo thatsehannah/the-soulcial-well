@@ -47,7 +47,7 @@ const ExperiencesPage = () => {
         </div>
       </section>
       {upcomingExperiences.length > 0 && (
-        <section>
+        <section id='upcoming'>
           <UpcomingExperiences experiences={upcomingExperiences} />
         </section>
       )}

@@ -11,6 +11,7 @@ type LinkButtonProps = {
   text: string;
   link: string;
   badge?: boolean;
+  badgeUrl?: string;
   tooltipText?: string;
 };
 
@@ -18,6 +19,7 @@ const LinkButton = ({
   text,
   link,
   badge = false,
+  badgeUrl,
   tooltipText,
 }: LinkButtonProps) => {
   return (
@@ -26,7 +28,9 @@ const LinkButton = ({
         <div className='absolute -right-1 -top-2 bg-dark-green text-white z-10 rounded-full lg:p-[6px] p-1  badge'>
           <Tooltip>
             <TooltipTrigger asChild>
-              <BellDot className='w-4 h-4 stroke-3' />
+              <Link href={badgeUrl!}>
+                <BellDot className='w-4 h-4 stroke-3 hover:cursor-pointer' />
+              </Link>
             </TooltipTrigger>
             <TooltipContent className='bg-dark-green text-white'>
               <p>{tooltipText}</p>
