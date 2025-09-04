@@ -31,6 +31,10 @@ export type ExperienceItem = {
   title: string;
   description: string;
   storageBucket?: string;
+  upcoming: boolean;
+  upcomingDescription?: string;
+  flyerUrl?: string;
+  linkToRsvp?: string;
 };
 
 export type NewMessage = {

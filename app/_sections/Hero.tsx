@@ -6,8 +6,14 @@ import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
+import { experienceData } from "../experiences/_data/experienceData";
 
 const Hero = () => {
+  const anyUpcomingEvents =
+    experienceData.filter(
+      (item) => item.storageBucket !== undefined && item.upcoming === true
+    ).length > 0;
+
   useGSAP(() => {
     document.fonts.ready.then(() => {
       const subtitleSplit = new SplitText(".subtitle", {
@@ -63,6 +69,21 @@ const Hero = () => {
             ease: "bounce",
           },
           "<"
+        )
+        .fromTo(
+          ".badge",
+          {
+            opacity: 0,
+            scale: 1.4,
+            ease: "expo.inOut",
+          },
+          {
+            opacity: 1,
+            duration: 0.4,
+            delay: 0.7,
+            scale: 1,
+            ease: "expo.inOut",
+          }
         );
     });
   }, []);
@@ -133,6 +154,9 @@ const Hero = () => {
         <LinkButton
           text='experiences'
           link='/experiences'
+          badge={anyUpcomingEvents}
+          badgeUrl='/experiences#upcoming'
+          tooltipText='A new experience is coming soon!'
         />
         <LinkButton
           text='contact'

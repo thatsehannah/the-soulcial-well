@@ -1,12 +1,18 @@
 import Image from "next/image";
-import React from "react";
+import React, { Fragment } from "react";
 import Experience from "./_components/Experience";
 import { experienceData } from "./_data/experienceData";
+import UpcomingExperiences from "./_components/UpcomingExperiences";
 
 const ExperiencesPage = () => {
   //only getting the experiences that have photos in the storage bucket in firebase
-  const experiences = experienceData.filter(
-    (item) => item.storageBucket !== undefined
+  const pastExperiences = experienceData.filter(
+    (item) => item.storageBucket !== undefined && item.upcoming === false
+  );
+
+  //getting upcoming experiences
+  const upcomingExperiences = experienceData.filter(
+    (item) => item.storageBucket !== undefined && item.upcoming === true
   );
 
   return (
@@ -22,7 +28,6 @@ const ExperiencesPage = () => {
               alt='camera'
               fill
               quality={100}
-              priority
             />
           </div>
 
@@ -41,13 +46,19 @@ const ExperiencesPage = () => {
           </div>
         </div>
       </section>
-      {experiences.map((exp, index) => (
-        <div key={index}>
+      {upcomingExperiences.length > 0 && (
+        <section id='upcoming'>
+          <UpcomingExperiences experiences={upcomingExperiences} />
+        </section>
+      )}
+
+      {pastExperiences.map((exp, index) => (
+        <Fragment key={index}>
           <Experience
             item={exp}
             index={index}
           />
-        </div>
+        </Fragment>
       ))}
     </main>
   );

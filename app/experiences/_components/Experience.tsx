@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import FilmRoll from "./FilmRoll";
 import { ExperienceItem } from "@/utils/types";
 import { getImagesFromStorage } from "@/utils/getImagesFromStorage";
+import { formatTitle } from "../_utils/formatTitle";
 
 type ExperienceProps = {
   item: ExperienceItem;
@@ -13,44 +14,6 @@ type ExperienceProps = {
 const Experience = ({ item, index }: ExperienceProps) => {
   const [images, setImages] = useState<string[]>([]);
   const isEvenSection = index % 2 === 0;
-
-  const formatTitle = (rawTitle: string) => {
-    const baseClass = "lg:text-6xl text-5xl text-white text-center";
-    const spanClass = `font-script ${
-      isEvenSection ? "text-main-foreground" : "text-primary"
-    } `;
-
-    //for titles with a comma
-    if (rawTitle.indexOf(",") !== -1) {
-      const splitTitleWithComma = rawTitle.split(",");
-
-      return (
-        <p className={baseClass}>
-          {splitTitleWithComma[0]}
-          {", "}
-          <span className={spanClass}>{splitTitleWithComma[1]}</span>
-        </p>
-      );
-    }
-
-    const splitTitle = rawTitle.split(" ");
-
-    if (splitTitle[1] === "&" || splitTitle[1] === "+") {
-      return (
-        <p className={baseClass}>
-          {splitTitle[0]} {splitTitle[1]}{" "}
-          <span className={spanClass}>{splitTitle.slice(2)}</span>
-        </p>
-      );
-    }
-
-    return (
-      <p className={baseClass}>
-        {splitTitle[0]}{" "}
-        <span className={spanClass}>{splitTitle.slice(1).join(" ")}</span>
-      </p>
-    );
-  };
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -67,7 +30,9 @@ const Experience = ({ item, index }: ExperienceProps) => {
         isEvenSection ? "bg-primary" : "bg-dark-green"
       } px-12 py-24`}
     >
-      <div className='mb-8'>{formatTitle(item.title)}</div>
+      <div className='mb-8 text-center'>
+        {formatTitle(item.title, isEvenSection)}
+      </div>
       <div className='flex lg:flex-row flex-col lg:my-8 my-4 w-full lg:gap-12 justify-center items-center'>
         <FilmRoll images={images} />
         <div className='text-xl lg:leading-9 leading-7 lg:w-1/2 w-full lg:px-12 px-0 pt-4'>
