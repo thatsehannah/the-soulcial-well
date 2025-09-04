@@ -141,4 +141,16 @@ This evolving experience combined the joy of reading with meaningful conversatio
     linkToRsvp:
       "https://www.eventbrite.com/e/hue-you-color-walk-tickets-1657375698329?aff=ebdsoporgprofile",
   },
+  {
+    title: "Test",
+    storageBucket: "hue-you",
+    description: "",
+    upcomingDescription:
+      "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.",
+    upcoming: true,
+    flyerUrl:
+      "https://firebasestorage.googleapis.com/v0/b/the-soulcial-well.firebasestorage.app/o/hue-you%2Fdelete-later.png?alt=media&token=cca3be32-ba51-4ad8-b835-7d89ac8f9e61",
+    linkToRsvp:
+      "https://www.eventbrite.com/e/hue-you-color-walk-tickets-1657375698329?aff=ebdsoporgprofile",
+  },
 ];
