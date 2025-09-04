@@ -46,9 +46,12 @@ const ExperiencesPage = () => {
           </div>
         </div>
       </section>
-      <section>
-        <UpcomingExperience experiences={upcomingExperiences} />
-      </section>
+      {upcomingExperiences.length > 0 && (
+        <section>
+          <UpcomingExperience experiences={upcomingExperiences} />
+        </section>
+      )}
+
       {pastExperiences.map((exp, index) => (
         <Fragment key={index}>
           <Experience
