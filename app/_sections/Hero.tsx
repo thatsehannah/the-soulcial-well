@@ -156,7 +156,7 @@ const Hero = () => {
           link='/experiences'
           badge={anyUpcomingEvents}
           badgeUrl='/experiences#upcoming'
-          tooltipText='A new experience is coming up!'
+          tooltipText='A new experience is coming soon!'
         />
         <LinkButton
           text='contact'
