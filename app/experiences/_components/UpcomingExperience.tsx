@@ -14,18 +14,18 @@ const UpcomingExperience = ({ experience }: UpcomingExperienceProps) => {
 
   useGSAP(() => {
     gsap.fromTo(
-      ".title",
+      ".up-title",
       { opacity: 0, yPercent: -100 },
       { opacity: 1, duration: 0.8, yPercent: 0 }
     );
 
     gsap.fromTo(
-      ".image",
+      ".up-image",
       { opacity: 0, xPercent: 100 },
       { opacity: 1, duration: 0.8, xPercent: 0 }
     );
 
-    gsap.fromTo(".button", { opacity: 0 }, { opacity: 1, duration: 0.8 });
+    gsap.fromTo(".up-button", { opacity: 0 }, { opacity: 1, duration: 0.8 });
     gsap.fromTo(
       ".up-description",
       { opacity: 0 },
@@ -36,7 +36,7 @@ const UpcomingExperience = ({ experience }: UpcomingExperienceProps) => {
   return (
     <div className='flex lg:flex-row flex-col lg:my-8 my-4 w-full lg:gap-12 justify-center items-center'>
       <div className='text-xl lg:leading-9 leading-7 lg:w-1/2 w-full lg:px-12 px-0 pt-4 flex flex-col lg:items-start items-center justify-center'>
-        <div className='lg:text-6xl text-5xl lg:mb-12 mb-8 text-primary title text-shadow-lg'>
+        <div className='lg:text-6xl text-5xl lg:mb-12 mb-8 text-primary up-title text-shadow-lg'>
           {formatTitle(experience.title)}
         </div>
         <div className='lg:hidden block h-[410px] w-[290px] relative lg:mb-12 mb-8'>
@@ -46,7 +46,7 @@ const UpcomingExperience = ({ experience }: UpcomingExperienceProps) => {
             fill
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
             quality={100}
-            className='rounded-xl shadow-2xl absolute image'
+            className='rounded-xl shadow-2xl absolute up-image'
             priority
           />
         </div>
@@ -54,7 +54,7 @@ const UpcomingExperience = ({ experience }: UpcomingExperienceProps) => {
           {upcomingDescription}
         </p>
         {linkToRsvp && (
-          <Button className='flex justify-center items-center gap-2 text-2xl text-black lg:mt-12 mt-8 p-6 hover:scale-110 hover:cursor-pointer hover:shadow-2xl transition-all ease-in-out duration-300 button'>
+          <Button className='flex justify-center items-center gap-2 text-2xl text-black lg:mt-12 mt-8 p-6 hover:scale-110 hover:cursor-pointer hover:shadow-2xl transition-all ease-in-out duration-300 up-button'>
             <a
               href={linkToRsvp!}
               target='_blank'
