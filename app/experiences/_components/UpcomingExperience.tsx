@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { CircleArrowLeft, CircleArrowRight } from "lucide-react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { formatTitle } from "../_utils/formatTitle";
 
 type UpcomingExperienceProps = {
   experiences: ExperienceItem[];
@@ -39,9 +40,9 @@ const UpcomingExperience = ({ experience }: { experience: ExperienceItem }) => {
   return (
     <div className='flex lg:flex-row flex-col lg:my-8 my-4 w-full lg:gap-12 justify-center items-center'>
       <div className='text-xl lg:leading-9 leading-7 lg:w-1/2 w-full lg:px-12 px-0 pt-4'>
-        <p className='lg:text-6xl text-5xl mb-12 text-primary title text-shadow-lg'>
-          {experience.title}
-        </p>
+        <div className='lg:text-6xl text-5xl mb-12 text-primary title text-shadow-lg'>
+          {formatTitle(experience.title)}
+        </div>
         <p className='text-white whitespace-pre-wrap up-description'>
           {upcomingDescription}
         </p>
@@ -56,15 +57,17 @@ const UpcomingExperience = ({ experience }: { experience: ExperienceItem }) => {
           </Button>
         )}
       </div>
-      <Image
-        src={flyerUrl!}
-        alt='flyer'
-        height={500}
-        width={450}
-        quality={100}
-        className='rounded-xl shadow-2xl image'
-        priority
-      />
+      <div className='h-[550px] w-[450px] relative'>
+        <Image
+          src={flyerUrl!}
+          alt='flyer'
+          fill
+          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+          quality={100}
+          className='rounded-xl shadow-2xl absolute image'
+          priority
+        />
+      </div>
     </div>
   );
 };
