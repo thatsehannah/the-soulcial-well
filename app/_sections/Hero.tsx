@@ -63,6 +63,19 @@ const Hero = () => {
             ease: "bounce",
           },
           "<"
+        )
+        .fromTo(
+          ".badge",
+          {
+            opacity: 0,
+            xPercent: 50,
+          },
+          {
+            opacity: 1,
+            xPercent: 0,
+            duration: 0.4,
+            delay: 1,
+          }
         );
     });
   }, []);
@@ -133,6 +146,8 @@ const Hero = () => {
         <LinkButton
           text='experiences'
           link='/experiences'
+          badge={true}
+          tooltipText='A new experience is coming up!'
         />
         <LinkButton
           text='contact'

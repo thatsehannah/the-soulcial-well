@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { Fragment } from "react";
 import Experience from "./_components/Experience";
 import { experienceData } from "./_data/experienceData";
-import UpcomingExperience from "./_components/UpcomingExperience";
+import UpcomingExperiences from "./_components/UpcomingExperiences";
 
 const ExperiencesPage = () => {
   //only getting the experiences that have photos in the storage bucket in firebase
@@ -48,7 +48,7 @@ const ExperiencesPage = () => {
       </section>
       {upcomingExperiences.length > 0 && (
         <section>
-          <UpcomingExperience experiences={upcomingExperiences} />
+          <UpcomingExperiences experiences={upcomingExperiences} />
         </section>
       )}
 
