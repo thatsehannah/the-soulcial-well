@@ -28,7 +28,7 @@ const SoulcialWellOverview = () => {
             priority
           />
         </div>
-        <div className='grid gap-4 text-xl xl:col-span-2 xl:px-30 p-6'>
+        <div className='grid gap-4 text-xl xl:col-span-2 xl:px-24 p-6'>
           <p className='text-5xl lg:text-6xl text-center mb-8'>
             At The <span className='font-script'>Soulcial Well</span>
           </p>
