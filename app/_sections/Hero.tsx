@@ -11,7 +11,7 @@ import { experienceData } from "../experiences/_data/experienceData";
 const Hero = () => {
   const anyUpcomingEvents =
     experienceData.filter(
-      (item) => item.storageBucket !== undefined && item.upcoming === true
+      (item) => item.storageFolder !== undefined && item.upcoming === true
     ).length > 0;
 
   useGSAP(() => {
