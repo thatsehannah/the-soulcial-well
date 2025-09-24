@@ -4,6 +4,9 @@ import Experience from "./_components/Experience";
 import UpcomingExperiences from "./_components/UpcomingExperiences";
 import { fetchAllExperiences } from "@/utils/serverActions";
 
+//this will make this page dynamic and fetch for experiences on every page request
+export const dynamic = "force-dynamic";
+
 const ExperiencesPage = async () => {
   const experiences = await fetchAllExperiences();
 
