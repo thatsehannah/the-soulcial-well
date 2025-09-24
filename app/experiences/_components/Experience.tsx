@@ -18,11 +18,12 @@ const Experience = ({ item, index }: ExperienceProps) => {
   useEffect(() => {
     const fetchImages = async () => {
       const response = await fetchPhotosFromStorage(item.storageFolder!);
-      setImageUrls(response);
+      const images = response.filter((image) => image !== item.flyerUrl);
+      setImageUrls(images);
     };
 
     fetchImages();
-  }, [item.storageFolder]);
+  }, [item.storageFolder, item.flyerUrl]);
 
   return (
     <section
