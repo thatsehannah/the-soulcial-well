@@ -2,7 +2,7 @@ import Image from "next/image";
 import React, { Fragment } from "react";
 import Experience from "./_components/Experience";
 import UpcomingExperiences from "./_components/UpcomingExperiences";
-import { fetchAllExperiences } from "@/utils/fetchAllExperiences";
+import { fetchAllExperiences } from "@/utils/serverActions";
 
 const ExperiencesPage = async () => {
   const experiences = await fetchAllExperiences();
