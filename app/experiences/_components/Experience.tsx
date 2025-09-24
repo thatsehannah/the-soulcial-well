@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import FilmRoll from "./FilmRoll";
 import { ExperienceItem } from "@/utils/types";
 import { formatTitle } from "../_utils/formatTitle";
-import { fetchPhotosFromStorage } from "@/utils/fetchPhotosFromStorage";
+import { fetchPhotosFromStorage } from "@/utils/clientActions";
 
 type ExperienceProps = {
   item: ExperienceItem;

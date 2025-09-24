@@ -1,3 +1,5 @@
+//these functions will be called on the server
+
 import { db } from "@/lib/firebase/firebase-admin";
 import { type ExperienceItem } from "./types";
 

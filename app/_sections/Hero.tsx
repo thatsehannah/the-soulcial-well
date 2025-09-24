@@ -1,18 +1,23 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import LinkButton from "../_components/LinkButton";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { experienceData } from "../experiences/_data/experienceData";
+import { checkForUpcomingExperiences } from "@/utils/clientActions";
 
 const Hero = () => {
-  const anyUpcomingEvents =
-    experienceData.filter(
-      (item) => item.storageFolder !== undefined && item.upcoming === true
-    ).length > 0;
+  const [anyUpcomingEvents, setAnyUpcomingEvents] = useState(false);
+
+  useEffect(() => {
+    const anyUpcomingEvents = async () => {
+      setAnyUpcomingEvents(await checkForUpcomingExperiences());
+    };
+
+    anyUpcomingEvents();
+  });
 
   useGSAP(() => {
     document.fonts.ready.then(() => {
