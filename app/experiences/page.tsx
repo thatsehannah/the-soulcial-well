@@ -1,18 +1,26 @@
 import Image from "next/image";
 import React, { Fragment } from "react";
 import Experience from "./_components/Experience";
-import { experienceData } from "./_data/experienceData";
 import UpcomingExperiences from "./_components/UpcomingExperiences";
+import { fetchAllExperiences } from "@/utils/fetchAllExperiences";
 
-const ExperiencesPage = () => {
-  //only getting the experiences that have photos in the storage bucket in firebase
-  const pastExperiences = experienceData.filter(
-    (item) => item.storageBucket !== undefined && item.upcoming === false
-  );
+const ExperiencesPage = async () => {
+  const experiences = await fetchAllExperiences();
+
+  if (experiences.length === 0) {
+    return (
+      <div>
+        <p>No experiences found.</p>
+      </div>
+    );
+  }
+
+  //getting past experiences
+  const pastExperiences = experiences.filter((item) => item.upcoming === false);
 
   //getting upcoming experiences
-  const upcomingExperiences = experienceData.filter(
-    (item) => item.storageBucket !== undefined && item.upcoming === true
+  const upcomingExperiences = experiences.filter(
+    (item) => item.upcoming === true
   );
 
   return (

@@ -10,7 +10,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
-import { getRandomCandidConvoQuestion } from "@/utils/getRandomCandidConvoQuestion";
+import { candidConversationsMasterlist } from "@/utils/dailyCandidConvoMasterlist";
 // import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
@@ -18,6 +18,20 @@ const ConvoPopUp = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [dailyQuestion, setDailyQuestion] = useState("");
   const [showQuestion, setShowQuestion] = useState(false);
+
+  const getRandomCandidConvoQuestion = () => {
+    const categories = candidConversationsMasterlist.flatMap((item) =>
+      Object.keys(item)
+    );
+    const randomCategory =
+      categories[Math.floor(Math.random() * categories.length)];
+
+    const allQuestions = candidConversationsMasterlist.find(
+      (list) => randomCategory in list
+    )![randomCategory];
+
+    return allQuestions[Math.floor(Math.random() * allQuestions.length)];
+  };
 
   const dialogTimeout = () => {
     const timeout = setTimeout(() => {

@@ -30,7 +30,7 @@ export type CoreValueItem = {
 export type ExperienceItem = {
   title: string;
   description: string;
-  storageBucket?: string;
+  storageFolder?: string;
   upcoming: boolean;
   upcomingDescription?: string;
   flyerUrl?: string;

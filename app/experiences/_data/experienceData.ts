@@ -4,14 +4,14 @@ import { ExperienceItem } from "@/utils/types";
 export const experienceData: ExperienceItem[] = [
   {
     title: "The Self Luv Affair",
-    storageBucket: "self-luv-affair",
+    storageFolder: "self-luv-affair",
     description:
       "This is where it all began. The Self Love Affair was an immersive wellness experience created by women, for women — blending intentional self-care with community, creativity, and connection. Guests moved through soul-soothing practices like sound baths and yoga, crafted personalized body scrubs based on their unique needs, and engaged in a powerful conversation circle centered on self-love and care. With Candid Conversation cards guiding the dialogue, this event set the tone for what The Soulcial Well would become: a space for self-exploration, emotional honesty, and joyful healing — all with a playful, affirming twist.",
     upcoming: false,
   },
   {
     title: "The Takeoff",
-    storageBucket: "the-takeoff",
+    storageFolder: "the-takeoff",
     description: `Designed to launch the year with intention and inspiration, The Takeoff was a creative and grounding experience for those ready to dream boldly and move with purpose. Through guided reflection, open dialogue, and vision board creation, participants explored their goals across life domains — career, wellness, relationships, personal growth, and more.
 
 The experience wove together practical goal-setting tools with soulful elements like visualization meditation, Candid Conversations, and intentional imagery. We explored what it means to set goals that feel aligned, revisit them with grace, and stay emotionally present through the journey — even when timelines shift. With food, laughter, and community energy at the center, The Takeoff reminded us that manifestation starts with vision, but takes flight with connection.`,
@@ -19,7 +19,7 @@ The experience wove together practical goal-setting tools with soulful elements 
   },
   {
     title: "Rooted + Radiant",
-    storageBucket: "rooted-radiant",
+    storageFolder: "rooted-radiant",
     description: `This intimate brunch was held in celebration of Women’s History Month — honoring womanhood in all its layers: soft, strong, reflective, and ever-evolving. Held at the beautifully curated Wabi and Rose, Rooted & Radiant invited women to connect over good food, meaningful dialogue, and shared presence.
 
 Each guest received a journal with a unique reflective question designed to spark self-inquiry. After time for personal reflection, we came together in a group conversation — listening deeply, sharing vulnerably, and honoring what surfaced in one another’s stories. The experience was filled with laughter, heartfelt connection, and a sense of collective grounding. It was a reminder that healing, celebration, and sisterhood can all live at the same table.`,
@@ -54,7 +54,7 @@ True to Soulcial Well’s spirit, Colorful Connections reminded us that self-car
   },
   {
     title: "Brushes & Balance",
-    storageBucket: "brushes-balance",
+    storageFolder: "brushes-balance",
     description: `Brushes & Balance was a free community wellness event curated by Dr. Wilma in partnership with Deep Centered Mental Health. Designed to highlight the therapeutic power of creative expression, the experience blended education, exploration, and engagement — offering attendees a meaningful introduction to art as a tool for emotional wellness.
 
 The evening included a discussion on how therapy supports personal growth, a Q&A with clinicians, and hands-on art activities that encouraged reflection, self-expression, and connection. Participants were invited into a supportive, judgment-free space where they could explore their feelings and walk away with both artwork and practical strategies for nurturing their mental health.
@@ -73,7 +73,7 @@ It was an evening of good food, deep roots, and collective joy — a celebration
   },
   {
     title: "Icebreaker",
-    storageBucket: "icebreaker",
+    storageFolder: "icebreaker",
     description: `Icebreaker was designed to do exactly what its name suggests — melt away small talk and spark real, meaningful connection. This intentionally crafted Soulcial brought strangers together through guided prompts, intentional pairings, and creative movement to build rapport, practice vulnerability, and explore authentic engagement.
 
 Candid Conversation starter cards, interactive games, and a supportive atmosphere turned simple introductions into powerful exchanges. Laughter, curiosity, and ease filled the room as participants realized that connection doesn’t have to be forced — it just has to be intentional.
@@ -83,7 +83,7 @@ Icebreaker reminded us that when we drop the performance and lean into presence,
   },
   {
     title: "Love Lingo",
-    storageBucket: "love-lingo",
+    storageFolder: "love-lingo",
     description: `Love Lingo was a soulful and playful experience designed to explore how we understand, express, and receive love — in relationships, friendships, and within ourselves. Grounded in the 5 Love Languages, this Soulcial invited participants into reflective dialogue, interactive pairings, and group-based activities that brought love to life in real time.
 
 The evening culminated in a collaborative art project, where guests visually expressed their primary love language — creating a shared piece that reflected the diversity and beauty of how we each give and receive care.
@@ -93,7 +93,7 @@ With laughter, curiosity, and emotional honesty in the room, Love Lingo reminded
   },
   {
     title: "From Her, For Her",
-    storageBucket: "from-her-for-her",
+    storageFolder: "from-her-for-her",
     description: `From Her, For Her was a thoughtfully curated Women’s History Month brunch celebrating womanhood through reflection, connection, and community care. This Soulcial created space for growth and nourishing — honoring the journeys we’ve traveled and the ones still ahead.
 
 Guests enjoyed a custom trivia game, “Who’s That Girl?”, sparking laughter and pride as they recognized inspiring women and personal stories. Each participant received a propagated plant cutting, symbolizing rooted growth and the ongoing nourishment required to thrive in self and sisterhood.
@@ -103,7 +103,7 @@ Through personalized journal prompts and heartfelt group conversations, surround
   },
   {
     title: "Garden Groove",
-    storageBucket: "garden-groove",
+    storageFolder: "garden-groove",
     description: `Garden Groove invited community members to move, flow, and reconnect with their bodies and nature in an open green space. Guided dance, playful grooves, and gentle movement helped participants release tension, celebrate embodiment, and feel joy in collective rhythm — no dance experience required.
 
 Following the movement, the gathering transitioned to a relaxed picnic with Candid Conversations, where guests shared stories, reflections, and laughter in a nurturing space. This blend of physical expression and heartfelt dialogue honored wellness as a holistic journey — nourishing body, mind, and community.
@@ -113,7 +113,7 @@ Garden Groove reminded us that true wellness thrives in movement and meaningful 
   },
   {
     title: "Saddle & Serenity",
-    storageBucket: "saddle-serenity",
+    storageFolder: "saddle-serenity",
     description: `Saddle & Serenity offered a unique blend of nature, animal-assisted healing, and mindful presence. Through gentle interaction with horses, participants cultivated calm, trust, and self-awareness in a peaceful outdoor setting.
 
 The event honored the deep bond between humans and horses—using equine energy to foster emotional balance, reduce stress, and inspire inner serenity. Guided mindfulness and reflective exercises complemented the hands-on moments, inviting guests to slow down and reconnect. True to Soulcial Well’s spirit, the event closed with a relaxed picnic and Candid Conversations, fostering connection, community, and healing.
@@ -123,7 +123,7 @@ Saddle & Serenity reminded us that sometimes, serenity comes on four hooves.`,
   },
   {
     title: "Well Read",
-    storageBucket: "well-read",
+    storageFolder: "well-read",
     description: `Beginning virtually during COVID, the Soulcial Well Book Club creates a welcoming space for connection, reflection, and shared exploration through literature. As restrictions eased, the group transitioned to in-person gatherings in Houston, deepening community bonds and sparking thoughtful dialogue around selected books.
 
 This evolving experience combined the joy of reading with meaningful conversation — nurturing both the mind and the heart.`,
@@ -131,7 +131,7 @@ This evolving experience combined the joy of reading with meaningful conversatio
   },
   {
     title: "Hue & You",
-    storageBucket: "hue-you",
+    storageFolder: "hue-you",
     description: "",
     upcomingDescription:
       "On September 20th at 11AM, we’re bringing a vibrant wellness experience to the Atlanta Beltline. We’ll begin with a grounding meditation, then step into a Color Walk — an interactive journey where colors spark reflection, mindfulness, and play as you move through each hue with intention. To close, we’ll gather for refreshing herbal drinks crafted by a local herbalist to re-up on electrolytes and seal in the glow of connection and renewal.",
@@ -144,7 +144,7 @@ This evolving experience combined the joy of reading with meaningful conversatio
   // FOR TESTING PURPOSES
   // {
   //   title: "Test",
-  //   storageBucket: "hue-you",
+  //   storageFolder: "hue-you",
   //   description: "",
   //   upcomingDescription:
   //     "Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.",
