@@ -1,4 +1,4 @@
-// Import the functions you need from the SDKs you need
+// Import the functions you need from the SDKs
 import admin from "firebase-admin";
 import { getFirestore } from "firebase-admin/firestore";
 import { getStorage } from "firebase-admin/storage";
