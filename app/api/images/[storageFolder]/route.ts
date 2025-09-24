@@ -9,13 +9,16 @@ export const GET = async (
   try {
     const { storageFolder } = await params;
 
-    const [images] = await storage
+    const [files] = await storage
       .bucket()
       .getFiles({ prefix: `${storageFolder}/`, delimiter: "/" });
 
+    //this is done to filter out the element that is the folder path itself which doesn't return an image
+    const images = files.filter((file) => !file.name.endsWith("/"));
+
     //get all urls from images returned from getFiles()
     const imageUrls: string[] = await Promise.all(
-      images.slice(1).map(async (image) => await getDownloadURL(image))
+      images.map(async (image) => await getDownloadURL(image))
     );
 
     return NextResponse.json(imageUrls);
