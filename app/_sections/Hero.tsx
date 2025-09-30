@@ -8,6 +8,9 @@ import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 import { checkForUpcomingExperiences } from "@/utils/clientActions";
 
+//this will make this page dynamic and fetch for experiences on every page request
+export const dynamic = "force-dynamic";
+
 const Hero = () => {
   const [anyUpcomingEvents, setAnyUpcomingEvents] = useState(false);
 
