@@ -4,10 +4,22 @@ export const formatTitle = (
   rawTitle: string,
   isEvenSection?: boolean
 ): ReactNode => {
-  const baseClass = "lg:text-6xl text-5xl text-white";
+  const baseClass = `${rawTitle.length > 25 ? "lg:text-5xl" : "lg:text-6xl"}  text-5xl text-white`;
   const spanClass = `font-script ${
     isEvenSection ? "text-main-foreground" : "text-primary"
   } `;
+
+  //for titles with a colon
+  if (rawTitle.indexOf(":") !== -1) {
+    const splitTitleWithColon = rawTitle.split(":");
+
+    return (
+      <p className={baseClass}>
+        {splitTitleWithColon[0]}:{" "}
+        <span className={spanClass}>{splitTitleWithColon[1]}</span>
+      </p>
+    );
+  }
 
   //for titles with a comma
   if (rawTitle.indexOf(",") !== -1) {
@@ -24,6 +36,7 @@ export const formatTitle = (
 
   const splitTitle = rawTitle.split(" ");
 
+  //for titles that contain an ampersand or a plus sign
   if (splitTitle[1] === "&" || splitTitle[1] === "+") {
     return (
       <p className={baseClass}>
@@ -33,6 +46,7 @@ export const formatTitle = (
     );
   }
 
+  //for titles that just have a space
   return (
     <p className={baseClass}>
       {splitTitle[0]}{" "}
