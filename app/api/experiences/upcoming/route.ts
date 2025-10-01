@@ -5,7 +5,7 @@ export const GET = async () => {
   try {
     const snapshot = await db
       .collection("experiences")
-      .where("upcoming", "==", "true")
+      .where("upcoming", "==", true)
       .get();
 
     if (snapshot.empty) {

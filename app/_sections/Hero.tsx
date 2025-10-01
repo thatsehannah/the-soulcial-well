@@ -16,7 +16,9 @@ const Hero = () => {
 
   useEffect(() => {
     const anyUpcomingEvents = async () => {
-      setAnyUpcomingEvents(await checkForUpcomingExperiences());
+      const result = await checkForUpcomingExperiences();
+
+      setAnyUpcomingEvents(result);
     };
 
     anyUpcomingEvents();
