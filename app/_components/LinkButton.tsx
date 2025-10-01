@@ -25,7 +25,7 @@ const LinkButton = ({
   return (
     <div className='relative hover:scale-110 transition-all ease-in-out'>
       {badge && (
-        <div className='absolute -right-1 -top-2 bg-dark-green text-white z-10 rounded-full lg:p-[6px] p-1  badge'>
+        <div className='absolute -right-1 -top-2 bg-dark-green text-white z-10 rounded-full lg:p-[6px] p-1 upcoming-badge'>
           <Tooltip>
             <TooltipTrigger asChild>
               <Link href={badgeUrl!}>

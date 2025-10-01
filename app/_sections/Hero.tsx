@@ -22,6 +22,22 @@ const Hero = () => {
     };
 
     anyUpcomingEvents();
+
+    gsap.fromTo(
+      ".upcoming-badge",
+      {
+        opacity: 0,
+        scale: 1.4,
+        ease: "expo.inOut",
+      },
+      {
+        opacity: 1,
+        duration: 0.7,
+        delay: 6,
+        scale: 1,
+        ease: "expo.inOut",
+      }
+    );
   });
 
   useGSAP(() => {
@@ -79,21 +95,6 @@ const Hero = () => {
             ease: "bounce",
           },
           "<"
-        )
-        .fromTo(
-          ".badge",
-          {
-            opacity: 0,
-            scale: 1.4,
-            ease: "expo.inOut",
-          },
-          {
-            opacity: 1,
-            duration: 0.4,
-            delay: 0.7,
-            scale: 1,
-            ease: "expo.inOut",
-          }
         );
     });
   }, []);
