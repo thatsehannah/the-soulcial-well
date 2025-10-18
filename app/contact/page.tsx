@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { services } from "@/utils/services";
+import { referralOptions, services } from "@/utils/services";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Image from "next/image";
 import React from "react";
@@ -29,6 +29,7 @@ const contactSchema = yup.object({
     .email("Please enter a valid email")
     .required("Please enter your email"),
   service: yup.string().required("Please select a service"),
+  referral: yup.string().required("Please select a type"),
   message: yup.string().required("Please enter your message"),
 });
 
@@ -44,6 +45,7 @@ const Contact = () => {
     clearErrors,
   } = form;
   const selectedService = watch("service");
+  const selectedReferral = watch("referral");
 
   const onSubmit = async (data: NewMessage) => {
     try {
@@ -141,6 +143,42 @@ const Contact = () => {
                 {errors.service && (
                   <p className='font-bold text-destructive'>
                     {errors.service.message}
+                  </p>
+                )}
+              </div>
+              <div>
+                <Select
+                  value={selectedReferral ?? ""}
+                  onValueChange={(value) => {
+                    setValue("referral", value);
+                    clearErrors("referral");
+                  }}
+                >
+                  <SelectTrigger className='w-full lg:mt-3 mt-5 bg-main-bg data-[placeholder]:font-script data-[placeholder]:text-xl text-black'>
+                    <SelectValue
+                      className='text-black'
+                      placeholder='How did you hear about us?'
+                    />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectGroup>
+                      <SelectLabel className='font-script text-xl'>
+                        Options
+                      </SelectLabel>
+                      {referralOptions.map((opt, idx) => (
+                        <SelectItem
+                          value={opt}
+                          key={idx}
+                        >
+                          {opt}
+                        </SelectItem>
+                      ))}
+                    </SelectGroup>
+                  </SelectContent>
+                </Select>
+                {errors.referral && (
+                  <p className='font-bold text-destructive'>
+                    {errors.referral.message}
                   </p>
                 )}
               </div>

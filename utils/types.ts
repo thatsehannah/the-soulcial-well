@@ -41,5 +41,6 @@ export type NewMessage = {
   name: string;
   email: string;
   service: string;
+  referral: string;
   message: string;
 };

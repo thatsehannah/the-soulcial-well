@@ -1,3 +1,4 @@
+import { NewMessage } from "@/utils/types";
 import {
   Body,
   Container,
@@ -12,12 +13,7 @@ import {
 } from "@react-email/components";
 
 type NewMessageEmailProps = {
-  newMessage: {
-    name: string;
-    email: string;
-    service: string;
-    message: string;
-  };
+  newMessage: NewMessage;
 };
 
 export const NewMessageEmail = ({ newMessage }: NewMessageEmailProps) => (
@@ -45,6 +41,9 @@ export const NewMessageEmail = ({ newMessage }: NewMessageEmailProps) => (
           </Text>
           <Text style={paragraph}>
             <b>Message:</b> {newMessage.message}
+          </Text>
+          <Text style={paragraph}>
+            <b>Referral:</b> {newMessage.referral}
           </Text>
         </Section>
 

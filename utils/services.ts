@@ -7,3 +7,16 @@ export const services = [
   "Personalized Coaching",
   "Group Therapy & Support Circles",
 ];
+
+export const referralOptions = [
+  "Google Search",
+  "Instagram",
+  "Tik Tok",
+  "Twitter/X",
+  "Facebook",
+  "Friend",
+  "Website",
+  "Newsletter",
+  "Event",
+  "Other",
+];
