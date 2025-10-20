@@ -50,19 +50,20 @@ const FilmRoll = ({ imageUrls, title }: FilmRollProps) => {
         open={isDialogOpen}
         onOpenChange={setIsDialogOpen}
       >
-        <DialogContent className='w-[90%] p-12'>
+        <DialogContent className='min-w-[80%] p-12'>
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
           </DialogHeader>
-          <div className='h-90% w-full overflow-hidden'>
+          <div className='flex flex-col items-center overflow-hidden'>
             <div className='flex justify-center items-center mb-8'>
-              <div className='relative h-[27rem] w-[28rem]'>
+              <div className='relative h-[28rem] w-[54rem]'>
                 <Image
                   src={currentOpenImage}
                   className='rounded-md object-contain'
                   alt='event-img'
                   quality={100}
                   fill
+                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                 />
               </div>
             </div>
@@ -73,7 +74,7 @@ const FilmRoll = ({ imageUrls, title }: FilmRollProps) => {
                     key={index}
                     src={imgUrl}
                     alt='img-thumbnail'
-                    className={`${dialogCurrentIndex === index ? "border-4 border-dark-green" : ""} rounded-sm cursor-pointer object-contain`}
+                    className={`${dialogCurrentIndex === index ? "border-4 border-dark-green" : ""} rounded-sm cursor-pointer object-cover`}
                     quality={100}
                     width={85}
                     height={75}
