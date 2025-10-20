@@ -35,7 +35,10 @@ const Experience = ({ item, index }: ExperienceProps) => {
         {formatTitle(item.title, isEvenSection)}
       </div>
       <div className='flex lg:flex-row flex-col lg:my-8 my-4 w-full lg:gap-12 justify-center items-center'>
-        <FilmRoll imageUrls={imageUrls} />
+        <FilmRoll
+          imageUrls={imageUrls}
+          title={item.title}
+        />
         <div className='text-xl lg:leading-9 leading-7 lg:w-1/2 w-full lg:px-12 px-0 pt-4'>
           <p
             className={`${
