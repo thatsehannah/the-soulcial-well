@@ -6,6 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -16,8 +17,15 @@ type FilmRollProps = {
 
 const FilmRoll = ({ imageUrls, title }: FilmRollProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [currentOpenImage, setCurrentOpenImage] = useState("");
   const [dialogCurrentIndex, setDialogCurrentIndex] = useState(0);
+
+  const showNextImage = (index: number) => {
+    const newIndex = (index + imageUrls.length) % imageUrls.length;
+
+    setDialogCurrentIndex(newIndex);
+  };
+
+  const imageShown = imageUrls[dialogCurrentIndex];
 
   return (
     <div className='relative'>
@@ -36,7 +44,6 @@ const FilmRoll = ({ imageUrls, title }: FilmRollProps) => {
                 sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                 quality={100}
                 onClick={() => {
-                  setCurrentOpenImage(url);
                   setIsDialogOpen(true);
                   setDialogCurrentIndex(imageUrls.indexOf(url));
                 }}
@@ -56,9 +63,13 @@ const FilmRoll = ({ imageUrls, title }: FilmRollProps) => {
           </DialogHeader>
           <div className='flex flex-col items-center overflow-hidden'>
             <div className='flex justify-center items-center mb-8'>
+              <ChevronLeft
+                className='cursor-pointer'
+                onClick={() => showNextImage(dialogCurrentIndex - 1)}
+              />
               <div className='relative h-[28rem] w-[54rem]'>
                 <Image
-                  src={currentOpenImage}
+                  src={imageShown}
                   className='rounded-md object-contain'
                   alt='event-img'
                   quality={100}
@@ -66,6 +77,12 @@ const FilmRoll = ({ imageUrls, title }: FilmRollProps) => {
                   sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
                 />
               </div>
+              <ChevronRight
+                className='cursor-pointer'
+                onClick={() => {
+                  showNextImage(dialogCurrentIndex + 1);
+                }}
+              />
             </div>
             <div className='flex gap-3 w-80% overflow-scroll'>
               {imageUrls.map((imgUrl, index) => {
@@ -79,7 +96,6 @@ const FilmRoll = ({ imageUrls, title }: FilmRollProps) => {
                     width={85}
                     height={75}
                     onClick={() => {
-                      setCurrentOpenImage(imgUrl);
                       setDialogCurrentIndex(index);
                     }}
                   />
