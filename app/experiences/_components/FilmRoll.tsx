@@ -57,17 +57,18 @@ const FilmRoll = ({ imageUrls, title }: FilmRollProps) => {
         open={isDialogOpen}
         onOpenChange={setIsDialogOpen}
       >
-        <DialogContent className='min-w-[80%] p-12'>
+        <DialogContent className='min-w-[60%]'>
           <DialogHeader>
             <DialogTitle>{title}</DialogTitle>
           </DialogHeader>
-          <div className='flex flex-col items-center overflow-hidden'>
-            <div className='flex justify-center items-center mb-8'>
+          <div className='flex flex-col items-center justify-center'>
+            <div className='flex items-center justify-center gap-4 w-full mb-8'>
               <ChevronLeft
-                className='cursor-pointer'
+                className='cursor-pointer hover:scale-125 transition-all ease-in-out duration-200'
+                size={40}
                 onClick={() => showNextImage(dialogCurrentIndex - 1)}
               />
-              <div className='relative h-[28rem] w-[54rem]'>
+              <div className='relative h-[28rem] w-full'>
                 <Image
                   src={imageShown}
                   className='rounded-md object-contain'
@@ -78,7 +79,8 @@ const FilmRoll = ({ imageUrls, title }: FilmRollProps) => {
                 />
               </div>
               <ChevronRight
-                className='cursor-pointer'
+                className='cursor-pointer hover:scale-125 transition-all ease-in-out duration-200'
+                size={40}
                 onClick={() => {
                   showNextImage(dialogCurrentIndex + 1);
                 }}
