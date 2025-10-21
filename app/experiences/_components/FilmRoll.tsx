@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Video } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -42,16 +42,24 @@ const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
           {mediaUrls.map((url, index) => {
             if (url.includes(".mp4")) {
               return (
-                <video
-                  src={url}
+                <div
                   key={index}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setIsDialogOpen(true);
-                    setDialogCurrentIndex(mediaUrls.indexOf(url));
-                  }}
-                  className='border-[12px] object-cover cursor-pointer border-main-foreground w-full lg:w-80 h-80'
-                />
+                  className='relative'
+                >
+                  <Video
+                    className='absolute top-5 right-5 stroke-white'
+                    size={18}
+                  />
+                  <video
+                    src={url}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsDialogOpen(true);
+                      setDialogCurrentIndex(mediaUrls.indexOf(url));
+                    }}
+                    className='border-[12px] object-cover cursor-pointer border-main-foreground w-full lg:w-80 h-80'
+                  />
+                </div>
               );
             }
 
@@ -143,7 +151,7 @@ const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
                     key={index}
                     src={mediaUrl}
                     alt='img-thumbnail'
-                    className={`${dialogCurrentIndex === index ? "border-4 border-dark-green" : ""} rounded-sm cursor-pointer object-cover`}
+                    className={`${dialogCurrentIndex === index ? "border-4 border-dark-green" : ""} rounded-sm cursor-pointer object-cover aspect-square`}
                     quality={100}
                     width={85}
                     height={75}
