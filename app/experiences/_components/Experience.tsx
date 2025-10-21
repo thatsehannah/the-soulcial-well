@@ -12,17 +12,18 @@ type ExperienceProps = {
 };
 
 const Experience = ({ item, index }: ExperienceProps) => {
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [mediaUrls, setMediaUrls] = useState<string[]>([]);
   const isEvenSection = index % 2 === 0;
 
   useEffect(() => {
-    const fetchImages = async () => {
+    const fetchMedia = async () => {
       const response = await fetchPhotosFromStorage(item.storageFolder!);
-      const images = response.filter((image) => image !== item.flyerUrl);
-      setImageUrls(images);
+      const media = response.filter((image) => image !== item.flyerUrl);
+      media.push("/assets/test.mp4");
+      setMediaUrls(media);
     };
 
-    fetchImages();
+    fetchMedia();
   }, [item.storageFolder, item.flyerUrl]);
 
   return (
@@ -36,7 +37,7 @@ const Experience = ({ item, index }: ExperienceProps) => {
       </div>
       <div className='flex lg:flex-row flex-col lg:my-8 my-4 w-full lg:gap-12 justify-center items-center'>
         <FilmRoll
-          imageUrls={imageUrls}
+          mediaUrls={mediaUrls}
           title={item.title}
         />
         <div className='text-xl lg:leading-9 leading-7 lg:w-1/2 w-full lg:px-12 px-0 pt-4'>

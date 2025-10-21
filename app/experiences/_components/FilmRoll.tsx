@@ -11,45 +11,70 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 type FilmRollProps = {
-  imageUrls: string[];
+  mediaUrls: string[];
   title: string;
 };
 
-const FilmRoll = ({ imageUrls, title }: FilmRollProps) => {
+const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogCurrentIndex, setDialogCurrentIndex] = useState(0);
 
-  const showNextImage = (index: number) => {
-    const newIndex = (index + imageUrls.length) % imageUrls.length;
+  const showNextMedia = (index: number) => {
+    const newIndex = (index + mediaUrls.length) % mediaUrls.length;
 
     setDialogCurrentIndex(newIndex);
   };
 
-  const imageShown = imageUrls[dialogCurrentIndex];
+  const mediaShown = mediaUrls[dialogCurrentIndex];
+
+  if (mediaUrls.length === 0) {
+    return (
+      <div>
+        <p>Failed to load media</p>
+      </div>
+    );
+  }
 
   return (
     <div className='relative'>
       <div className='flex flex-col lg:w-auto md:w-[40%] w-[90%] md:h-180 h-200 overflow-y-scroll border-b-[32px] border-t-[16px] border-main-foreground rounded-lg'>
-        <div className=''>
-          {imageUrls.map((url, index) => (
-            <div
-              className='border-[12px] relative border-main-foreground w-full lg:w-80 h-80'
-              key={index}
-            >
-              <Image
-                src={url}
-                className='object-cover cursor-pointer'
-                alt='event-img'
-                fill
-                sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                quality={100}
-                onClick={() => {
-                  setIsDialogOpen(true);
-                  setDialogCurrentIndex(imageUrls.indexOf(url));
-                }}
-              />
-            </div>
-          ))}
+        <div>
+          {mediaUrls.map((url, index) => {
+            if (url.includes(".mp4")) {
+              return (
+                <video
+                  src={url}
+                  key={index}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setIsDialogOpen(true);
+                    setDialogCurrentIndex(mediaUrls.indexOf(url));
+                  }}
+                  className='border-[12px] object-cover cursor-pointer border-main-foreground w-full lg:w-80 h-80'
+                />
+              );
+            }
+
+            return (
+              <div
+                className='border-[12px] relative border-main-foreground w-full lg:w-80 h-80'
+                key={index}
+              >
+                <Image
+                  src={url}
+                  className='object-cover cursor-pointer'
+                  alt='event-img'
+                  fill
+                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                  quality={100}
+                  onClick={() => {
+                    setIsDialogOpen(true);
+                    setDialogCurrentIndex(mediaUrls.indexOf(url));
+                  }}
+                />
+              </div>
+            );
+          })}
           <div />
         </div>
       </div>
@@ -66,32 +91,57 @@ const FilmRoll = ({ imageUrls, title }: FilmRollProps) => {
               <ChevronLeft
                 className='cursor-pointer hover:scale-125 transition-all ease-in-out duration-200'
                 size={40}
-                onClick={() => showNextImage(dialogCurrentIndex - 1)}
+                onClick={() => showNextMedia(dialogCurrentIndex - 1)}
               />
-              <div className='relative h-[28rem] w-full'>
-                <Image
-                  src={imageShown}
-                  className='rounded-md object-contain'
-                  alt='event-img'
-                  quality={100}
-                  fill
-                  sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-                />
+              <div className='w-full'>
+                {mediaShown.includes(".mp4") ? (
+                  <video
+                    src={mediaShown}
+                    controls
+                    playsInline
+                  />
+                ) : (
+                  <div className='relative h-[28rem] w-full'>
+                    <Image
+                      src={mediaShown}
+                      className='rounded-md object-contain'
+                      alt='event-img'
+                      quality={100}
+                      fill
+                      sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                    />
+                  </div>
+                )}
               </div>
               <ChevronRight
                 className='cursor-pointer hover:scale-125 transition-all ease-in-out duration-200'
                 size={40}
                 onClick={() => {
-                  showNextImage(dialogCurrentIndex + 1);
+                  showNextMedia(dialogCurrentIndex + 1);
                 }}
               />
             </div>
             <div className='flex gap-3 w-80% overflow-scroll'>
-              {imageUrls.map((imgUrl, index) => {
+              {mediaUrls.map((mediaUrl, index) => {
+                if (mediaUrl.includes(".mp4")) {
+                  return (
+                    <video
+                      src={mediaUrl}
+                      className={`${dialogCurrentIndex === index ? "border-4 border-dark-green" : ""} rounded-sm cursor-pointer object-cover`}
+                      key={index}
+                      width={85}
+                      height={75}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setDialogCurrentIndex(index);
+                      }}
+                    />
+                  );
+                }
                 return (
                   <Image
                     key={index}
-                    src={imgUrl}
+                    src={mediaUrl}
                     alt='img-thumbnail'
                     className={`${dialogCurrentIndex === index ? "border-4 border-dark-green" : ""} rounded-sm cursor-pointer object-cover`}
                     quality={100}
