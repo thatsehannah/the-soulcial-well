@@ -20,7 +20,6 @@ const Experience = ({ item, index }: ExperienceProps) => {
     const fetchMedia = async () => {
       const response = await fetchPhotosFromStorage(item.storageFolder!);
       const media = response.filter((image) => image !== item.flyerUrl);
-      media.push("/assets/test.mp4");
       setMediaUrls(media);
       setMediaLoaded(true);
     };

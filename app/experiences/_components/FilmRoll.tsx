@@ -6,7 +6,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { ChevronLeft, ChevronRight, Video } from "lucide-react";
+import { ChevronLeft, ChevronRight, Video as VideoIcon } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -25,28 +25,39 @@ const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
     setDialogCurrentIndex(newIndex);
   };
 
-  const mediaShown = mediaUrls[dialogCurrentIndex];
-
   if (mediaUrls.length === 0) {
     return (
-      <div>
-        <p>Failed to load media</p>
+      <div className='flex flex-col lg:w-auto md:w-[40%] w-[90%] md:h-180 h-200 overflow-y-scroll border-b-[32px] border-t-[16px] border-main-foreground rounded-lg'>
+        <div>
+          {Array.from(
+            [1, 2, 3].map((_, index) => (
+              <div
+                className='border-[12px] relative border-main-foreground w-full lg:w-80 h-80 flex items-center justify-center'
+                key={index}
+              >
+                <p>No images available at this time.</p>
+              </div>
+            ))
+          )}
+        </div>
       </div>
     );
   }
+
+  const currentDisplayedDialogMedia = mediaUrls[dialogCurrentIndex];
 
   return (
     <div className='relative'>
       <div className='flex flex-col lg:w-auto md:w-[40%] w-[90%] md:h-180 h-200 overflow-y-scroll border-b-[32px] border-t-[16px] border-main-foreground rounded-lg'>
         <div>
           {mediaUrls.map((url, index) => {
-            if (url.includes(".mp4")) {
+            if (url.includes(".mp4") || url.includes(".MP4")) {
               return (
                 <div
                   key={index}
                   className='relative'
                 >
-                  <Video
+                  <VideoIcon
                     className='absolute top-5 right-5 stroke-white'
                     size={18}
                   />
@@ -102,16 +113,17 @@ const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
                 onClick={() => showNextMedia(dialogCurrentIndex - 1)}
               />
               <div className='w-full'>
-                {mediaShown.includes(".mp4") ? (
+                {currentDisplayedDialogMedia.includes(".mp4") ||
+                currentDisplayedDialogMedia.includes(".MP4") ? (
                   <video
-                    src={mediaShown}
+                    src={currentDisplayedDialogMedia}
                     controls
                     playsInline
                   />
                 ) : (
                   <div className='relative h-[28rem] w-full'>
                     <Image
-                      src={mediaShown}
+                      src={currentDisplayedDialogMedia}
                       className='rounded-md object-contain'
                       alt='event-img'
                       quality={100}
