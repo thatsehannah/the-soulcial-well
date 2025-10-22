@@ -12,17 +12,19 @@ type ExperienceProps = {
 };
 
 const Experience = ({ item, index }: ExperienceProps) => {
-  const [imageUrls, setImageUrls] = useState<string[]>([]);
+  const [mediaUrls, setMediaUrls] = useState<string[]>([]);
+  const [mediaLoaded, setMediaLoaded] = useState<boolean>(false);
   const isEvenSection = index % 2 === 0;
 
   useEffect(() => {
-    const fetchImages = async () => {
+    const fetchMedia = async () => {
       const response = await fetchPhotosFromStorage(item.storageFolder!);
-      const images = response.filter((image) => image !== item.flyerUrl);
-      setImageUrls(images);
+      const media = response.filter((image) => image !== item.flyerUrl);
+      setMediaUrls(media);
+      setMediaLoaded(true);
     };
 
-    fetchImages();
+    fetchMedia();
   }, [item.storageFolder, item.flyerUrl]);
 
   return (
@@ -35,7 +37,16 @@ const Experience = ({ item, index }: ExperienceProps) => {
         {formatTitle(item.title, isEvenSection)}
       </div>
       <div className='flex lg:flex-row flex-col lg:my-8 my-4 w-full lg:gap-12 justify-center items-center'>
-        <FilmRoll imageUrls={imageUrls} />
+        {mediaLoaded ? (
+          <FilmRoll
+            mediaUrls={mediaUrls}
+            title={item.title}
+          />
+        ) : (
+          <div>
+            <p className='text-xl'>Loading media...</p>
+          </div>
+        )}
         <div className='text-xl lg:leading-9 leading-7 lg:w-1/2 w-full lg:px-12 px-0 pt-4'>
           <p
             className={`${
