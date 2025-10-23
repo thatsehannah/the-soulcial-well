@@ -7,6 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { ChevronLeft, ChevronRight, Video as VideoIcon } from "lucide-react";
+import { useMediaQuery } from "react-responsive";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -16,6 +17,7 @@ type FilmRollProps = {
 };
 
 const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [dialogCurrentIndex, setDialogCurrentIndex] = useState(0);
 
@@ -24,6 +26,10 @@ const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
 
     setDialogCurrentIndex(newIndex);
   };
+
+  const currentDisplayedDialogMedia = mediaUrls[dialogCurrentIndex];
+
+  //TODO: add arrow key functionality for dialog carousel
 
   if (mediaUrls.length === 0) {
     return (
@@ -44,8 +50,6 @@ const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
     );
   }
 
-  const currentDisplayedDialogMedia = mediaUrls[dialogCurrentIndex];
-
   return (
     <>
       <div className='flex flex-col lg:w-auto md:w-[40%] w-[90%] md:h-180 h-200 overflow-y-scroll border-b-[32px] border-t-[16px] border-main-foreground rounded-lg'>
@@ -58,8 +62,8 @@ const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
                   className='relative'
                 >
                   <VideoIcon
-                    className='absolute top-5 right-5 stroke-white'
-                    size={18}
+                    className='absolute top-5 right-5 stroke-black'
+                    size={22}
                   />
                   <video
                     src={url}
@@ -69,6 +73,8 @@ const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
                       setDialogCurrentIndex(mediaUrls.indexOf(url));
                     }}
                     className='border-[12px] object-cover cursor-pointer border-main-foreground w-full lg:w-80 h-80'
+                    preload='metadata'
+                    poster='/assets/TSWLOGO2025.png'
                   />
                 </div>
               );
@@ -106,7 +112,7 @@ const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
             <DialogTitle>{title}</DialogTitle>
           </DialogHeader>
           <div className='flex flex-col items-center justify-center'>
-            <div className='flex items-center justify-center gap-4 w-full mb-8'>
+            <div className='flex items-center justify-center lg:gap-4 gap-[5px] w-full mb-8'>
               <ChevronLeft
                 className='cursor-pointer hover:scale-125 transition-all ease-in-out duration-200'
                 size={40}
@@ -118,13 +124,14 @@ const FilmRoll = ({ mediaUrls, title }: FilmRollProps) => {
                   <video
                     src={currentDisplayedDialogMedia}
                     controls
-                    playsInline
+                    playsInline={!isMobile}
+                    className='aspect-video'
                   />
                 ) : (
-                  <div className='relative h-[28rem] w-full'>
+                  <div className='relative lg:h-[28rem] h-60 w-full'>
                     <Image
                       src={currentDisplayedDialogMedia}
-                      className='rounded-md object-contain'
+                      className='rounded-md object-contain aspect-square'
                       alt='event-img'
                       quality={100}
                       fill
