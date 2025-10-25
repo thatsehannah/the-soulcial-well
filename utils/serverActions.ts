@@ -26,6 +26,7 @@ export const fetchAllExperiences = async (): Promise<ExperienceItem[]> => {
         title,
         upcoming,
         upcomingDescription,
+        location,
       } = doc.data() as ExperienceItem;
 
       return {
@@ -36,6 +37,7 @@ export const fetchAllExperiences = async (): Promise<ExperienceItem[]> => {
         title,
         upcoming,
         upcomingDescription,
+        location,
         date: transformedDate,
       };
     });

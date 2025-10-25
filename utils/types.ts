@@ -36,6 +36,7 @@ export type ExperienceItem = {
   flyerUrl?: string;
   linkToRsvp?: string;
   date: Date;
+  location: string;
 };
 
 export type NewMessage = {
