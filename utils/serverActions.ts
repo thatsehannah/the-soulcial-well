@@ -5,13 +5,19 @@ import { type ExperienceItem } from "./types";
 
 export const fetchAllExperiences = async (): Promise<ExperienceItem[]> => {
   try {
-    const snapshot = await db.collection("experiences").get();
+    const snapshot = await db
+      .collection("experiences")
+      .orderBy("date", "desc")
+      .get();
 
     if (snapshot.empty) {
       return [];
     }
 
     const experiences = snapshot.docs.map((doc) => {
+      const { date } = doc.data();
+      const transformedDate = date.toDate() as Date;
+
       const {
         description,
         flyerUrl,
@@ -30,6 +36,7 @@ export const fetchAllExperiences = async (): Promise<ExperienceItem[]> => {
         title,
         upcoming,
         upcomingDescription,
+        date: transformedDate,
       };
     });
 
