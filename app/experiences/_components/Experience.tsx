@@ -34,11 +34,11 @@ const Experience = ({ item, index }: ExperienceProps) => {
   ): ReactNode => {
     const month = date.toLocaleString("default", { month: "long" });
     const year = date.getFullYear();
-    const textColor = isEvenSection ? "text-main-foreground" : "text-primary";
+    const textColor = isEvenSection ? "text-main-foreground" : "text-white";
 
     return (
       <p
-        className={`${textColor} text-xl font-light tracking-[0.2em] uppercase`}
+        className={`${textColor} lg:text-xl text-sm font-light lg:tracking-[0.2em] tracking-widest uppercase`}
       >
         {`${month} ${year} - ${location}`}
       </p>
@@ -49,7 +49,7 @@ const Experience = ({ item, index }: ExperienceProps) => {
     <section
       className={`${
         isEvenSection ? "bg-primary" : "bg-dark-green"
-      } px-12 py-24`}
+      } px-12 lg:py-24 py-12`}
     >
       <div className='mb-1 text-center'>
         {formatTitle(item.title, isEvenSection)}
