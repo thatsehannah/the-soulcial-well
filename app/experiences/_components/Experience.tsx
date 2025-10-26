@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { ReactNode, useEffect, useState } from "react";
 import FilmRoll from "./FilmRoll";
 import { ExperienceItem } from "@/utils/types";
 import { formatTitle } from "../_utils/formatTitle";
@@ -27,14 +27,35 @@ const Experience = ({ item, index }: ExperienceProps) => {
     fetchMedia();
   }, [item.storageFolder, item.flyerUrl]);
 
+  const showDateLocation = (
+    date: Date,
+    location: string,
+    isEvenSection: boolean
+  ): ReactNode => {
+    const month = date.toLocaleString("default", { month: "long" });
+    const year = date.getFullYear();
+    const textColor = isEvenSection ? "text-main-foreground" : "text-white";
+
+    return (
+      <p
+        className={`${textColor} lg:text-xl text-sm font-light lg:tracking-[0.2em] tracking-widest uppercase`}
+      >
+        {`${month} ${year} - ${location}`}
+      </p>
+    );
+  };
+
   return (
     <section
       className={`${
         isEvenSection ? "bg-primary" : "bg-dark-green"
-      } px-12 py-24`}
+      } px-12 lg:py-24 py-12`}
     >
-      <div className='mb-8 text-center'>
+      <div className='mb-1 text-center'>
         {formatTitle(item.title, isEvenSection)}
+      </div>
+      <div className='mb-8 text-center'>
+        {showDateLocation(item.date, item.location, isEvenSection)}
       </div>
       <div className='flex lg:flex-row flex-col lg:my-8 my-4 w-full lg:gap-12 justify-center items-center'>
         {mediaLoaded ? (

@@ -8,9 +8,9 @@ import { fetchAllExperiences } from "@/utils/serverActions";
 export const dynamic = "force-dynamic";
 
 const ExperiencesPage = async () => {
-  const experiences = await fetchAllExperiences();
+  const allExperiences = await fetchAllExperiences();
 
-  if (experiences.length === 0) {
+  if (allExperiences.length === 0) {
     return (
       <div>
         <p>No experiences found.</p>
@@ -19,10 +19,12 @@ const ExperiencesPage = async () => {
   }
 
   //getting past experiences
-  const pastExperiences = experiences.filter((item) => item.upcoming === false);
+  const pastExperiences = allExperiences.filter(
+    (item) => item.upcoming === false
+  );
 
   //getting upcoming experiences
-  const upcomingExperiences = experiences.filter(
+  const upcomingExperiences = allExperiences.filter(
     (item) => item.upcoming === true
   );
 

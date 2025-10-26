@@ -35,6 +35,8 @@ export type ExperienceItem = {
   upcomingDescription?: string;
   flyerUrl?: string;
   linkToRsvp?: string;
+  date: Date;
+  location: string;
 };
 
 export type NewMessage = {

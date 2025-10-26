@@ -4,7 +4,7 @@ export const formatTitle = (
   rawTitle: string,
   isEvenSection?: boolean
 ): ReactNode => {
-  const baseClass = `${rawTitle.length > 25 ? "lg:text-5xl" : "lg:text-6xl"}  text-5xl text-white`;
+  const baseClass = `${rawTitle.length > 25 ? "lg:text-5xl" : "lg:text-6xl"} text-[2.5rem] leading-[2.75rem] text-white`;
   const spanClass = `font-script ${
     isEvenSection ? "text-main-foreground" : "text-primary"
   } `;
