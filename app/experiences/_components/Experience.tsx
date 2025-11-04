@@ -51,7 +51,7 @@ const Experience = ({ item, index }: ExperienceProps) => {
         isEvenSection ? "bg-primary" : "bg-dark-green"
       } px-12 lg:py-24 py-12`}
     >
-      <div className='mb-1 text-center'>
+      <div className='mb-4 text-center'>
         {formatTitle(item.title, isEvenSection)}
       </div>
       <div className='mb-8 text-center'>
