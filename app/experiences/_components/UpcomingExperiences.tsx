@@ -35,7 +35,7 @@ const UpcomingExperiences = ({ experiences }: UpcomingExperiencesProps) => {
           Upcoming Experiences
         </p>
       </div>
-      <div className='flex items-center justify-center relative'>
+      <div className='flex lg:items-center lg:justify-center relative'>
         {isPrevButtonVisible && (
           <div className='absolute lg:block lg:left-0 -left-[12%]'>
             <CircleArrowLeft

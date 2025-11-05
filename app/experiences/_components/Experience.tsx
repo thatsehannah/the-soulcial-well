@@ -68,11 +68,11 @@ const Experience = ({ item, index }: ExperienceProps) => {
             <p className='text-xl'>Loading media...</p>
           </div>
         )}
-        <div className='text-xl lg:leading-9 leading-7 lg:w-1/2 w-full lg:px-12 px-0 pt-4'>
+        <div className='lg:text-xl text-lg lg:leading-9 leading-7 lg:w-1/2 w-full lg:px-12 px-0 pt-4'>
           <p
             className={`${
               isEvenSection ? "text-main-foreground" : "text-white"
-            } whitespace-pre-wrap`}
+            } whitespace-pre-wrap lg:text-start text-center`}
           >
             {item.description}
           </p>

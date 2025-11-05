@@ -50,7 +50,7 @@ const UpcomingExperience = ({ experience }: UpcomingExperienceProps) => {
             priority
           />
         </div>
-        <p className='text-white whitespace-pre-wrap up-description'>
+        <p className='text-white whitespace-pre-wrap up-description lg:text-start text-center lg:text-xl text-lg'>
           {upcomingDescription}
         </p>
         {linkToRsvp && (
