@@ -1,5 +1,6 @@
 export const services = [
   "Wellness Workshops",
+  "Consulting",
   "Self-Care Events",
   "Community Building Experiences",
   "Specialized Programs",
