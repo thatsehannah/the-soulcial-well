@@ -24,7 +24,7 @@ const SoulcialWellOrigins = () => {
   }, []);
 
   return (
-    <section className='xl:p-32 pt-8 pb-12 px-4 bg-[#f2f4e6]'>
+    <section className='xl:p-32 pt-8 pb-12 px-4'>
       <div className='grid grid-cols-1 xl:grid-cols-3 xl:mt-8 mt-4 w-full lg:gap-12 xl:p-8 p-2'>
         <div className='grid gap-4 text-xl col-span-2 xl:px-24 p-6'>
           <p className='text-5xl lg:text-6xl text-center mb-8'>
