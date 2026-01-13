@@ -49,6 +49,18 @@ export const metadata: Metadata = {
     "shared self-care activities",
     "immersive events",
     "self care experiences",
+    "wilma elliott",
+    "wilma elliott-hannah",
+    "dr. wilma elliott",
+    "dr. wilma",
+    "dr. wilma elliott-hannah",
+    "dr. wil",
+    "experiential",
+    "adult learning principles",
+    "community",
+    "program designer",
+    "adult learning",
+    "lonliness",
   ],
 };
 
