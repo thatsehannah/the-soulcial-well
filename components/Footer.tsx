@@ -6,6 +6,7 @@ const Footer = () => {
       <a
         href='https://www.instagram.com/thesoulcialwell'
         target='_blank'
+        aria-label="Check out The Soulcial Well's Instagram!"
       >
         <SvgInstagram className='fill-dark-green opacity-80 h-5 w-5 hover:scale-110 transition-all ease-in-out' />
       </a>
@@ -20,6 +21,7 @@ const Footer = () => {
             <a
               href='https://www.thatsehannah.com'
               target='_blank'
+              aria-label="TECH3's website"
             >
               {" "}
               TECH3

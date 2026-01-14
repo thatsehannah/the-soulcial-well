@@ -58,6 +58,7 @@ const UpcomingExperience = ({ experience }: UpcomingExperienceProps) => {
             <a
               href={linkToRsvp!}
               target='_blank'
+              aria-label='Link to RSVP for this event.'
             >
               RSVP
             </a>

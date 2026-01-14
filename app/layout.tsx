@@ -55,12 +55,15 @@ export const metadata: Metadata = {
     "dr. wilma",
     "dr. wilma elliott-hannah",
     "dr. wil",
+    "dr. wilma elliott-hannah psyd",
+    "wilma elliott-hannah psyd",
     "experiential",
     "adult learning principles",
     "community",
     "program designer",
     "adult learning",
     "lonliness",
+    "",
   ],
 };
 
