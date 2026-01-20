@@ -20,12 +20,12 @@ const ExperiencesPage = async () => {
 
   //getting past experiences
   const pastExperiences = allExperiences.filter(
-    (item) => item.upcoming === false
+    (item) => item.upcoming === false && item.description !== "",
   );
 
   //getting upcoming experiences
   const upcomingExperiences = allExperiences.filter(
-    (item) => item.upcoming === true
+    (item) => item.upcoming === true && item.upcomingDescription !== "",
   );
 
   return (
