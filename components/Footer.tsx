@@ -19,12 +19,12 @@ const Footer = () => {
           Built by{" "}
           <span className='underline'>
             <a
-              href='https://www.thatsehannah.com'
+              href='https://www.thirdgenstudio.dev'
               target='_blank'
-              aria-label="TECH3's website"
+              aria-label="Third Gen Studio's website"
             >
               {" "}
-              TECH3
+              Third Gen Studio
             </a>
           </span>{" "}
           <sup>&copy;</sup>.

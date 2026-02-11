@@ -43,6 +43,7 @@ const Contact = () => {
     setValue,
     formState: { errors },
     clearErrors,
+    reset,
   } = form;
   const selectedService = watch("service");
   const selectedReferral = watch("referral");
@@ -53,8 +54,8 @@ const Contact = () => {
       toast.success(<p className='text-lg'>{response?.message}</p>, {
         description: response?.description,
       });
-      form.reset();
-      form.clearErrors();
+      reset();
+      clearErrors();
     } catch (error) {
       toast.error(<p className='text-lg'>Oh no!</p>, {
         description:
