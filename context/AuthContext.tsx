@@ -7,7 +7,13 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 
 type AuthContextType = {
   user: User | null;
@@ -23,7 +29,7 @@ const AuthContext = createContext<AuthContextType>({
   logout: async () => {},
 });
 
-const AuthProvider = ({ children }: { children: ReactNode }) => {
+export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -33,7 +39,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       setLoading(false);
     });
 
-    return authStateChanged();
+    return authStateChanged;
   }, []);
 
   const login = async (email: string, password: string) => {
@@ -51,4 +57,4 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   );
 };
 
-export default AuthProvider;
+export const useAuth = () => useContext(AuthContext);
