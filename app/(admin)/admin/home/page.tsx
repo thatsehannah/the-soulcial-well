@@ -1,12 +1,12 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
+import AdminNavbar from "../_components/AdminNavbar";
 
 const AdminHome = () => {
-  const { user, loading, logout } = useAuth();
+  const { user, loading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
@@ -28,14 +28,14 @@ const AdminHome = () => {
   }
 
   return (
-    <main className='min-h-screen'>
-      <div>Dashboard</div>
-      <Button
-        className='text-center cursor-pointer'
-        onClick={logout}
-      >
-        Log Out
-      </Button>
+    <main className='xl:p-32 pt-38 pb-12 px-7 relative h-screen w-screen'>
+      <AdminNavbar />
+      <section>
+        <div className='w-full'>
+          <h1 className='text-4xl font-bold'>Grand Rising, Wilma 😃</h1>
+        </div>
+      </section>
+      <section id='content'></section>
     </main>
   );
 };

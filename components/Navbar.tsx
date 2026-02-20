@@ -26,17 +26,17 @@ const Navbar = () => {
       .to(
         topBar.current,
         { y: 8, width: 28, rotate: 45, duration: 0.3, ease: "power2.inOut" },
-        0
+        0,
       )
       .to(
         middleBar.current,
         { opacity: 0, duration: 0.2, ease: "power2.inOut" },
-        0
+        0,
       )
       .to(
         bottomBar.current,
         { y: -8, width: 28, rotate: -45, duration: 0.3, ease: "power2.inOut" },
-        0
+        0,
       );
   }, []);
 
@@ -74,7 +74,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className='relative'>
+    <nav className='relative'>
       <div className='bg-dark-green lg:w-3/4 w-[95vw] z-20 shadow-lg h-18 rounded-[3rem] flex justify-between px-8 py-2 absolute top-4 left-0 right-0 mx-auto'>
         <div className='flex flex-col items-center justify-center'>
           <Link
@@ -131,7 +131,7 @@ const Navbar = () => {
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 
