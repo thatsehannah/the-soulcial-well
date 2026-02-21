@@ -3,10 +3,11 @@
 import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import AdminNavbar from "../_components/AdminNavbar";
+import Sidebar from "../_components/Sidebar";
 
 const AdminHome = () => {
   const [quote, setQuote] = useState("");
+
   const { user, loading } = useAuth();
   const router = useRouter();
 
@@ -42,9 +43,9 @@ const AdminHome = () => {
   }
 
   return (
-    <main className='xl:p-32 pt-38 pb-12 px-7 relative h-screen w-screen'>
-      <AdminNavbar />
-      <section>
+    <main className='flex'>
+      <Sidebar />
+      <section className='h-screen flex-1 ml-[12rem] lg:ml-[22rem]'>
         <div className='w-full'>
           <h1 className='text-4xl font-bold'>Hello, Wilma 😃</h1>
           <p className='text-[1rem] lg:text-xl italic mt-4'>{`"${quote}"`}</p>
