@@ -84,7 +84,7 @@ const Login = () => {
         </div>
       </div>
       <div className='flex flex-col justify-center items-center'>
-        <h1 className='text-2xl uppercase font-bold'>Admin Login</h1>
+        <h1 className='text-2xl uppercase font-bold font-admin'>Admin Login</h1>
         <form
           onSubmit={handleSubmit}
           className='flex flex-col justify-center items-center gap-8 p-2 w-full mt-4'

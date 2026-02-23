@@ -50,6 +50,7 @@
   --font-main: var(--font-faustina);
   --font-script: var(--font-parisienne);
   --main-background: var(--main-bg);
+  --font-admin: var(--font-robotoflex);
 }
 
 :root {

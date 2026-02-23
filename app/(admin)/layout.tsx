@@ -1,5 +1,5 @@
 import { AuthProvider } from "@/context/AuthContext";
-import { faustina, parisienne } from "@/utils/fonts";
+import { faustina, parisienne, robotoflex } from "@/utils/fonts";
 import { Metadata } from "next";
 import React, { ReactNode } from "react";
 import "../globals.css";
@@ -17,7 +17,7 @@ export default function AdminLayout({
     <AuthProvider>
       <html
         lang='en'
-        className={`${faustina.variable} ${parisienne.variable} antialiased`}
+        className={`${faustina.variable} ${parisienne.variable} ${robotoflex.variable} antialiased`}
       >
         <body className='bg-main-bg text-main-foreground font-main relative'>
           {children}
