@@ -38,7 +38,7 @@ const AdminHome = () => {
       />
       <section
         id='content'
-        className='h-screen flex-1 ml-[12rem] lg:ml-[20rem]'
+        className='h-screen flex-1 flex ml-[12rem] mr-8 lg:ml-[20rem]'
       >
         <ActiveViewComponent />
       </section>

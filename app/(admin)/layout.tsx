@@ -19,7 +19,7 @@ export default function AdminLayout({
         lang='en'
         className={`${faustina.variable} ${parisienne.variable} ${robotoflex.variable} antialiased`}
       >
-        <body className='bg-main-bg text-main-foreground font-main relative'>
+        <body className='bg-main-bg text-main-foreground font-admin relative'>
           {children}
         </body>
       </html>

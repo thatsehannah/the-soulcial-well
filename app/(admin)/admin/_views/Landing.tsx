@@ -19,10 +19,10 @@ const Landing = () => {
   }, []);
 
   return (
-    <div>
+    <main className='py-24'>
       <h1 className='text-4xl font-bold'>Hello, Wilma 😃</h1>
       <p className='text-[1rem] lg:text-xl italic mt-4'>{`"${quote}"`}</p>
-    </div>
+    </main>
   );
 };
 
