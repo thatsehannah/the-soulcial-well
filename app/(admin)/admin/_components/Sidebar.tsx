@@ -21,10 +21,12 @@ const Sidebar = ({ activeView, onViewChange }: SidebarProps) => {
         <div className='flex items-center mb-3'>
           <div>
             <div>
-              <p className='text-2xl text-primary tracking-[-.08em]'>The</p>
+              <p className='text-2xl text-primary tracking-[-.08em] font-main'>
+                The
+              </p>
             </div>
             <div className='flex items-center text-center -mt-4'>
-              <p className='text-4xl text-primary'>
+              <p className='text-4xl text-primary font-main'>
                 <span className='font-script text-primary-foreground text-5xl'>
                   soul
                 </span>
