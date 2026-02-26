@@ -11,9 +11,16 @@ import {
 } from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { getFlyerUrl } from "@/utils/clientActions";
 import { ExperienceItem } from "@/utils/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { format } from "date-fns";
+import { Info } from "lucide-react";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -33,6 +40,7 @@ const newExperienceSchema = yup.object({
   flyer: yup.mixed().test("required", "Please upload a flyer", (value) => {
     return value && value instanceof File;
   }),
+  storageFolder: yup.string().required("Please enter storage bucket name"),
 });
 
 const ExperienceForm = ({ mode, data }: ExperienceFormProps) => {
@@ -52,26 +60,25 @@ const ExperienceForm = ({ mode, data }: ExperienceFormProps) => {
     ? (data.upcoming as unknown as string)
     : undefined;
 
-  // TODO: work on this function
-  const createDocumentName = (title: string) => {
-    const experienceTitle = title;
-    const regexPattern = /\b(the|and)\b|[&:()]/gi;
-
-    const blah = experienceTitle.replaceAll(regexPattern, "");
-
-    const documentName = blah.toLowerCase().split(" ");
-    console.log(documentName);
-  };
-
-  const handleNewExperienceFormSubmit = (data: FormData) => {
+  const handleNewExperienceFormSubmit = async (data: FormData) => {
     console.log(data);
 
-    // 1. create bucket-name (which will also be used for the document name)
-    // 2. upload image to storage and get url
-    // 3. create ExperienceItem object (transform data.upcoming to boolean)
-    // 4. call create experience api
-    // 5. send toast message
-    // 6. reset form
+    // 1. upload image to storage and get url
+    try {
+      const flyerUrl = await getFlyerUrl(
+        data.flyer as File,
+        data.storageFolder,
+      );
+
+      console.log(flyerUrl);
+    } catch (error) {
+      console.log(error);
+    }
+    // 2. create ExperienceItem object (transform data.upcoming to boolean)
+    // 3. call create experience api
+
+    // 4. send toast message
+    // 5. reset form
   };
 
   return (
@@ -177,7 +184,6 @@ const ExperienceForm = ({ mode, data }: ExperienceFormProps) => {
               </RadioGroup>
             )}
           />
-
           {errors.upcoming && (
             <p className='text-sm text-destructive'>
               {errors.upcoming.message}
@@ -228,6 +234,32 @@ const ExperienceForm = ({ mode, data }: ExperienceFormProps) => {
                 {errors.linkToRsvp.message}
               </p>
             )}
+          </div>
+          <div className='flex flex-1 flex-col gap-2'>
+            <div className='flex items-center gap-2'>
+              <Label className='text-[1rem]'>DB Document Name</Label>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Info
+                    size={16}
+                    className='text-neutral-500'
+                  />
+                </TooltipTrigger>
+                <TooltipContent className='bg-neutral-200 border border-neutral-600'>
+                  <p className='text-sm text-neutral-700'>
+                    Important! Use dashes (-) for spaces. Do not use any other
+                    symbols (&,$,*,%, etc.). <br />
+                    Make sure the name is all lowercase. Example:
+                    brushes-balance, hue-you-friendsgiving
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </div>
+            <Input
+              className='rounded-md text-dark-green text-[1rem] font-semibold'
+              type='text'
+              {...register("storageFolder")}
+            />
           </div>
         </div>
       )}

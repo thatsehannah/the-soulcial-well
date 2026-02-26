@@ -1,7 +1,7 @@
 //these functions will be called on the client
 
 export const fetchPhotosFromStorage = async (
-  folder: string
+  folder: string,
 ): Promise<string[]> => {
   try {
     const response = await fetch(`/api/images/${folder}`);
@@ -29,5 +29,30 @@ export const checkForUpcomingExperiences = async (): Promise<boolean> => {
   } catch (error) {
     console.log(`Error checking for upcoming experiences from API: ${error}`);
     throw new Error(`Failed to check for upcoming experiences from API`);
+  }
+};
+
+export const getFlyerUrl = async (
+  file: File,
+  folder: string,
+): Promise<string> => {
+  try {
+    const formData = new FormData();
+    formData.append("flyer", file);
+    formData.append("folder", folder);
+
+    const response = await fetch("/api/images/flyer-upload", {
+      method: "POST",
+      body: formData,
+    });
+
+    if (response.ok) {
+      return (await response.json()) as string;
+    }
+
+    throw new Error(`HTTP error! status: ${response.status}`);
+  } catch (error) {
+    console.log(`Error uploading flyer to storage from API: ${error}`);
+    throw new Error(`Failed to upload image to storage`);
   }
 };
