@@ -1,5 +1,7 @@
 //these functions will be called on the client
 
+import { ExperienceItem } from "./types";
+
 export const fetchPhotosFromStorage = async (
   folder: string,
 ): Promise<string[]> => {
@@ -54,5 +56,21 @@ export const getFlyerUrl = async (
   } catch (error) {
     console.log(`Error uploading flyer to storage from API: ${error}`);
     throw new Error(`Failed to upload image to storage`);
+  }
+};
+
+export const createNewExperience = async (data: ExperienceItem) => {
+  try {
+    const response = await fetch("/api/experiences", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    if (response.ok) {
+      return (await response.json()) as string;
+    }
+  } catch (error) {
+    console.log(error);
   }
 };

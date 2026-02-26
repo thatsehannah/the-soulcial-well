@@ -16,7 +16,7 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { getFlyerUrl } from "@/utils/clientActions";
+import { createNewExperience, getFlyerUrl } from "@/utils/clientActions";
 import { ExperienceItem } from "@/utils/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { format } from "date-fns";
@@ -61,21 +61,35 @@ const ExperienceForm = ({ mode, data }: ExperienceFormProps) => {
     : undefined;
 
   const handleNewExperienceFormSubmit = async (data: FormData) => {
-    console.log(data);
-
-    // 1. upload image to storage and get url
     try {
+      // 1. upload image to storage and get url
       const flyerUrl = await getFlyerUrl(
         data.flyer as File,
         data.storageFolder,
       );
 
-      console.log(flyerUrl);
+      // 2. create ExperienceItem object (transform data.upcoming to boolean)
+      const { title, location, date, description, linkToRsvp, storageFolder } =
+        data;
+      const upcoming = data.upcoming === "true";
+      const newExperienceItem: ExperienceItem = {
+        title,
+        location,
+        date,
+        upcoming,
+        upcomingDescription: upcoming ? description : "",
+        description: !upcoming ? description : "",
+        linkToRsvp,
+        flyerUrl,
+        storageFolder,
+      };
+
+      // 3. call create experience api
+      const message = await createNewExperience(newExperienceItem);
+      console.log(message);
     } catch (error) {
       console.log(error);
     }
-    // 2. create ExperienceItem object (transform data.upcoming to boolean)
-    // 3. call create experience api
 
     // 4. send toast message
     // 5. reset form

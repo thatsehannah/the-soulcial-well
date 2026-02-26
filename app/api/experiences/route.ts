@@ -10,6 +10,9 @@ export const POST = async (req: NextRequest) => {
     const data: ExperienceItem = await req.json();
     console.log(data);
 
+    // create document in firebase
+    const docId = data.storageFolder; // these two will be the same
+
     return NextResponse.json<CreateExperienceResponse>(
       {
         message: `${data.title} experience has been created successfully`,
