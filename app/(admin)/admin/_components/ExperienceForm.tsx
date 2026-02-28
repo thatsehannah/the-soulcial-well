@@ -23,6 +23,7 @@ import { format } from "date-fns";
 import { Info } from "lucide-react";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import * as yup from "yup";
 
 type ExperienceFormProps = {
@@ -50,6 +51,7 @@ const ExperienceForm = ({ mode, data }: ExperienceFormProps) => {
     formState: { errors },
     control,
     setValue,
+    reset,
   } = useForm({
     resolver: yupResolver(newExperienceSchema),
   });
@@ -88,9 +90,14 @@ const ExperienceForm = ({ mode, data }: ExperienceFormProps) => {
       const message = await createNewExperience(newExperienceItem);
       console.log(message);
       // 4. send toast message
+      toast.success(<p className='text-lg'>{message}</p>);
       // 5. reset form
+      reset();
     } catch (error) {
       console.log(error);
+      const errorMessage =
+        error instanceof Error ? error.message : "An error occured";
+      toast.error(<p className='text-lg'>{errorMessage}</p>);
     }
   };
 
