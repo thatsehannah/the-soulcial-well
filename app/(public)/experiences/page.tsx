@@ -10,14 +10,6 @@ export const dynamic = "force-dynamic";
 const ExperiencesPage = async () => {
   const allExperiences = await fetchAllExperiences();
 
-  if (allExperiences.length === 0) {
-    return (
-      <div>
-        <p>No experiences found.</p>
-      </div>
-    );
-  }
-
   //getting past experiences
   const pastExperiences = allExperiences.filter(
     (item) => item.upcoming === false && item.description !== "",
@@ -59,6 +51,15 @@ const ExperiencesPage = async () => {
           </div>
         </div>
       </section>
+      {allExperiences.length === 0 && (
+        <div className='p-8 text-center'>
+          <p className='text-4xl font-bold mb-4'>Oh no!</p>
+          <p className='text-[1rem] font-light'>
+            This is not normal, and we&apos;re working to get our experiences
+            available again for your viewing pleasure.
+          </p>
+        </div>
+      )}
       {upcomingExperiences.length > 0 && (
         <section id='upcoming'>
           <UpcomingExperiences experiences={upcomingExperiences} />

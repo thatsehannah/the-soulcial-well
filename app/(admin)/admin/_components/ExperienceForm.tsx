@@ -87,12 +87,11 @@ const ExperienceForm = ({ mode, data }: ExperienceFormProps) => {
       // 3. call create experience api
       const message = await createNewExperience(newExperienceItem);
       console.log(message);
+      // 4. send toast message
+      // 5. reset form
     } catch (error) {
       console.log(error);
     }
-
-    // 4. send toast message
-    // 5. reset form
   };
 
   return (

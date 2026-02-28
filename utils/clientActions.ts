@@ -49,7 +49,8 @@ export const getFlyerUrl = async (
     });
 
     if (response.ok) {
-      return (await response.json()) as string;
+      const result = await response.json();
+      return result.flyerUrl;
     }
 
     throw new Error(`HTTP error! status: ${response.status}`);

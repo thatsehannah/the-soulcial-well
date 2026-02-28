@@ -1,3 +1,4 @@
+import { db } from "@/lib/firebase/firebase-admin";
 import { type ExperienceItem } from "@/utils/types";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -7,11 +8,21 @@ type CreateExperienceResponse = {
 
 export const POST = async (req: NextRequest) => {
   try {
-    const data: ExperienceItem = await req.json();
+    let data: ExperienceItem = await req.json();
+    const formattedDate = new Date(data.date);
+    data = {
+      ...data,
+      date: formattedDate,
+    };
     console.log(data);
 
-    // create document in firebase
-    const docId = data.storageFolder; // these two will be the same
+    // docId and the storage folder will always be the same name. it's also guaranteed that the storageFolder property will have a value
+    const docId = data.storageFolder!;
+    const docRef = db.collection("experiences").doc(docId);
+
+    await docRef.set(data);
+
+    console.log(`The ${docId} has been successfully created`);
 
     return NextResponse.json<CreateExperienceResponse>(
       {
