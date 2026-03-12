@@ -43,7 +43,7 @@ export const getFlyerUrl = async (
     formData.append("flyer", file);
     formData.append("folder", folder);
 
-    const response = await fetch("/api/images/flyer-upload", {
+    const response = await fetch("/api/images/file-upload", {
       method: "POST",
       body: formData,
     });

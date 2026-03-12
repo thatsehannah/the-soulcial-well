@@ -14,7 +14,6 @@ export const POST = async (req: NextRequest) => {
       ...data,
       date: formattedDate,
     };
-    console.log(data);
 
     // docId and the storage folder will always be the same name. it's also guaranteed that the storageFolder property will have a value
     const docId = data.storageFolder!;
@@ -44,3 +43,37 @@ export const POST = async (req: NextRequest) => {
     }
   }
 };
+
+// export const PATCH = async (req: NextRequest) => {
+//   let data: Partial<ExperienceItem> = await req.json();
+//   const formattedDate = new Date(data.date!);
+//   data = {
+//     ...data,
+//     date: formattedDate,
+//   };
+//   const docId = data.storageFolder!;
+//   const docRef = db.collection("experiences").doc(docId);
+
+//   const doc = await docRef.get();
+//   if (!doc.exists) {
+//     return NextResponse.json<CreateExperienceResponse>(
+//       {
+//         message: "Could not locate existing doc",
+//       },
+//       {
+//         status: 404,
+//       },
+//     );
+//   }
+
+//   await docRef.update(data);
+
+//   return NextResponse.json<CreateExperienceResponse>(
+//     {
+//       message: `${data.title} experience has been updated successfully`,
+//     },
+//     {
+//       status: 201,
+//     },
+//   );
+// };
