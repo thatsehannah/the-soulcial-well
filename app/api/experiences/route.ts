@@ -1,6 +1,28 @@
 import { db } from "@/lib/firebase/firebase-admin";
+import { fetchAllExperiences } from "@/utils/serverActions";
 import { ApiResponse, type ExperienceItem } from "@/utils/types";
 import { NextRequest, NextResponse } from "next/server";
+
+export const GET = async () => {
+  try {
+    const experiences = await fetchAllExperiences();
+
+    return NextResponse.json(experiences, { status: 200 });
+  } catch (error) {
+    if (error instanceof Error) {
+      console.log("Error fetching for experiences", error.stack);
+    } else {
+      console.log(error);
+    }
+
+    return NextResponse.json(
+      {
+        error: "Failed to check for upcoming experiences ",
+      },
+      { status: 500 },
+    );
+  }
+};
 
 export const POST = async (req: NextRequest) => {
   try {

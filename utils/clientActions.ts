@@ -104,10 +104,21 @@ export const createNewExperience = async (data: ExperienceItem) => {
       body: JSON.stringify(data),
     });
 
-    if (response.ok) {
-      return (await response.json()) as string;
-    }
+    return (await response.json()) as string;
   } catch (error) {
     console.log(error);
+    return "";
+  }
+};
+
+export const fetchExperiences = async () => {
+  try {
+    const response = await fetch("/api/experiences");
+
+    return response.json();
+  } catch (error) {
+    throw new Error(
+      error instanceof Error ? error.message : "Error fetching experiences",
+    );
   }
 };
