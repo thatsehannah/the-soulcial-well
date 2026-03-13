@@ -1,10 +1,6 @@
 import { db } from "@/lib/firebase/firebase-admin";
-import { type ExperienceItem } from "@/utils/types";
+import { ApiResponse, type ExperienceItem } from "@/utils/types";
 import { NextRequest, NextResponse } from "next/server";
-
-type CreateExperienceResponse = {
-  message: string;
-};
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -23,7 +19,7 @@ export const POST = async (req: NextRequest) => {
 
     console.log(`The ${docId} has been successfully created`);
 
-    return NextResponse.json<CreateExperienceResponse>(
+    return NextResponse.json<ApiResponse>(
       {
         message: `${data.title} experience has been created successfully`,
       },
@@ -34,7 +30,7 @@ export const POST = async (req: NextRequest) => {
   } catch (error) {
     if (error instanceof Error) {
       console.log(error.message);
-      return NextResponse.json<CreateExperienceResponse>(
+      return NextResponse.json<ApiResponse>(
         {
           message: "Failed to create experience",
         },

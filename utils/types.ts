@@ -46,3 +46,7 @@ export type NewMessage = {
   referral: string;
   message: string;
 };
+
+export type ApiResponse = {
+  message: string;
+};

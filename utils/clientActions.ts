@@ -40,8 +40,9 @@ export const getFlyerUrl = async (
 ): Promise<string> => {
   try {
     const formData = new FormData();
-    formData.append("flyer", file);
+    formData.append("file", file);
     formData.append("folder", folder);
+    formData.append("isUploadingFlyer", "true");
 
     const response = await fetch("/api/images/file-upload", {
       method: "POST",
@@ -57,6 +58,41 @@ export const getFlyerUrl = async (
   } catch (error) {
     console.log(`Error uploading flyer to storage from API: ${error}`);
     throw new Error(`Failed to upload image to storage`);
+  }
+};
+
+export const uploadFilesInBatches = async (
+  files: File[],
+  storageFolder: string,
+) => {
+  const batchSize = 3;
+  try {
+    const filesToUpload = Array.from(files);
+    for (let i = 0; i < filesToUpload.length; i += batchSize) {
+      const batch = filesToUpload.slice(i, i + batchSize);
+      await Promise.all(
+        batch.map((file) => uploadSingleFile(file, storageFolder)),
+      );
+    }
+  } catch (error) {
+    throw new Error(
+      error instanceof Error ? error.message : "Error uploading files",
+    );
+  }
+};
+
+const uploadSingleFile = async (file: File, storageFolder: string) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  formData.append("folder", storageFolder);
+
+  const response = await fetch("/api/images/file-upload", {
+    method: "POST",
+    body: formData,
+  });
+
+  if (response.ok) {
+    return (await response.json()) as string;
   }
 };
 

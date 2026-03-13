@@ -1,12 +1,15 @@
 import { storage } from "@/lib/firebase/firebase-admin";
+import { ApiResponse } from "@/utils/types";
+import { getDownloadURL } from "firebase-admin/storage";
 import { NextRequest, NextResponse } from "next/server";
 
+// TODO: move this [storageFolder] api route
 export const POST = async (req: NextRequest) => {
   try {
     const data = await req.formData();
     const file = data.get("file") as File;
     const folder = data.get("folder") as string;
-    const isUploadingFlyer = data.get("isUploadingFlyer") as string;
+    const isUploadingFlyer = data.get("isUploadingFlyer");
 
     // getting storage bucket
     const bucket = storage.bucket();
@@ -28,19 +31,29 @@ export const POST = async (req: NextRequest) => {
     await fileRef.makePublic();
 
     if (isUploadingFlyer) {
-      // getting public url
-      const flyerUrl = fileRef.publicUrl();
+      const flyerUrl = await getDownloadURL(fileRef);
 
-      return NextResponse.json({
-        flyerUrl,
-      });
+      return NextResponse.json(
+        {
+          flyerUrl,
+        },
+        { status: 201 },
+      );
     }
 
-    return NextResponse.json({
-      status: 201,
-    });
+    return NextResponse.json<ApiResponse>(
+      { message: "File uploaded successfully" },
+      {
+        status: 201,
+      },
+    );
   } catch (error) {
-    console.error("Error uploading flyer: ", error);
-    throw new Error("Failed to upload flyer");
+    console.error("Error uploading file: ", error);
+    return NextResponse.json<ApiResponse>(
+      {
+        message: "Error uploading file",
+      },
+      { status: 500 },
+    );
   }
 };

@@ -16,7 +16,11 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { createNewExperience, getFlyerUrl } from "@/utils/clientActions";
+import {
+  createNewExperience,
+  getFlyerUrl,
+  uploadFilesInBatches,
+} from "@/utils/clientActions";
 import { ExperienceItem } from "@/utils/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { format } from "date-fns";
@@ -59,13 +63,14 @@ const newExperienceSchema = yup.object({
             return value.length > 0;
           }
 
-          if (Array.isArray(value)) {
-            return value.length > 0;
-          }
+          return false;
         },
       ),
+    otherwise: (schema) => schema.notRequired(),
   }),
 });
+
+type FormInput = yup.InferType<typeof newExperienceSchema>;
 
 const NewExperienceForm = () => {
   const {
@@ -80,41 +85,46 @@ const NewExperienceForm = () => {
     resolver: yupResolver(newExperienceSchema),
   });
 
-  type FormData = yup.InferType<typeof newExperienceSchema>;
-
   const upcomingValue = watch("upcoming");
 
-  const handleFormSubmit = async (data: FormData) => {
+  const handleFormSubmit = async (data: FormInput) => {
     if (data.upcoming === "true") {
+      console.log("Submitting upcoming experience...");
       submitUpcomingExperience(data);
     } else {
+      console.log("Submitting past experience...");
       submitPastExperience(data);
     }
   };
 
-  const submitUpcomingExperience = async (data: FormData) => {
+  const submitUpcomingExperience = async (data: FormInput) => {
     try {
-      const flyerUrl = await getFlyerUrl(
-        data.flyer as File,
-        data.storageFolder!,
-      );
-
-      const { title, location, date, description, linkToRsvp, storageFolder } =
-        data;
-      const upcoming = data.upcoming === "true";
-      const newExperienceItem: ExperienceItem = {
+      const {
         title,
         location,
         date,
+        description,
+        linkToRsvp,
+        storageFolder,
         upcoming,
-        upcomingDescription: upcoming ? description : "",
-        description: !upcoming ? description : "",
+        flyer,
+      } = data;
+
+      const flyerUrl = await getFlyerUrl(flyer as File, storageFolder!);
+
+      const newUpcomingExperienceItem: ExperienceItem = {
+        title,
+        location,
+        date,
+        upcoming: upcoming === "true",
+        upcomingDescription: description,
+        description: "",
         linkToRsvp,
         flyerUrl,
         storageFolder,
       };
 
-      const message = await createNewExperience(newExperienceItem);
+      const message = await createNewExperience(newUpcomingExperienceItem);
       toast.success(<p className='text-lg'>{message}</p>);
       reset();
     } catch (error) {
@@ -125,10 +135,45 @@ const NewExperienceForm = () => {
     }
   };
 
-  const submitPastExperience = async (data: FormData) => {
-    console.log(data);
-    // upload images to storage
-    // call clientAction method that creates a past experience
+  const submitPastExperience = async (data: FormInput) => {
+    try {
+      const {
+        title,
+        location,
+        date,
+        description,
+        storageFolder,
+        images,
+        upcoming,
+      } = data;
+
+      // type assertions (as) are compile-time only. They don't change the actual value
+      // const imagesToUpload = images as unknown as File[];
+      const imagesToUpload = Array.from(images as FileList);
+
+      await uploadFilesInBatches(imagesToUpload, storageFolder);
+
+      const newPastExperienceItem: ExperienceItem = {
+        title,
+        location,
+        date,
+        upcoming: upcoming === "true",
+        upcomingDescription: "",
+        description: description,
+        linkToRsvp: "",
+        flyerUrl: "",
+        storageFolder,
+      };
+
+      const message = await createNewExperience(newPastExperienceItem);
+      toast.success(<p className='text-lg'>{message}</p>);
+      reset();
+    } catch (error) {
+      console.log(error);
+      const errorMessage =
+        error instanceof Error ? error.message : "An error occured";
+      toast.error(<p className='text-lg'>{errorMessage}</p>);
+    }
   };
 
   return (
@@ -340,15 +385,15 @@ const NewExperienceForm = () => {
                     multiple
                     className='w-fit text-center rounded-md text-dark-green'
                     onChange={(e) => {
-                      const file = e.target.files?.[0];
-                      if (file) {
-                        setValue("flyer", file);
+                      const files = e.target.files;
+                      if (files && files.length > 0) {
+                        setValue("images", files);
                       }
                     }}
                   />
-                  {errors.flyer && (
+                  {errors.images && (
                     <p className='text-sm text-destructive'>
-                      {errors.flyer.message}
+                      {errors.images.message}
                     </p>
                   )}
                 </div>
