@@ -4,36 +4,74 @@ import { fetchExperiences } from "@/utils/clientActions";
 import { ExperienceItem } from "@/utils/types";
 import React, { useEffect, useState } from "react";
 import ExistingExperienceCard from "./ExistingExperienceCard";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import ExistingExperienceForm from "./ExistingExperienceForm";
+import LoadingIndicator from "./LoadingIndicator";
 
 const AllExperiencesWrapper = () => {
   const [allExperiences, setAllExperiences] = useState<ExperienceItem[]>([]);
   const [activeItem, setActiveItem] = useState<ExperienceItem | undefined>(
     undefined,
   );
+  const [loading, setLoading] = useState(true);
+  const [isFormOpen, setIsFormOpen] = useState(false);
 
   useEffect(() => {
     const getExperiences = async () => {
       const data = await fetchExperiences();
-      console.log(data);
       setAllExperiences(data);
+      setLoading(false);
     };
 
     getExperiences();
   }, []);
 
+  if (loading) {
+    return (
+      <div className='mx-auto'>
+        <LoadingIndicator className='w-16 h-16' />
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <p>Currently Active Item: {activeItem?.title}</p>
-      <div className='grid grid-cols-4 gap-8'>
+    <section className='w-full'>
+      <div className='grid grid-cols-3 gap-y-6'>
         {allExperiences.map((item) => (
           <ExistingExperienceCard
             data={item}
-            onClick={() => setActiveItem(item)}
+            loading={loading}
+            onClick={() => {
+              setActiveItem(item);
+              setIsFormOpen(true);
+            }}
             key={item.storageFolder!}
           />
         ))}
       </div>
-    </div>
+      <Dialog
+        open={isFormOpen}
+        onOpenChange={setIsFormOpen}
+      >
+        <DialogContent className='min-w-[90%]'>
+          <DialogTitle className='text-2xl font-normal'>
+            <span className='font-main font-bold'>
+              &lsquo;{activeItem?.title}&rsquo;
+            </span>{" "}
+            Experience
+          </DialogTitle>
+          <DialogDescription>
+            Edit the data to update this experience
+          </DialogDescription>
+          <ExistingExperienceForm data={activeItem!} />
+        </DialogContent>
+      </Dialog>
+    </section>
   );
 };
 

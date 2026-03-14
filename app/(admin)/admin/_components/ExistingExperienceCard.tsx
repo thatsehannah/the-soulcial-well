@@ -5,30 +5,39 @@ import { format } from "date-fns";
 import { Edit } from "lucide-react";
 import Image from "next/image";
 import React from "react";
+import LoadingIndicator from "./LoadingIndicator";
 
 type ExistingExperienceCardProps = {
   data: ExperienceItem;
   onClick: () => void;
+  loading: boolean;
 };
 
 const ExistingExperienceCard = ({
   data,
   onClick,
+  loading,
 }: ExistingExperienceCardProps) => {
   const { title, date, flyerUrl } = data;
   const thumbnailSrc = flyerUrl === "" ? "/assets/TSWLOGO2025.png" : flyerUrl!;
 
   return (
-    <div className='flex justify-center gap-4 border border-neutral-200 rounded-md px-4 py-2'>
+    <div className='flex gap-4 border border-neutral-200 rounded-md px-4 py-2 bg-neutral-50 flex-1 w-93'>
       <div className=''>
         <div className='relative h-40 w-40'>
-          <Image
-            src={thumbnailSrc}
-            alt='goat'
-            fill
-            quality={100}
-            className='rounded-md'
-          />
+          {loading ? (
+            <div className='w-full h-full mx-auto flex items-center justify-center'>
+              <LoadingIndicator />
+            </div>
+          ) : (
+            <Image
+              src={thumbnailSrc}
+              alt='goat'
+              fill
+              quality={100}
+              className='rounded-md border border-neutral-900 object-cover'
+            />
+          )}
         </div>
       </div>
       <div className='flex flex-col justify-between'>
