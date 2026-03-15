@@ -122,3 +122,18 @@ export const fetchExperiences = async () => {
     );
   }
 };
+
+export const updateExperience = async (data: Partial<ExperienceItem>) => {
+  try {
+    const response = await fetch("/api/experiences", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    });
+
+    return (await response.json()) as string;
+  } catch (error) {
+    console.log(error);
+    return "";
+  }
+};

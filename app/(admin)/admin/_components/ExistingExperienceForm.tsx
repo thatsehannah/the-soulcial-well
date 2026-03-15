@@ -9,28 +9,106 @@ import {
 } from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  getFlyerUrl,
+  updateExperience,
+  uploadFilesInBatches,
+} from "@/utils/clientActions";
 import { ExperienceItem } from "@/utils/types";
 import { format } from "date-fns";
 import React from "react";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 type ExistingExperienceFormProps = {
-  data: ExperienceItem;
+  existingExperience: ExperienceItem;
 };
 
-const ExistingExperienceForm = ({ data }: ExistingExperienceFormProps) => {
+type EditFormInput = {
+  title: string;
+  location: string;
+  date: Date;
+  pastDescription: string;
+  upcoming: string;
+  upcomingDescription: string;
+  flyer: File;
+  images: FileList;
+};
+
+const ExistingExperienceForm = ({
+  existingExperience,
+}: ExistingExperienceFormProps) => {
   const { title, location, date, description, upcoming, upcomingDescription } =
-    data;
-  const defaultUpcoming = upcoming ? "true" : "false";
+    existingExperience;
+
+  const {
+    register,
+    formState: { dirtyFields, isDirty },
+    setValue,
+    handleSubmit,
+    control,
+  } = useForm<EditFormInput>({
+    defaultValues: {
+      title,
+      location,
+      date,
+      pastDescription: description,
+      upcoming: upcoming ? "true" : "false",
+      upcomingDescription,
+      flyer: undefined,
+      images: undefined,
+    },
+  });
+
+  const handleFormSubmit = async (formData: EditFormInput) => {
+    try {
+      const updates: Partial<ExperienceItem> = {};
+
+      //including this in updates for updating correct
+      updates.storageFolder = existingExperience.storageFolder;
+
+      if (dirtyFields.flyer) {
+        const flyerUrl = await getFlyerUrl(
+          formData.flyer,
+          existingExperience.storageFolder!,
+        );
+        updates.flyerUrl = flyerUrl;
+      }
+
+      if (dirtyFields.images) {
+        const imagesToUpload = Array.from(formData.images);
+        await uploadFilesInBatches(
+          imagesToUpload,
+          existingExperience.storageFolder!,
+        );
+      }
+
+      if (dirtyFields.date) updates.date = formData.date;
+      if (dirtyFields.upcoming) updates.upcoming = formData.upcoming === "true";
+      if (dirtyFields.upcomingDescription)
+        updates.upcomingDescription = formData.upcomingDescription;
+      if (dirtyFields.pastDescription)
+        updates.description = formData.pastDescription;
+
+      const message = await updateExperience(updates);
+      toast.success(<p className='text-lg'>{message}</p>);
+    } catch (error) {
+      console.log(error);
+      const errorMessage =
+        error instanceof Error ? error.message : "An error occured";
+      toast.error(<p className='text-lg'>{errorMessage}</p>);
+    }
+  };
 
   return (
-    <form action=''>
+    <form onSubmit={handleSubmit(handleFormSubmit)}>
       <div className='grid grid-rows-1 grid-cols-3 gap-8'>
         <div className='flex flex-1 flex-col gap-2'>
           <Label className='text-[1rem]'>Title</Label>
           <Input
             className='rounded-md text-dark-green text-[1rem] font-semibold cursor-not-allowed'
             type='text'
-            defaultValue={title}
+            {...register("title")}
             disabled
           />
         </div>
@@ -39,70 +117,88 @@ const ExistingExperienceForm = ({ data }: ExistingExperienceFormProps) => {
           <Input
             className='rounded-md text-dark-green text-[1rem] font-semibold cursor-not-allowed'
             type='text'
-            defaultValue={location}
+            {...register("upcoming")}
             disabled
           />
         </div>
         <div className='flex flex-1 flex-col gap-2'>
           <Label className='text-[1rem]'>Date</Label>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                variant='outline'
-                className='data-[empty=true]:text-muted-foreground w-2/3 justify-between text-left font-semibold text-dark-green h-12'
-              >
-                {date ? format(date, "PPP") : <span>Select a date</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent
-              className='w-auto p-0'
-              align='start'
-            >
-              <Calendar mode='single' />
-            </PopoverContent>
-          </Popover>
+          <Controller
+            control={control}
+            name='date'
+            render={({ field }) => (
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant='outline'
+                    className='data-[empty=true]:text-muted-foreground w-2/3 justify-between text-left font-semibold text-dark-green h-12'
+                  >
+                    {field.value ? (
+                      format(field.value, "PPP")
+                    ) : (
+                      <span>Select a date</span>
+                    )}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent
+                  className='w-auto p-0'
+                  align='start'
+                >
+                  <Calendar
+                    mode='single'
+                    selected={field.value}
+                    onSelect={field.onChange}
+                    defaultMonth={field.value}
+                  />
+                </PopoverContent>
+              </Popover>
+            )}
+          />
         </div>
       </div>
       <div className='grid grid-rows-1 grid-cols-3 gap-8 mt-6'>
         <div className='flex flex-col gap-2'>
           <Label className='text-[1rem]'>Is This Event Upcoming?</Label>
+          <Controller
+            control={control}
+            name='upcoming'
+            render={({ field }) => (
+              <RadioGroup
+                className='w-fit'
+                onValueChange={field.onChange}
+                value={field.value}
+              >
+                <div className='flex items-center gap-4'>
+                  <RadioGroupItem
+                    value='true'
+                    id='option-one'
+                  />
+                  <Label htmlFor='option-one'>Yes</Label>
+                </div>
+                <div className='flex items-center gap-4'>
+                  <RadioGroupItem
+                    value='false'
+                    id='option-two'
+                  />
 
-          <RadioGroup
-            className='w-fit'
-            // onValueChange={field.onChange}
-            defaultChecked
-            value={defaultUpcoming}
-          >
-            <div className='flex items-center gap-4'>
-              <RadioGroupItem
-                value='true'
-                id='option-one'
-                className='text-dark-green'
-              />
-              <Label htmlFor='option-one'>Yes</Label>
-            </div>
-            <div className='flex items-center gap-4'>
-              <RadioGroupItem
-                value='false'
-                id='option-two'
-              />
-
-              <Label htmlFor='option-two'>No</Label>
-            </div>
-          </RadioGroup>
+                  <Label htmlFor='option-two'>No</Label>
+                </div>
+              </RadioGroup>
+            )}
+          />
         </div>
         <div className='flex flex-1 flex-col gap-2'>
           <Label className='text-[1rem]'>Upcoming Description</Label>
           <Textarea
             className='rounded-md text-dark-green text-[1rem] font-semibold'
-            defaultValue={upcomingDescription}
+            {...register("upcomingDescription")}
           />
         </div>
         <div className='flex flex-1 flex-col gap-2'>
           <Label className='text-[1rem]'>Past Description</Label>
           <Textarea
             className='rounded-md text-dark-green text-[1rem] font-semibold'
-            defaultValue={description}
+            {...register("pastDescription")}
           />
         </div>
       </div>
@@ -113,12 +209,12 @@ const ExistingExperienceForm = ({ data }: ExistingExperienceFormProps) => {
             type='file'
             accept='image/*'
             className='w-fit text-center rounded-md text-dark-green'
-            // onChange={(e) => {
-            //   const file = e.target.files?.[0];
-            //   if (file) {
-            //     setValue("flyer", file);
-            //   }
-            // }}
+            onChange={(e) => {
+              const file = e.target.files?.[0];
+              if (file) {
+                setValue("flyer", file, { shouldDirty: true });
+              }
+            }}
           />
         </div>
         <div className='flex flex-1 flex-col gap-2'>
@@ -128,18 +224,19 @@ const ExistingExperienceForm = ({ data }: ExistingExperienceFormProps) => {
             accept='image/*'
             multiple
             className='w-fit text-center rounded-md text-dark-green'
-            // onChange={(e) => {
-            //   const files = e.target.files;
-            //   if (files && files.length > 0) {
-            //     setValue("images", files);
-            //   }
-            // }}
+            onChange={(e) => {
+              const files = e.target.files;
+              if (files && files.length > 0) {
+                setValue("images", files, { shouldDirty: true });
+              }
+            }}
           />
         </div>
       </div>
       <Button
         type='submit'
         className='mt-8 cursor-pointer'
+        disabled={!isDirty}
       >
         Add
       </Button>

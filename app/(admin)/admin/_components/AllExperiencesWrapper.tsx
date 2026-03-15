@@ -68,7 +68,7 @@ const AllExperiencesWrapper = () => {
           <DialogDescription>
             Edit the data to update this experience
           </DialogDescription>
-          <ExistingExperienceForm data={activeItem!} />
+          <ExistingExperienceForm existingExperience={activeItem!} />
         </DialogContent>
       </Dialog>
     </section>

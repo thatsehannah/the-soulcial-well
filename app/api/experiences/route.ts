@@ -62,36 +62,40 @@ export const POST = async (req: NextRequest) => {
   }
 };
 
-// export const PATCH = async (req: NextRequest) => {
-//   let data: Partial<ExperienceItem> = await req.json();
-//   const formattedDate = new Date(data.date!);
-//   data = {
-//     ...data,
-//     date: formattedDate,
-//   };
-//   const docId = data.storageFolder!;
-//   const docRef = db.collection("experiences").doc(docId);
+export const PATCH = async (req: NextRequest) => {
+  let data: Partial<ExperienceItem> = await req.json();
 
-//   const doc = await docRef.get();
-//   if (!doc.exists) {
-//     return NextResponse.json<CreateExperienceResponse>(
-//       {
-//         message: "Could not locate existing doc",
-//       },
-//       {
-//         status: 404,
-//       },
-//     );
-//   }
+  if (data.date) {
+    const formattedDate = new Date(data.date!);
+    data = {
+      ...data,
+      date: formattedDate,
+    };
+  }
 
-//   await docRef.update(data);
+  const docId = data.storageFolder!;
+  const docRef = db.collection("experiences").doc(docId);
 
-//   return NextResponse.json<CreateExperienceResponse>(
-//     {
-//       message: `${data.title} experience has been updated successfully`,
-//     },
-//     {
-//       status: 201,
-//     },
-//   );
-// };
+  const doc = await docRef.get();
+  if (!doc.exists) {
+    return NextResponse.json<ApiResponse>(
+      {
+        message: "Could not locate existing doc",
+      },
+      {
+        status: 404,
+      },
+    );
+  }
+
+  await docRef.update(data);
+
+  return NextResponse.json<ApiResponse>(
+    {
+      message: `${data.title} experience has been updated successfully`,
+    },
+    {
+      status: 201,
+    },
+  );
+};
