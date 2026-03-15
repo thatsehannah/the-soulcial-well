@@ -1,6 +1,6 @@
 //these functions will be called on the client
 
-import { ExperienceItem } from "./types";
+import { ApiResponse, ExperienceItem } from "./types";
 
 export const fetchPhotosFromStorage = async (
   folder: string,
@@ -51,7 +51,7 @@ export const getFlyerUrl = async (
 
     if (response.ok) {
       const result = await response.json();
-      return result.flyerUrl;
+      return result.flyerUrl as string;
     }
 
     throw new Error(`HTTP error! status: ${response.status}`);
@@ -81,6 +81,7 @@ export const uploadFilesInBatches = async (
   }
 };
 
+// TODO: make this a trycatch block
 const uploadSingleFile = async (file: File, storageFolder: string) => {
   const formData = new FormData();
   formData.append("file", file);
@@ -92,7 +93,8 @@ const uploadSingleFile = async (file: File, storageFolder: string) => {
   });
 
   if (response.ok) {
-    return (await response.json()) as string;
+    const result = (await response.json()) as ApiResponse;
+    return result.message;
   }
 };
 
@@ -104,7 +106,8 @@ export const createNewExperience = async (data: ExperienceItem) => {
       body: JSON.stringify(data),
     });
 
-    return (await response.json()) as string;
+    const result = (await response.json()) as ApiResponse;
+    return result.message;
   } catch (error) {
     console.log(error);
     return "";
@@ -131,7 +134,8 @@ export const updateExperience = async (data: Partial<ExperienceItem>) => {
       body: JSON.stringify(data),
     });
 
-    return (await response.json()) as string;
+    const result = (await response.json()) as ApiResponse;
+    return result.message;
   } catch (error) {
     console.log(error);
     return "";

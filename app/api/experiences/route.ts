@@ -43,7 +43,7 @@ export const POST = async (req: NextRequest) => {
 
     return NextResponse.json<ApiResponse>(
       {
-        message: `${data.title} experience has been created successfully`,
+        message: "Experience has been created successfully",
       },
       {
         status: 201,
@@ -92,7 +92,7 @@ export const PATCH = async (req: NextRequest) => {
 
   return NextResponse.json<ApiResponse>(
     {
-      message: `${data.title} experience has been updated successfully`,
+      message: "Experience has been updated successfully",
     },
     {
       status: 201,

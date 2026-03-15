@@ -13,6 +13,9 @@ import {
 import ExistingExperienceForm from "./ExistingExperienceForm";
 import LoadingIndicator from "./LoadingIndicator";
 
+//this will make this page dynamic and fetch for experiences on every page request
+export const dynamic = "force-dynamic";
+
 const AllExperiencesWrapper = () => {
   const [allExperiences, setAllExperiences] = useState<ExperienceItem[]>([]);
   const [activeItem, setActiveItem] = useState<ExperienceItem | undefined>(
@@ -29,7 +32,7 @@ const AllExperiencesWrapper = () => {
     };
 
     getExperiences();
-  }, []);
+  }, [loading]);
 
   if (loading) {
     return (
@@ -68,7 +71,11 @@ const AllExperiencesWrapper = () => {
           <DialogDescription>
             Edit the data to update this experience
           </DialogDescription>
-          <ExistingExperienceForm existingExperience={activeItem!} />
+          <ExistingExperienceForm
+            existingExperience={activeItem!}
+            closePopUp={() => setIsFormOpen(false)}
+            refreshAll={() => setLoading(true)}
+          />
         </DialogContent>
       </Dialog>
     </section>

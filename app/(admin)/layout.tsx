@@ -3,6 +3,7 @@ import { faustina, parisienne, robotoflex } from "@/utils/fonts";
 import { Metadata } from "next";
 import React, { ReactNode } from "react";
 import "../globals.css";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "Admin - The Soulcial Well",
@@ -21,6 +22,10 @@ export default function AdminLayout({
       >
         <body className='bg-main-bg text-main-foreground font-admin relative'>
           {children}
+          <Toaster
+            position='bottom-right'
+            richColors
+          />
         </body>
       </html>
     </AuthProvider>

@@ -22,6 +22,8 @@ import { toast } from "sonner";
 
 type ExistingExperienceFormProps = {
   existingExperience: ExperienceItem;
+  closePopUp: () => void;
+  refreshAll: () => void;
 };
 
 type EditFormInput = {
@@ -37,6 +39,8 @@ type EditFormInput = {
 
 const ExistingExperienceForm = ({
   existingExperience,
+  closePopUp,
+  refreshAll,
 }: ExistingExperienceFormProps) => {
   const { title, location, date, description, upcoming, upcomingDescription } =
     existingExperience;
@@ -64,7 +68,7 @@ const ExistingExperienceForm = ({
     try {
       const updates: Partial<ExperienceItem> = {};
 
-      //including this in updates for updating correct
+      //including this in updates for updating correct doc
       updates.storageFolder = existingExperience.storageFolder;
 
       if (dirtyFields.flyer) {
@@ -92,6 +96,8 @@ const ExistingExperienceForm = ({
 
       const message = await updateExperience(updates);
       toast.success(<p className='text-lg'>{message}</p>);
+      closePopUp();
+      refreshAll();
     } catch (error) {
       console.log(error);
       const errorMessage =
@@ -104,25 +110,42 @@ const ExistingExperienceForm = ({
     <form onSubmit={handleSubmit(handleFormSubmit)}>
       <div className='grid grid-rows-1 grid-cols-3 gap-8'>
         <div className='flex flex-1 flex-col gap-2'>
-          <Label className='text-[1rem]'>Title</Label>
+          <Label
+            className='text-[1rem]'
+            htmlFor='title'
+          >
+            Title
+          </Label>
           <Input
             className='rounded-md text-dark-green text-[1rem] font-semibold cursor-not-allowed'
             type='text'
+            id='title'
             {...register("title")}
             disabled
           />
         </div>
         <div className='flex flex-1 flex-col gap-2'>
-          <Label className='text-[1rem]'>Location</Label>
+          <Label
+            className='text-[1rem]'
+            htmlFor='location'
+          >
+            Location
+          </Label>
           <Input
             className='rounded-md text-dark-green text-[1rem] font-semibold cursor-not-allowed'
             type='text'
-            {...register("upcoming")}
+            id='location'
+            {...register("location")}
             disabled
           />
         </div>
         <div className='flex flex-1 flex-col gap-2'>
-          <Label className='text-[1rem]'>Date</Label>
+          <Label
+            className='text-[1rem]'
+            htmlFor='date'
+          >
+            Date
+          </Label>
           <Controller
             control={control}
             name='date'
@@ -149,6 +172,7 @@ const ExistingExperienceForm = ({
                     selected={field.value}
                     onSelect={field.onChange}
                     defaultMonth={field.value}
+                    id='date'
                   />
                 </PopoverContent>
               </Popover>
@@ -158,7 +182,12 @@ const ExistingExperienceForm = ({
       </div>
       <div className='grid grid-rows-1 grid-cols-3 gap-8 mt-6'>
         <div className='flex flex-col gap-2'>
-          <Label className='text-[1rem]'>Is This Event Upcoming?</Label>
+          <Label
+            className='text-[1rem]'
+            htmlFor='upcoming'
+          >
+            Is This Event Upcoming?
+          </Label>
           <Controller
             control={control}
             name='upcoming'
@@ -167,6 +196,7 @@ const ExistingExperienceForm = ({
                 className='w-fit'
                 onValueChange={field.onChange}
                 value={field.value}
+                id='upcoming'
               >
                 <div className='flex items-center gap-4'>
                   <RadioGroupItem
@@ -188,27 +218,45 @@ const ExistingExperienceForm = ({
           />
         </div>
         <div className='flex flex-1 flex-col gap-2'>
-          <Label className='text-[1rem]'>Upcoming Description</Label>
+          <Label
+            className='text-[1rem]'
+            htmlFor='upcomingDescription'
+          >
+            Upcoming Description
+          </Label>
           <Textarea
             className='rounded-md text-dark-green text-[1rem] font-semibold'
+            id='upcomingDescription'
             {...register("upcomingDescription")}
           />
         </div>
         <div className='flex flex-1 flex-col gap-2'>
-          <Label className='text-[1rem]'>Past Description</Label>
+          <Label
+            className='text-[1rem]'
+            htmlFor='pastDescription'
+          >
+            Past Description
+          </Label>
           <Textarea
             className='rounded-md text-dark-green text-[1rem] font-semibold'
+            id='pastDescription'
             {...register("pastDescription")}
           />
         </div>
       </div>
       <div className='grid grid-rows-1 grid-cols-3 gap-8 mt-6'>
         <div className='flex flex-1 flex-col gap-2'>
-          <Label className='text-[1rem]'>Upload Flyer</Label>
+          <Label
+            className='text-[1rem]'
+            htmlFor='flyer'
+          >
+            Upload Flyer
+          </Label>
           <Input
             type='file'
             accept='image/*'
             className='w-fit text-center rounded-md text-dark-green'
+            id='flyer'
             onChange={(e) => {
               const file = e.target.files?.[0];
               if (file) {
@@ -218,12 +266,18 @@ const ExistingExperienceForm = ({
           />
         </div>
         <div className='flex flex-1 flex-col gap-2'>
-          <Label className='text-[1rem]'>Upload Photos</Label>
+          <Label
+            className='text-[1rem]'
+            htmlFor='images'
+          >
+            Upload Images From Event
+          </Label>
           <Input
             type='file'
             accept='image/*'
             multiple
             className='w-fit text-center rounded-md text-dark-green'
+            id='images'
             onChange={(e) => {
               const files = e.target.files;
               if (files && files.length > 0) {

@@ -81,6 +81,7 @@ const NewExperienceForm = () => {
     setValue,
     reset,
     watch,
+    clearErrors,
   } = useForm({
     resolver: yupResolver(newExperienceSchema),
   });
@@ -183,7 +184,12 @@ const NewExperienceForm = () => {
     >
       <div className='mb-6'>
         <div className='flex flex-col gap-2'>
-          <Label className='text-[1rem]'>Is This Event Upcoming?</Label>
+          <Label
+            className='text-[1rem]'
+            htmlFor='upcoming'
+          >
+            Is This Event Upcoming?
+          </Label>
           <Controller
             control={control}
             name='upcoming'
@@ -192,6 +198,7 @@ const NewExperienceForm = () => {
                 className='w-fit'
                 onValueChange={field.onChange}
                 value={field.value}
+                id='upcoming'
               >
                 <div className='flex items-center gap-4'>
                   <RadioGroupItem
@@ -223,11 +230,17 @@ const NewExperienceForm = () => {
         <div>
           <div className='grid grid-rows-1 grid-cols-3 gap-8'>
             <div className='flex flex-1 flex-col gap-2'>
-              <Label className='text-[1rem]'>Title</Label>
+              <Label
+                className='text-[1rem]'
+                htmlFor='title'
+              >
+                Title
+              </Label>
               <Input
                 data-invalid
                 className='rounded-md text-dark-green text-[1rem] font-semibold '
                 type='text'
+                id='title'
                 {...register("title")}
               />
               {errors.title && (
@@ -237,11 +250,17 @@ const NewExperienceForm = () => {
               )}
             </div>
             <div className='flex flex-1 flex-col gap-2'>
-              <Label className='text-[1rem]'>Location</Label>
+              <Label
+                className='text-[1rem]'
+                htmlFor='location'
+              >
+                Location
+              </Label>
               <Input
                 data-invalid
                 className='rounded-md text-dark-green text-[1rem] font-semibold'
                 type='text'
+                id='location'
                 {...register("location")}
               />
               {errors.location && (
@@ -251,7 +270,12 @@ const NewExperienceForm = () => {
               )}
             </div>
             <div className='flex flex-1 flex-col gap-2'>
-              <Label className='text-[1rem]'>Date</Label>
+              <Label
+                className='text-[1rem]'
+                htmlFor='date'
+              >
+                Date
+              </Label>
               <Controller
                 control={control}
                 name='date'
@@ -279,6 +303,7 @@ const NewExperienceForm = () => {
                         selected={field.value}
                         onSelect={field.onChange}
                         defaultMonth={field.value}
+                        id='date'
                       />
                     </PopoverContent>
                   </Popover>
@@ -293,9 +318,15 @@ const NewExperienceForm = () => {
           </div>
           <div className='grid grid-rows-1 grid-cols-3 mt-16 gap-8'>
             <div className='flex flex-1 flex-col gap-2'>
-              <Label className='text-[1rem]'>Description</Label>
+              <Label
+                className='text-[1rem]'
+                htmlFor='description'
+              >
+                Description
+              </Label>
               <Textarea
                 className='rounded-md text-dark-green text-[1rem] font-semibold'
+                id='description'
                 {...register("description")}
               />
               {errors.description && (
@@ -307,7 +338,12 @@ const NewExperienceForm = () => {
             <div className='flex flex-1 flex-col gap-8'>
               <div className='flex flex-1 flex-col gap-2'>
                 <div className='flex items-center gap-2'>
-                  <Label className='text-[1rem]'>Experience ID</Label>
+                  <Label
+                    className='text-[1rem]'
+                    htmlFor='storageFolder'
+                  >
+                    Experience ID
+                  </Label>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Info
@@ -328,6 +364,7 @@ const NewExperienceForm = () => {
                 <Input
                   className='rounded-md text-dark-green text-[1rem] font-semibold'
                   type='text'
+                  id='storageFolder'
                   {...register("storageFolder")}
                 />
                 {errors.storageFolder && (
@@ -338,10 +375,16 @@ const NewExperienceForm = () => {
               </div>
               {upcomingValue === "true" && (
                 <div className='flex flex-1 flex-col gap-2'>
-                  <Label className='text-[1rem]'>Link to RSVP</Label>
+                  <Label
+                    className='text-[1rem]'
+                    htmlFor='linkToRsvp'
+                  >
+                    Link to RSVP
+                  </Label>
                   <Input
                     className='rounded-md text-dark-green text-[1rem] font-semibold w-3/4'
                     type='text'
+                    id='linkToRsvp'
                     {...register("linkToRsvp")}
                   />
                   {errors.linkToRsvp && (
@@ -355,15 +398,22 @@ const NewExperienceForm = () => {
             {upcomingValue === "true" && (
               <div className='grid grid-rows-1 grid-cols-3 gap-8'>
                 <div className='flex flex-1 flex-col gap-2'>
-                  <Label className='text-[1rem]'>Upload Flyer</Label>
+                  <Label
+                    className='text-[1rem]'
+                    htmlFor='flyer'
+                  >
+                    Upload Flyer
+                  </Label>
                   <Input
                     type='file'
                     accept='image/*'
                     className='w-fit text-center rounded-md text-dark-green'
+                    id='flyer'
                     onChange={(e) => {
                       const file = e.target.files?.[0];
                       if (file) {
                         setValue("flyer", file);
+                        clearErrors("flyer");
                       }
                     }}
                   />
@@ -376,27 +426,32 @@ const NewExperienceForm = () => {
               </div>
             )}
             {upcomingValue === "false" && (
-              <div className='grid grid-rows-1 gap-8'>
-                <div className='flex flex-1 flex-col gap-2'>
-                  <Label className='text-[1rem]'>Upload Photos</Label>
-                  <Input
-                    type='file'
-                    accept='image/*'
-                    multiple
-                    className='w-fit text-center rounded-md text-dark-green'
-                    onChange={(e) => {
-                      const files = e.target.files;
-                      if (files && files.length > 0) {
-                        setValue("images", files);
-                      }
-                    }}
-                  />
-                  {errors.images && (
-                    <p className='text-sm text-destructive'>
-                      {errors.images.message}
-                    </p>
-                  )}
-                </div>
+              <div className='flex flex-1 flex-col gap-2'>
+                <Label
+                  className='text-[1rem]'
+                  htmlFor='images'
+                >
+                  Upload Images From Event
+                </Label>
+                <Input
+                  type='file'
+                  accept='image/*'
+                  multiple
+                  className='w-fit text-center rounded-md text-dark-green'
+                  id='images'
+                  onChange={(e) => {
+                    const files = e.target.files;
+                    if (files && files.length > 0) {
+                      setValue("images", files);
+                      clearErrors("images");
+                    }
+                  }}
+                />
+                {errors.images && (
+                  <p className='text-sm text-destructive'>
+                    {errors.images.message}
+                  </p>
+                )}
               </div>
             )}
           </div>
