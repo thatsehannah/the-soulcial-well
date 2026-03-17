@@ -15,36 +15,26 @@ export const fetchAllExperiences = async (): Promise<ExperienceItem[]> => {
     }
 
     const experiences = snapshot.docs.map((doc) => {
-      const { date } = doc.data();
-      const transformedDate = date.toDate() as Date;
-
-      const {
-        description,
-        flyerUrl,
-        linkToRsvp,
-        storageFolder,
-        title,
-        upcoming,
-        upcomingDescription,
-        location,
-      } = doc.data() as ExperienceItem;
+      const data = doc.data();
 
       return {
-        description,
-        flyerUrl,
-        linkToRsvp,
-        storageFolder,
-        title,
-        upcoming,
-        upcomingDescription,
-        location,
-        date: transformedDate,
-      };
+        description: data.description,
+        flyerUrl: data.flyerUrl,
+        linkToRsvp: data.linkToRsvp,
+        storageFolder: data.storageFolder,
+        title: data.title,
+        upcoming: data.upcoming,
+        upcomingDescription: data.upcomingDescription,
+        location: data.location,
+        date: data.date?.toDate() as Date,
+      } as ExperienceItem;
     });
 
     return experiences;
   } catch (error) {
-    console.error("Error fetching experiences:", error);
-    throw new Error("Failed to fetch experiences");
+    console.error(error);
+    throw new Error(
+      error instanceof Error ? error.message : "Failed to fetch experiences",
+    );
   }
 };

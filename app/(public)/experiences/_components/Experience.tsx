@@ -5,6 +5,8 @@ import FilmRoll from "./FilmRoll";
 import { ExperienceItem } from "@/utils/types";
 import { formatTitle } from "../_utils/formatTitle";
 import { fetchPhotosFromStorage } from "@/utils/clientActions";
+import { MessageSquareWarning } from "lucide-react";
+import LoadingIndicator from "@/components/LoadingIndicator";
 
 type ExperienceProps = {
   item: ExperienceItem;
@@ -14,14 +16,23 @@ type ExperienceProps = {
 const Experience = ({ item, index }: ExperienceProps) => {
   const [mediaUrls, setMediaUrls] = useState<string[]>([]);
   const [mediaLoaded, setMediaLoaded] = useState<boolean>(false);
+  const [errorFetchingPhotos, setErrorFetchingPhotos] = useState(false);
   const isEvenSection = index % 2 === 0;
 
   useEffect(() => {
+    setErrorFetchingPhotos(false);
     const fetchMedia = async () => {
       const response = await fetchPhotosFromStorage(item.storageFolder!);
-      const media = response.filter((image) => image !== item.flyerUrl);
-      setMediaUrls(media);
-      setMediaLoaded(true);
+
+      if (response.data) {
+        const result = response.data;
+        const media = result.filter((imageUrl) => imageUrl !== item.flyerUrl);
+        setMediaUrls(media);
+        setMediaLoaded(true);
+      } else {
+        setErrorFetchingPhotos(true);
+      }
+      setErrorFetchingPhotos(true);
     };
 
     fetchMedia();
@@ -30,7 +41,7 @@ const Experience = ({ item, index }: ExperienceProps) => {
   const showDateLocation = (
     date: Date,
     location: string,
-    isEvenSection: boolean
+    isEvenSection: boolean,
   ): ReactNode => {
     const month = date.toLocaleString("default", { month: "long" });
     const year = date.getFullYear();
@@ -57,16 +68,24 @@ const Experience = ({ item, index }: ExperienceProps) => {
       <div className='mb-8 text-center'>
         {showDateLocation(item.date, item.location, isEvenSection)}
       </div>
+
       <div className='flex lg:flex-row flex-col lg:my-8 my-4 w-full lg:gap-12 justify-center items-center'>
         {mediaLoaded ? (
           <FilmRoll
             mediaUrls={mediaUrls}
             title={item.title}
           />
-        ) : (
-          <div>
-            <p className='text-xl'>Loading media...</p>
+        ) : errorFetchingPhotos ? (
+          <div
+            className={`flex items-center justify-center gap-2 ${
+              isEvenSection ? "text-main-foreground" : "text-white"
+            } whitespace-pre-wrap lg:text-start text-center italic`}
+          >
+            <MessageSquareWarning />
+            <p>Could not load media</p>
           </div>
+        ) : (
+          <LoadingIndicator />
         )}
         <div className='lg:text-xl text-lg lg:leading-9 leading-7 lg:w-1/2 w-full lg:px-12 px-0 pt-4'>
           <p

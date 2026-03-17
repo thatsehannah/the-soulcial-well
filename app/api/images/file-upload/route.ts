@@ -22,36 +22,42 @@ export const POST = async (req: NextRequest) => {
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
 
-    await fileRef.save(buffer, {
-      metadata: {
-        contentType: file.type,
-      },
-    });
+    await fileRef
+      .save(buffer, {
+        metadata: {
+          contentType: file.type,
+        },
+      })
+      .catch((error) => {
+        console.error(error);
+        throw new Error(`Could not save file ${filename}`);
+      });
 
     await fileRef.makePublic();
 
     if (isUploadingFlyer) {
       const flyerUrl = await getDownloadURL(fileRef);
 
-      return NextResponse.json(
+      return NextResponse.json<ApiResponse<string>>(
         {
-          flyerUrl,
+          data: flyerUrl,
         },
         { status: 201 },
       );
     }
 
-    return NextResponse.json<ApiResponse>(
-      { message: "File uploaded successfully" },
+    return NextResponse.json<ApiResponse<string>>(
       {
-        status: 201,
+        successMessage: "File uploaded successfully",
       },
+      { status: 201 },
     );
   } catch (error) {
-    console.error("Error uploading file: ", error);
+    console.error(error);
     return NextResponse.json<ApiResponse>(
       {
-        message: "Error uploading file",
+        errorMessage:
+          error instanceof Error ? error.message : "Error uploading file",
       },
       { status: 500 },
     );

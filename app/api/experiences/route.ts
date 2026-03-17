@@ -7,17 +7,18 @@ export const GET = async () => {
   try {
     const experiences = await fetchAllExperiences();
 
-    return NextResponse.json(experiences, { status: 200 });
+    return NextResponse.json<ApiResponse<ExperienceItem[]>>(
+      { data: experiences },
+      { status: 200 },
+    );
   } catch (error) {
-    if (error instanceof Error) {
-      console.log("Error fetching for experiences", error.stack);
-    } else {
-      console.log(error);
-    }
-
-    return NextResponse.json(
+    console.log(error);
+    return NextResponse.json<ApiResponse>(
       {
-        error: "Failed to check for upcoming experiences ",
+        errorMessage:
+          error instanceof Error
+            ? error.message
+            : "Failed to fetch all experiences.",
       },
       { status: 500 },
     );
@@ -37,65 +38,83 @@ export const POST = async (req: NextRequest) => {
     const docId = data.storageFolder!;
     const docRef = db.collection("experiences").doc(docId);
 
-    await docRef.set(data);
-
-    console.log(`The ${docId} has been successfully created`);
+    await docRef.set(data).catch((error) => {
+      console.error(error);
+      throw new Error("Error created this document");
+    });
 
     return NextResponse.json<ApiResponse>(
       {
-        message: "Experience has been created successfully",
+        successMessage: "Experience has been created successfully",
       },
       {
         status: 201,
       },
     );
   } catch (error) {
-    if (error instanceof Error) {
-      console.log(error.message);
-      return NextResponse.json<ApiResponse>(
-        {
-          message: "Failed to create experience",
-        },
-        { status: 500 },
-      );
-    }
+    console.log(error);
+    return NextResponse.json<ApiResponse>(
+      {
+        errorMessage:
+          error instanceof Error
+            ? error.message
+            : "Failed to create experience",
+      },
+      { status: 500 },
+    );
   }
 };
 
 export const PATCH = async (req: NextRequest) => {
-  let data: Partial<ExperienceItem> = await req.json();
+  try {
+    let data: Partial<ExperienceItem> = await req.json();
 
-  if (data.date) {
-    const formattedDate = new Date(data.date!);
-    data = {
-      ...data,
-      date: formattedDate,
-    };
-  }
+    if (data.date) {
+      const formattedDate = new Date(data.date!);
+      data = {
+        ...data,
+        date: formattedDate,
+      };
+    }
 
-  const docId = data.storageFolder!;
-  const docRef = db.collection("experiences").doc(docId);
+    const docId = data.storageFolder!;
+    const docRef = db.collection("experiences").doc(docId);
 
-  const doc = await docRef.get();
-  if (!doc.exists) {
+    const doc = await docRef.get();
+    if (!doc.exists) {
+      return NextResponse.json<ApiResponse>(
+        {
+          errorMessage: "Could not locate existing doc",
+        },
+        {
+          status: 404,
+        },
+      );
+    }
+
+    await docRef.update(data).catch((error) => {
+      console.log(error);
+      throw new Error("Error updating this document");
+    });
+
     return NextResponse.json<ApiResponse>(
       {
-        message: "Could not locate existing doc",
+        successMessage: "Experience has been updated successfully",
       },
       {
-        status: 404,
+        status: 201,
       },
     );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json<ApiResponse>(
+      {
+        errorMessage:
+          error instanceof Error
+            ? error.message
+            : "Failed to update experience",
+      },
+      { status: 500 },
+    );
   }
-
-  await docRef.update(data);
-
-  return NextResponse.json<ApiResponse>(
-    {
-      message: "Experience has been updated successfully",
-    },
-    {
-      status: 201,
-    },
-  );
 };

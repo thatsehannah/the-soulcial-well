@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export type TeamMemberInfo = {
   imageSrc: string;
   honorific?: string;
@@ -47,6 +48,14 @@ export type NewMessage = {
   message: string;
 };
 
-export type ApiResponse = {
-  message: string;
+export type ApiResponse<T = any> = {
+  successMessage?: string;
+  errorMessage?: string;
+  data?: T;
+};
+
+export type ApiResult<T = any> = {
+  successMessage?: string;
+  errorMessage?: string;
+  data?: T;
 };

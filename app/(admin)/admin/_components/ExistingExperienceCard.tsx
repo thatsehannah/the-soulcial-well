@@ -5,7 +5,7 @@ import { format } from "date-fns";
 import { Edit } from "lucide-react";
 import Image from "next/image";
 import React from "react";
-import LoadingIndicator from "./LoadingIndicator";
+import LoadingIndicator from "../../../../components/LoadingIndicator";
 
 type ExistingExperienceCardProps = {
   data: ExperienceItem;
@@ -13,6 +13,7 @@ type ExistingExperienceCardProps = {
   loading: boolean;
 };
 
+// TODO: add delete button and functionality
 const ExistingExperienceCard = ({
   data,
   onClick,
@@ -22,7 +23,7 @@ const ExistingExperienceCard = ({
   const thumbnailSrc = flyerUrl === "" ? "/assets/TSWLOGO2025.png" : flyerUrl!;
 
   return (
-    <div className='flex gap-4 border border-neutral-200 rounded-md px-4 py-2 bg-neutral-50 flex-1 w-93'>
+    <div className='flex gap-4 border border-neutral-200 rounded-md p-4 bg-neutral-50 flex-1 w-93 2xl:w-108'>
       <div className=''>
         <div className='relative h-40 w-40'>
           {loading ? (
@@ -35,7 +36,6 @@ const ExistingExperienceCard = ({
               alt={`${title}'s thumbnail`}
               fill
               sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-              quality={100}
               className='rounded-md border border-neutral-900 object-cover'
             />
           )}

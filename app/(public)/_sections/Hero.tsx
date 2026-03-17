@@ -18,7 +18,9 @@ const Hero = () => {
     const anyUpcomingEvents = async () => {
       const result = await checkForUpcomingExperiences();
 
-      setUpcomingEvents(result);
+      if (result.data) {
+        setUpcomingEvents(result.data);
+      }
     };
 
     anyUpcomingEvents();
@@ -40,7 +42,7 @@ const Hero = () => {
         },
       );
     }
-  });
+  }, [upcomingEvents]);
 
   useGSAP(() => {
     document.fonts.ready.then(() => {

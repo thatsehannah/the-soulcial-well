@@ -1,43 +1,59 @@
 //these functions will be called on the client
 
-import { ApiResponse, ExperienceItem } from "./types";
+import { ApiResult, ExperienceItem } from "./types";
 
 export const fetchPhotosFromStorage = async (
   folder: string,
-): Promise<string[]> => {
+): Promise<ApiResult<string[]>> => {
   try {
     const response = await fetch(`/api/images/${folder}`);
 
+    const result = (await response.json()) as ApiResult;
+
     if (response.ok) {
-      return (await response.json()) as string[];
+      return result;
     }
 
-    throw new Error(`HTTP error! status: ${response.status}`);
+    throw new Error(result.errorMessage);
   } catch (error) {
-    console.log(`Error fetching photos from ${folder}:`, error);
-    throw new Error(`Failed to fetch images from ${folder}`);
+    console.log(error);
+    return {
+      errorMessage:
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred fetching photos",
+    };
   }
 };
 
-export const checkForUpcomingExperiences = async (): Promise<boolean> => {
+export const checkForUpcomingExperiences = async (): Promise<
+  ApiResult<boolean>
+> => {
   try {
     const response = await fetch("/api/experiences/upcoming");
 
+    const result = (await response.json()) as ApiResult;
+
     if (response.ok) {
-      return (await response.json()) as boolean;
+      return result;
     }
 
-    throw new Error(`HTTP error! status: ${response.status}`);
+    throw new Error(result.errorMessage);
   } catch (error) {
-    console.log(`Error checking for upcoming experiences from API: ${error}`);
-    throw new Error(`Failed to check for upcoming experiences from API`);
+    console.log(error);
+    return {
+      errorMessage:
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred checking for upcoming experiences",
+    };
   }
 };
 
 export const getFlyerUrl = async (
   file: File,
   folder: string,
-): Promise<string> => {
+): Promise<ApiResult<string>> => {
   try {
     const formData = new FormData();
     formData.append("file", file);
@@ -49,15 +65,21 @@ export const getFlyerUrl = async (
       body: formData,
     });
 
+    const result = (await response.json()) as ApiResult;
+
     if (response.ok) {
-      const result = await response.json();
-      return result.flyerUrl as string;
+      return result;
     }
 
-    throw new Error(`HTTP error! status: ${response.status}`);
+    throw new Error(result.errorMessage);
   } catch (error) {
-    console.log(`Error uploading flyer to storage from API: ${error}`);
-    throw new Error(`Failed to upload image to storage`);
+    console.log(error);
+    return {
+      errorMessage:
+        error instanceof Error
+          ? error.message
+          : "Failed to upload image to storage",
+    };
   }
 };
 
@@ -93,12 +115,14 @@ const uploadSingleFile = async (file: File, storageFolder: string) => {
   });
 
   if (response.ok) {
-    const result = (await response.json()) as ApiResponse;
-    return result.message;
+    const result = (await response.json()) as ApiResult;
+    return result.successMessage;
   }
 };
 
-export const createNewExperience = async (data: ExperienceItem) => {
+export const createNewExperience = async (
+  data: ExperienceItem,
+): Promise<ApiResult<null>> => {
   try {
     const response = await fetch("/api/experiences", {
       method: "POST",
@@ -106,27 +130,45 @@ export const createNewExperience = async (data: ExperienceItem) => {
       body: JSON.stringify(data),
     });
 
-    const result = (await response.json()) as ApiResponse;
-    return result.message;
+    const result = (await response.json()) as ApiResult;
+    if (response.ok) {
+      return result;
+    }
+
+    throw new Error(result.errorMessage);
   } catch (error) {
     console.log(error);
-    return "";
+    return {
+      errorMessage:
+        error instanceof Error ? error.message : "An unexpected error occurred",
+    };
   }
 };
 
-export const fetchExperiences = async () => {
+export const fetchExperiences = async (): Promise<
+  ApiResult<ExperienceItem[]>
+> => {
   try {
     const response = await fetch("/api/experiences");
 
-    return response.json();
+    const result = (await response.json()) as ApiResult;
+    if (response.ok) {
+      return result;
+    }
+
+    throw new Error(result.errorMessage);
   } catch (error) {
-    throw new Error(
-      error instanceof Error ? error.message : "Error fetching experiences",
-    );
+    console.log(error);
+    return {
+      errorMessage:
+        error instanceof Error ? error.message : "Error fetching experiences",
+    };
   }
 };
 
-export const updateExperience = async (data: Partial<ExperienceItem>) => {
+export const updateExperience = async (
+  data: Partial<ExperienceItem>,
+): Promise<ApiResult> => {
   try {
     const response = await fetch("/api/experiences", {
       method: "PATCH",
@@ -134,10 +176,17 @@ export const updateExperience = async (data: Partial<ExperienceItem>) => {
       body: JSON.stringify(data),
     });
 
-    const result = (await response.json()) as ApiResponse;
-    return result.message;
+    const result = (await response.json()) as ApiResult;
+    if (response.ok) {
+      return result;
+    }
+
+    throw new Error(result.errorMessage);
   } catch (error) {
-    console.log(error);
-    return "";
+    console.error(error);
+    return {
+      errorMessage:
+        error instanceof Error ? error.message : "An unxepcted error occurred.",
+    };
   }
 };

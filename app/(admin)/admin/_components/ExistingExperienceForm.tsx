@@ -72,11 +72,11 @@ const ExistingExperienceForm = ({
       updates.storageFolder = existingExperience.storageFolder;
 
       if (dirtyFields.flyer) {
-        const flyerUrl = await getFlyerUrl(
+        const result = await getFlyerUrl(
           formData.flyer,
           existingExperience.storageFolder!,
         );
-        updates.flyerUrl = flyerUrl;
+        updates.flyerUrl = result.data;
       }
 
       if (dirtyFields.images) {
@@ -94,8 +94,8 @@ const ExistingExperienceForm = ({
       if (dirtyFields.pastDescription)
         updates.description = formData.pastDescription;
 
-      const message = await updateExperience(updates);
-      toast.success(<p className='text-lg'>{message}</p>);
+      const result = await updateExperience(updates);
+      toast.success(<p className='text-lg'>{result.successMessage}</p>);
       closePopUp();
       refreshAll();
     } catch (error) {

@@ -11,7 +11,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import ExistingExperienceForm from "./ExistingExperienceForm";
-import LoadingIndicator from "./LoadingIndicator";
+import LoadingIndicator from "../../../../components/LoadingIndicator";
+import { Button } from "@/components/ui/button";
 
 //this will make this page dynamic and fetch for experiences on every page request
 export const dynamic = "force-dynamic";
@@ -23,22 +24,51 @@ const AllExperiencesWrapper = () => {
   );
   const [loading, setLoading] = useState(true);
   const [isFormOpen, setIsFormOpen] = useState(false);
+  const [errorFetchingExp, setErrorFetchingExp] = useState("");
+
+  const getExperiences = async () => {
+    setLoading(true);
+    setErrorFetchingExp("");
+
+    const result = await fetchExperiences();
+
+    if (!result.data && result.errorMessage) {
+      setErrorFetchingExp(result.errorMessage);
+    }
+
+    if (result.data) {
+      setAllExperiences(result.data);
+    }
+
+    setLoading(false);
+  };
 
   useEffect(() => {
-    const getExperiences = async () => {
-      const data = await fetchExperiences();
-      setAllExperiences(data);
-      setLoading(false);
-    };
-
     getExperiences();
-  }, [loading]);
+  }, []);
+
+  if (errorFetchingExp.length > 0) {
+    return (
+      <section className='flex flex-col justify-center items-center gap-1 w-full'>
+        <p className='font-bold text-xl'>{errorFetchingExp}</p>
+        <Button onClick={getExperiences}>Retry</Button>
+      </section>
+    );
+  }
 
   if (loading) {
     return (
-      <div className='mx-auto'>
+      <section className='mx-auto'>
         <LoadingIndicator className='w-16 h-16' />
-      </div>
+      </section>
+    );
+  }
+
+  if (allExperiences.length === 0) {
+    return (
+      <section className='mx-auto'>
+        <p className='font-bold text-xl'>No experiences found.</p>
+      </section>
     );
   }
 
@@ -74,7 +104,7 @@ const AllExperiencesWrapper = () => {
           <ExistingExperienceForm
             existingExperience={activeItem!}
             closePopUp={() => setIsFormOpen(false)}
-            refreshAll={() => setLoading(true)}
+            refreshAll={getExperiences}
           />
         </DialogContent>
       </Dialog>

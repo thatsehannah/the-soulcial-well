@@ -1,11 +1,16 @@
 import Image from "next/image";
-import React, { Fragment } from "react";
-import Experience from "./_components/Experience";
+import React from "react";
 import UpcomingExperiences from "./_components/UpcomingExperiences";
 import { fetchAllExperiences } from "@/utils/serverActions";
+import dynamicComponent from "next/dynamic";
+import LoadingIndicator from "@/components/LoadingIndicator";
 
 //this will make this page dynamic and fetch for experiences on every page request
 export const dynamic = "force-dynamic";
+
+const Experience = dynamicComponent(() => import("./_components/Experience"), {
+  loading: () => <LoadingIndicator />,
+});
 
 const ExperiencesPage = async () => {
   const allExperiences = await fetchAllExperiences();
@@ -67,12 +72,12 @@ const ExperiencesPage = async () => {
       )}
 
       {pastExperiences.map((exp, index) => (
-        <Fragment key={index}>
+        <section key={index}>
           <Experience
             item={exp}
             index={index}
           />
-        </Fragment>
+        </section>
       ))}
     </main>
   );

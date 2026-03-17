@@ -76,7 +76,7 @@ const NewExperienceForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     control,
     setValue,
     reset,
@@ -88,12 +88,11 @@ const NewExperienceForm = () => {
 
   const upcomingValue = watch("upcoming");
 
+  // TODO: add a form validation for if upcoming is false, make sure the date selected does not exceed today's date
   const handleFormSubmit = async (data: FormInput) => {
     if (data.upcoming === "true") {
-      console.log("Submitting upcoming experience...");
       submitUpcomingExperience(data);
     } else {
-      console.log("Submitting past experience...");
       submitPastExperience(data);
     }
   };
@@ -111,7 +110,8 @@ const NewExperienceForm = () => {
         flyer,
       } = data;
 
-      const flyerUrl = await getFlyerUrl(flyer as File, storageFolder!);
+      const gfuResult = await getFlyerUrl(flyer as File, storageFolder!);
+      const flyerUrl = gfuResult.data;
 
       const newUpcomingExperienceItem: ExperienceItem = {
         title,
@@ -125,8 +125,8 @@ const NewExperienceForm = () => {
         storageFolder,
       };
 
-      const message = await createNewExperience(newUpcomingExperienceItem);
-      toast.success(<p className='text-lg'>{message}</p>);
+      const cneResult = await createNewExperience(newUpcomingExperienceItem);
+      toast.success(<p className='text-lg'>{cneResult.successMessage}</p>);
       reset();
     } catch (error) {
       console.log(error);
@@ -166,8 +166,8 @@ const NewExperienceForm = () => {
         storageFolder,
       };
 
-      const message = await createNewExperience(newPastExperienceItem);
-      toast.success(<p className='text-lg'>{message}</p>);
+      const result = await createNewExperience(newPastExperienceItem);
+      toast.success(<p className='text-lg'>{result.successMessage}</p>);
       reset();
     } catch (error) {
       console.log(error);
@@ -459,6 +459,7 @@ const NewExperienceForm = () => {
           <Button
             type='submit'
             className='mt-8 cursor-pointer'
+            disabled={isSubmitting}
           >
             Add
           </Button>
