@@ -23,7 +23,7 @@ import {
 } from "@/utils/clientActions";
 import { ExperienceItem } from "@/utils/types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { format } from "date-fns";
+import { format, isAfter } from "date-fns";
 import { Info } from "lucide-react";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -32,7 +32,22 @@ import * as yup from "yup";
 
 const newExperienceSchema = yup.object({
   title: yup.string().required("Please enter title"),
-  date: yup.date().required("Please enter date of experience"),
+  date: yup
+    .date()
+    .required("Please enter date of experience")
+    .when("upcoming", {
+      is: "false",
+      then: (schema) =>
+        schema.test(
+          "required",
+          "You marked this event as past, but the date selected is in the future.",
+          (value) => {
+            if (isAfter(value, new Date())) return false;
+
+            return true;
+          },
+        ),
+    }),
   location: yup.string().required("Please enter a location"),
   upcoming: yup.string().required("Please select 'Yes' or 'No'"),
   description: yup.string().required("Please enter a description"),
@@ -88,7 +103,6 @@ const NewExperienceForm = () => {
 
   const upcomingValue = watch("upcoming");
 
-  // TODO: add a form validation for if upcoming is false, make sure the date selected does not exceed today's date
   const handleFormSubmit = async (data: FormInput) => {
     if (data.upcoming === "true") {
       submitUpcomingExperience(data);

@@ -42,7 +42,6 @@ export const GET = async (
   }
 };
 
-// TODO: move this [storageFolder] api route
 export const POST = async (
   req: NextRequest,
   { params }: { params: Promise<{ storageFolder: string }> },
