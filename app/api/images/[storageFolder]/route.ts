@@ -1,4 +1,5 @@
 import { storage } from "@/lib/firebase/firebase-admin";
+import { checkIfStorageFolderExists } from "@/utils/serverActions";
 import { ApiResponse } from "@/utils/types";
 import { getDownloadURL } from "firebase-admin/storage";
 import { NextRequest, NextResponse } from "next/server";
@@ -116,10 +117,8 @@ export const DELETE = async (
       throw new Error("A storage folder was not provided");
     }
 
-    const [file] = await storage
-      .bucket()
-      .getFiles({ prefix: `${storageFolder}/`, maxResults: 1 });
-    if (file.length > 0) {
+    const storageFolderExists = await checkIfStorageFolderExists(storageFolder);
+    if (storageFolderExists) {
       await storage
         .bucket()
         .deleteFiles({ prefix: `${storageFolder}/` })
@@ -130,7 +129,7 @@ export const DELETE = async (
 
       return NextResponse.json<ApiResponse>(
         {
-          successMessage: "Successfully delete storage folder.",
+          successMessage: "Successfully deleted storage folder.",
         },
         { status: 200 },
       );

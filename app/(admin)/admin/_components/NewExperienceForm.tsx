@@ -21,9 +21,10 @@ import {
   getFlyerUrl,
   uploadFilesInBatches,
 } from "@/utils/clientActions";
+import { checkIfStorageFolderExists } from "@/utils/serverActions";
 import { ExperienceItem } from "@/utils/types";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { format, isAfter } from "date-fns";
+import { format, isAfter, isBefore } from "date-fns";
 import { Info } from "lucide-react";
 import React from "react";
 import { Controller, useForm } from "react-hook-form";
@@ -47,11 +48,34 @@ const newExperienceSchema = yup.object({
             return true;
           },
         ),
+    })
+    .when("upcoming", {
+      is: "true",
+      then: (schema) =>
+        schema.test(
+          "required",
+          "You marked this event as upcoming, but the date selected is before today.",
+          (value) => {
+            if (isBefore(value, new Date())) return false;
+
+            return true;
+          },
+        ),
     }),
   location: yup.string().required("Please enter a location"),
   upcoming: yup.string().required("Please select 'Yes' or 'No'"),
   description: yup.string().required("Please enter a description"),
-  storageFolder: yup.string().required("Please enter the name of your choice"),
+  storageFolder: yup
+    .string()
+    .required("Please enter the name of your choice")
+    .test("required", "This ID already exists.", async (value) => {
+      const folderExist = await checkIfStorageFolderExists(value);
+      if (folderExist) {
+        return false;
+      }
+
+      return true;
+    }),
   flyer: yup.mixed().when("upcoming", {
     is: "true",
     then: (schema) =>
@@ -99,6 +123,12 @@ const NewExperienceForm = () => {
     clearErrors,
   } = useForm({
     resolver: yupResolver(newExperienceSchema),
+    mode: "onSubmit",
+    defaultValues: {
+      upcoming: "",
+      flyer: undefined,
+      images: undefined,
+    },
   });
 
   const upcomingValue = watch("upcoming");
@@ -140,13 +170,13 @@ const NewExperienceForm = () => {
       };
 
       const cneResult = await createNewExperience(newUpcomingExperienceItem);
-      toast.success(<p className='text-lg'>{cneResult.successMessage}</p>);
+      toast.success(<p className='text-sm'>{cneResult.successMessage}</p>);
       reset();
     } catch (error) {
       console.log(error);
       const errorMessage =
         error instanceof Error ? error.message : "An error occured";
-      toast.error(<p className='text-lg'>{errorMessage}</p>);
+      toast.error(<p className='text-sm'>{errorMessage}</p>);
     }
   };
 
@@ -181,13 +211,13 @@ const NewExperienceForm = () => {
       };
 
       const result = await createNewExperience(newPastExperienceItem);
-      toast.success(<p className='text-lg'>{result.successMessage}</p>);
+      toast.success(<p className='text-sm'>{result.successMessage}</p>);
       reset();
     } catch (error) {
       console.log(error);
       const errorMessage =
         error instanceof Error ? error.message : "An error occured";
-      toast.error(<p className='text-lg'>{errorMessage}</p>);
+      toast.error(<p className='text-sm'>{errorMessage}</p>);
     }
   };
 
@@ -240,7 +270,7 @@ const NewExperienceForm = () => {
           )}
         </div>
       </div>
-      {upcomingValue !== undefined && (
+      {upcomingValue !== "" && (
         <div>
           <div className='grid grid-rows-1 grid-cols-3 gap-8'>
             <div className='flex flex-1 flex-col gap-2'>

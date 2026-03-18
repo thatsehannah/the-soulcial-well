@@ -51,13 +51,13 @@ const Contact = () => {
   const onSubmit = async (data: NewMessage) => {
     try {
       const response = await sendBatchEmails(data);
-      toast.success(<p className='text-lg'>{response?.message}</p>, {
+      toast.success(<p className='text-sm'>{response?.message}</p>, {
         description: response?.description,
       });
       reset();
       clearErrors();
     } catch (error) {
-      toast.error(<p className='text-lg'>Oh no!</p>, {
+      toast.error(<p className='text-sm'>Oh no!</p>, {
         description:
           error instanceof Error ? error.message : "An unknown error occurred.",
       });

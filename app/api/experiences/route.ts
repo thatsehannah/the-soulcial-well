@@ -45,7 +45,7 @@ export const POST = async (req: NextRequest) => {
 
     return NextResponse.json<ApiResponse>(
       {
-        successMessage: "Experience has been created successfully",
+        successMessage: "Experience has been created successfully.",
       },
       {
         status: 201,
@@ -99,7 +99,7 @@ export const PATCH = async (req: NextRequest) => {
 
     return NextResponse.json<ApiResponse>(
       {
-        successMessage: "Experience has been updated successfully",
+        successMessage: "Experience has been updated successfully.",
       },
       {
         status: 201,
@@ -144,7 +144,7 @@ export const DELETE = async (req: NextRequest) => {
 
     return NextResponse.json<ApiResponse>(
       {
-        successMessage: "Experience has been deleted successfully",
+        successMessage: "Experience has been deleted successfully.",
       },
       {
         status: 200,

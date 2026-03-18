@@ -1,6 +1,7 @@
 //these functions will be called on the server
+"use server";
 
-import { db } from "@/lib/firebase/firebase-admin";
+import { db, storage } from "@/lib/firebase/firebase-admin";
 import { type ExperienceItem } from "./types";
 
 export const fetchAllExperiences = async (): Promise<ExperienceItem[]> => {
@@ -37,4 +38,12 @@ export const fetchAllExperiences = async (): Promise<ExperienceItem[]> => {
       error instanceof Error ? error.message : "Failed to fetch experiences",
     );
   }
+};
+
+export const checkIfStorageFolderExists = async (storageFolder: string) => {
+  const [files] = await storage
+    .bucket()
+    .getFiles({ prefix: `${storageFolder}/`, maxResults: 1 });
+
+  return files.length > 0;
 };

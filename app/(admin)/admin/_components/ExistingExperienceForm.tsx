@@ -95,14 +95,14 @@ const ExistingExperienceForm = ({
         updates.description = formData.pastDescription;
 
       const result = await updateExperience(updates);
-      toast.success(<p className='text-lg'>{result.successMessage}</p>);
+      toast.success(<p className='text-sm'>{result.successMessage}</p>);
       closePopUp();
       refreshAll();
     } catch (error) {
       console.error(error);
       const errorMessage =
         error instanceof Error ? error.message : "An error occured";
-      toast.error(<p className='text-lg'>{errorMessage}</p>);
+      toast.error(<p className='text-sm'>{errorMessage}</p>);
     }
   };
 
