@@ -190,3 +190,55 @@ export const updateExperience = async (
     };
   }
 };
+
+export const deleteExperience = async (storageFolder: string) => {
+  try {
+    const response = await fetch("/api/experiences", {
+      method: "DELETE",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(storageFolder),
+    });
+
+    const result = (await response.json()) as ApiResult;
+
+    if (response.ok) {
+      return result;
+    }
+
+    throw new Error(result.errorMessage);
+  } catch (error) {
+    console.log(error);
+    return {
+      errorMessage:
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred deleting this experience",
+    };
+  }
+};
+
+export const deleteStorageFolder = async (
+  folder: string,
+): Promise<ApiResult> => {
+  try {
+    const response = await fetch(`/api/images/${folder}`, {
+      method: "DELETE",
+    });
+
+    const result = (await response.json()) as ApiResult;
+
+    if (response.ok) {
+      return result;
+    }
+
+    throw new Error(result.errorMessage);
+  } catch (error) {
+    console.log(error);
+    return {
+      errorMessage:
+        error instanceof Error
+          ? error.message
+          : "An unexpected error occurred deleting this folder",
+    };
+  }
+};

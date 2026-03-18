@@ -99,7 +99,7 @@ const ExistingExperienceForm = ({
       closePopUp();
       refreshAll();
     } catch (error) {
-      console.log(error);
+      console.error(error);
       const errorMessage =
         error instanceof Error ? error.message : "An error occured";
       toast.error(<p className='text-lg'>{errorMessage}</p>);

@@ -41,3 +41,46 @@ export const GET = async (
     );
   }
 };
+
+export const DELETE = async (
+  _: Request,
+  { params }: { params: Promise<{ storageFolder: string }> },
+) => {
+  try {
+    const { storageFolder } = await params;
+    if (storageFolder === "") {
+      throw new Error("A storage folder was not provided");
+    }
+
+    const [file] = await storage
+      .bucket()
+      .getFiles({ prefix: `${storageFolder}/`, maxResults: 1 });
+    if (file.length > 0) {
+      await storage
+        .bucket()
+        .deleteFiles({ prefix: `${storageFolder}/` })
+        .catch((error) => {
+          console.log(error);
+          throw new Error(`Could not delete ${storageFolder} from storage.`);
+        });
+
+      return NextResponse.json<ApiResponse>(
+        {
+          successMessage: "Successfully delete storage folder.",
+        },
+        { status: 200 },
+      );
+    }
+
+    throw new Error(`${storageFolder} does not exist.`);
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json<ApiResponse>(
+      {
+        errorMessage:
+          error instanceof Error ? error.message : "Failed to deletes images",
+      },
+      { status: 500 },
+    );
+  }
+};

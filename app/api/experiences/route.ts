@@ -118,3 +118,48 @@ export const PATCH = async (req: NextRequest) => {
     );
   }
 };
+
+export const DELETE = async (req: NextRequest) => {
+  try {
+    const docId = (await req.json()) as string;
+    console.log(docId);
+    const docRef = db.collection("experiences").doc(docId);
+
+    const doc = await docRef.get();
+    if (!doc.exists) {
+      return NextResponse.json<ApiResponse>(
+        {
+          errorMessage: "Could not locate document",
+        },
+        {
+          status: 404,
+        },
+      );
+    }
+
+    await docRef.delete().catch((error) => {
+      console.error(error);
+      throw new Error("Error deleting this document");
+    });
+
+    return NextResponse.json<ApiResponse>(
+      {
+        successMessage: "Experience has been deleted successfully",
+      },
+      {
+        status: 200,
+      },
+    );
+  } catch (error) {
+    console.log(error);
+    return NextResponse.json<ApiResponse>(
+      {
+        errorMessage:
+          error instanceof Error
+            ? error.message
+            : "Failed to delete experience",
+      },
+      { status: 500 },
+    );
+  }
+};
