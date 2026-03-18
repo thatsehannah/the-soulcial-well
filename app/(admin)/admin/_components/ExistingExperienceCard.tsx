@@ -13,7 +13,6 @@ type ExistingExperienceCardProps = {
   loading: boolean;
 };
 
-// TODO: add delete button and functionality
 const ExistingExperienceCard = ({
   data,
   onClick,

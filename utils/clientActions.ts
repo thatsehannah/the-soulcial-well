@@ -52,15 +52,14 @@ export const checkForUpcomingExperiences = async (): Promise<
 
 export const getFlyerUrl = async (
   file: File,
-  folder: string,
+  storageFolder: string,
 ): Promise<ApiResult<string>> => {
   try {
     const formData = new FormData();
     formData.append("file", file);
-    formData.append("folder", folder);
     formData.append("isUploadingFlyer", "true");
 
-    const response = await fetch("/api/images/file-upload", {
+    const response = await fetch(`/api/images/${storageFolder}`, {
       method: "POST",
       body: formData,
     });
@@ -78,7 +77,7 @@ export const getFlyerUrl = async (
       errorMessage:
         error instanceof Error
           ? error.message
-          : "Failed to upload image to storage",
+          : "Failed to upload flyer to storage",
     };
   }
 };
@@ -103,20 +102,28 @@ export const uploadFilesInBatches = async (
   }
 };
 
-// TODO: make this a trycatch block
 const uploadSingleFile = async (file: File, storageFolder: string) => {
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("folder", storageFolder);
+  try {
+    const formData = new FormData();
+    formData.append("file", file);
 
-  const response = await fetch("/api/images/file-upload", {
-    method: "POST",
-    body: formData,
-  });
+    const response = await fetch(`/api/images/${storageFolder}`, {
+      method: "POST",
+      body: formData,
+    });
 
-  if (response.ok) {
     const result = (await response.json()) as ApiResult;
-    return result.successMessage;
+
+    if (response.ok) {
+      return result.successMessage;
+    }
+
+    throw new Error(result.errorMessage);
+  } catch (error) {
+    console.log(error);
+    return error instanceof Error
+      ? error.message
+      : "Error uploading file to storage";
   }
 };
 

@@ -435,7 +435,7 @@ const NewExperienceForm = () => {
                 </Label>
                 <Input
                   type='file'
-                  accept='image/*'
+                  accept='image/*,video/*'
                   multiple
                   className='w-fit text-center rounded-md text-dark-green'
                   id='images'

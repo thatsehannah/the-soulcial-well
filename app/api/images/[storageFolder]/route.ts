@@ -1,10 +1,10 @@
 import { storage } from "@/lib/firebase/firebase-admin";
 import { ApiResponse } from "@/utils/types";
 import { getDownloadURL } from "firebase-admin/storage";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
-  _: Request,
+  _: NextRequest,
   { params }: { params: Promise<{ storageFolder: string }> },
 ) => {
   try {
@@ -36,6 +36,71 @@ export const GET = async (
       {
         errorMessage:
           error instanceof Error ? error.message : "Failed to fetch images",
+      },
+      { status: 500 },
+    );
+  }
+};
+
+// TODO: move this [storageFolder] api route
+export const POST = async (
+  req: NextRequest,
+  { params }: { params: Promise<{ storageFolder: string }> },
+) => {
+  try {
+    const { storageFolder } = await params;
+
+    const data = await req.formData();
+    const file = data.get("file") as File;
+    const isUploadingFlyer = data.get("isUploadingFlyer");
+
+    // getting storage bucket
+    const bucket = storage.bucket();
+    const filename = `${storageFolder}/${file.name}`;
+
+    // creating file reference
+    const fileRef = bucket.file(filename);
+
+    // firebase-admin requires file to be converted to a buffer
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    await fileRef
+      .save(buffer, {
+        metadata: {
+          contentType: file.type,
+        },
+      })
+      .catch((error) => {
+        console.error(error);
+        throw new Error(`Could not save file ${filename}`);
+      });
+
+    await fileRef.makePublic();
+
+    if (isUploadingFlyer) {
+      const flyerUrl = await getDownloadURL(fileRef);
+
+      return NextResponse.json<ApiResponse<string>>(
+        {
+          data: flyerUrl,
+        },
+        { status: 201 },
+      );
+    }
+
+    return NextResponse.json<ApiResponse<string>>(
+      {
+        successMessage: "File uploaded successfully",
+      },
+      { status: 201 },
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json<ApiResponse>(
+      {
+        errorMessage:
+          error instanceof Error ? error.message : "Error uploading file",
       },
       { status: 500 },
     );
