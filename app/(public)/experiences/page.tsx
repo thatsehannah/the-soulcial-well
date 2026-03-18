@@ -1,22 +1,19 @@
 import Image from "next/image";
-import React, { Fragment } from "react";
-import Experience from "./_components/Experience";
+import React from "react";
 import UpcomingExperiences from "./_components/UpcomingExperiences";
 import { fetchAllExperiences } from "@/utils/serverActions";
+import dynamicComponent from "next/dynamic";
+import LoadingIndicator from "@/components/LoadingIndicator";
 
 //this will make this page dynamic and fetch for experiences on every page request
 export const dynamic = "force-dynamic";
 
+const Experience = dynamicComponent(() => import("./_components/Experience"), {
+  loading: () => <LoadingIndicator />,
+});
+
 const ExperiencesPage = async () => {
   const allExperiences = await fetchAllExperiences();
-
-  if (allExperiences.length === 0) {
-    return (
-      <div>
-        <p>No experiences found.</p>
-      </div>
-    );
-  }
 
   //getting past experiences
   const pastExperiences = allExperiences.filter(
@@ -59,6 +56,15 @@ const ExperiencesPage = async () => {
           </div>
         </div>
       </section>
+      {allExperiences.length === 0 && (
+        <div className='p-8 text-center'>
+          <p className='text-4xl font-bold mb-4'>Oh no!</p>
+          <p className='text-[1rem] font-light'>
+            This is not normal, and we&apos;re working to get our experiences
+            available again for your viewing pleasure.
+          </p>
+        </div>
+      )}
       {upcomingExperiences.length > 0 && (
         <section id='upcoming'>
           <UpcomingExperiences experiences={upcomingExperiences} />
@@ -66,12 +72,12 @@ const ExperiencesPage = async () => {
       )}
 
       {pastExperiences.map((exp, index) => (
-        <Fragment key={index}>
+        <section key={index}>
           <Experience
             item={exp}
             index={index}
           />
-        </Fragment>
+        </section>
       ))}
     </main>
   );

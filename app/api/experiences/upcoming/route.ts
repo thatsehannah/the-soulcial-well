@@ -1,4 +1,5 @@
 import { db } from "@/lib/firebase/firebase-admin";
+import { ApiResponse } from "@/utils/types";
 import { NextResponse } from "next/server";
 
 export const GET = async () => {
@@ -8,23 +9,25 @@ export const GET = async () => {
       .where("upcoming", "==", true)
       .get();
 
+    if (!snapshot) {
+      throw new Error("Could not locate the 'experiences' collection");
+    }
+
     if (snapshot.empty) {
-      return NextResponse.json(false);
+      return NextResponse.json<ApiResponse<boolean>>({ data: false });
     }
 
-    return NextResponse.json(true);
+    return NextResponse.json<ApiResponse<boolean>>({ data: true });
   } catch (error) {
-    if (error instanceof Error) {
-      console.log("Error checking for upcoming experiences", error.stack);
-    } else {
-      console.log(error);
-    }
-
-    return NextResponse.json(
+    console.error(error);
+    return NextResponse.json<ApiResponse>(
       {
-        error: "Failed to check for upcoming experiences ",
+        errorMessage:
+          error instanceof Error
+            ? error.message
+            : "Failed to check for upcoming experiences ",
       },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

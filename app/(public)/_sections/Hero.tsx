@@ -12,33 +12,37 @@ import { checkForUpcomingExperiences } from "@/utils/clientActions";
 export const dynamic = "force-dynamic";
 
 const Hero = () => {
-  const [anyUpcomingEvents, setAnyUpcomingEvents] = useState(false);
+  const [upcomingEvents, setUpcomingEvents] = useState(false);
 
   useEffect(() => {
     const anyUpcomingEvents = async () => {
       const result = await checkForUpcomingExperiences();
 
-      setAnyUpcomingEvents(result);
+      if (result.data) {
+        setUpcomingEvents(result.data);
+      }
     };
 
     anyUpcomingEvents();
 
-    gsap.fromTo(
-      ".upcoming-badge",
-      {
-        opacity: 0,
-        scale: 1.4,
-        ease: "expo.inOut",
-      },
-      {
-        opacity: 1,
-        duration: 0.7,
-        delay: 6,
-        scale: 1,
-        ease: "expo.inOut",
-      }
-    );
-  });
+    if (upcomingEvents) {
+      gsap.fromTo(
+        ".upcoming-badge",
+        {
+          opacity: 0,
+          scale: 1.4,
+          ease: "expo.inOut",
+        },
+        {
+          opacity: 1,
+          duration: 0.7,
+          delay: 6,
+          scale: 1,
+          ease: "expo.inOut",
+        },
+      );
+    }
+  }, [upcomingEvents]);
 
   useGSAP(() => {
     document.fonts.ready.then(() => {
@@ -78,7 +82,7 @@ const Hero = () => {
             yPercent: 50,
             duration: 0.8,
           },
-          "<"
+          "<",
         )
         .from(subtitleSplit.chars, {
           opacity: 0,
@@ -94,7 +98,7 @@ const Hero = () => {
             stagger: 0.08,
             ease: "bounce",
           },
-          "<"
+          "<",
         );
     });
   }, []);
@@ -165,7 +169,7 @@ const Hero = () => {
         <LinkButton
           text='experiences'
           link='/experiences'
-          badge={anyUpcomingEvents}
+          badge={upcomingEvents}
           badgeUrl='/experiences#upcoming'
           tooltipText='A new experience is coming soon!'
         />

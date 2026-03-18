@@ -10,7 +10,7 @@ if (!admin.apps.length) {
       clientEmail: process.env.FIREBASE_ADMIN_CLIENT_EMAIL,
       privateKey: process.env.FIREBASE_ADMIN_PRIVATE_KEY,
     }),
-    storageBucket: "the-soulcial-well.firebasestorage.app",
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   });
 }
 

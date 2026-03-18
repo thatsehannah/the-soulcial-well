@@ -16,20 +16,20 @@ const UpcomingExperience = ({ experience }: UpcomingExperienceProps) => {
     gsap.fromTo(
       ".up-title",
       { opacity: 0, yPercent: -100 },
-      { opacity: 1, duration: 0.8, yPercent: 0 }
+      { opacity: 1, duration: 0.8, yPercent: 0 },
     );
 
     gsap.fromTo(
       ".up-image",
       { opacity: 0, xPercent: 100 },
-      { opacity: 1, duration: 0.8, xPercent: 0 }
+      { opacity: 1, duration: 0.8, xPercent: 0 },
     );
 
     gsap.fromTo(".up-button", { opacity: 0 }, { opacity: 1, duration: 0.8 });
     gsap.fromTo(
       ".up-description",
       { opacity: 0 },
-      { opacity: 1, duration: 0.8 }
+      { opacity: 1, duration: 0.8 },
     );
   }, [experience]);
 
@@ -46,7 +46,7 @@ const UpcomingExperience = ({ experience }: UpcomingExperienceProps) => {
             fill
             sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
             quality={100}
-            className='rounded-xl shadow-2xl absolute up-image'
+            className='rounded-xl shadow-2xl absolute up-image bg-main-bg'
             priority
           />
         </div>
@@ -72,7 +72,7 @@ const UpcomingExperience = ({ experience }: UpcomingExperienceProps) => {
           fill
           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
           quality={100}
-          className='rounded-xl shadow-2xl absolute image'
+          className='rounded-xl shadow-2xl absolute image bg-main-bg'
           priority
         />
       </div>
