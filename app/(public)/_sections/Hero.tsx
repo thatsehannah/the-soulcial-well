@@ -46,7 +46,7 @@ const Hero = () => {
 
   useGSAP(() => {
     document.fonts.ready.then(() => {
-      const subtitleSplit = new SplitText(".subtitle", {
+      const taglineSplit = new SplitText(".tagline", {
         type: "chars, words",
       });
 
@@ -84,11 +84,16 @@ const Hero = () => {
           },
           "<",
         )
-        .from(subtitleSplit.chars, {
+        .from(taglineSplit.chars, {
           opacity: 0,
           yPercent: 100,
           duration: 0.4,
           stagger: 0.05,
+        })
+        .from(".sub-tagline", {
+          opacity: 0,
+          yPercent: 100,
+          duration: 0.6,
         })
         .to(
           ".linkButton",
@@ -143,9 +148,13 @@ const Hero = () => {
             />
           </div>
         </div>
-        <div className='text-center mt-6 lg:mt-8'>
-          <p className='subtitle xl:text-3xl text-2xl text-primary-foreground tracking-tighter'>
-            Bringing back community
+        <div className='text-center mt-4 lg:mt-6'>
+          <p className='tagline xl:text-3xl text-2xl text-primary-foreground tracking-tighter'>
+            Community is the cure
+          </p>
+          <p className='sub-tagline xl:text-xl text-lg text-primary-foreground font-light mt-2'>
+            Loneliness is a public health crisis. We&apos;re doing something
+            about it.
           </p>
         </div>
       </div>
