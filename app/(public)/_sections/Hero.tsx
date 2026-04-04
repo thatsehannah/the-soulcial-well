@@ -163,8 +163,8 @@ const Hero = () => {
           link='/about'
         />
         <LinkButton
-          text='soul tools'
-          link='/soul-tools'
+          text='Candid Conversations'
+          link='/framework'
         />
         <LinkButton
           text='experiences'
