@@ -158,11 +158,7 @@ const Hero = () => {
           </p>
         </div>
       </div>
-      <div className='grid grid-cols-2 place-items-center gap-8 mb-8 '>
-        <LinkButton
-          text='home'
-          link='/'
-        />
+      <div className='grid grid-cols-1 place-items-center gap-4 mb-8 lg:mt-40 border border-green-500'>
         <LinkButton
           text='offerings'
           link='/offerings'

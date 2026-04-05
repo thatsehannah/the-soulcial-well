@@ -40,7 +40,7 @@ const LinkButton = ({
       )}
       <Link
         href={link}
-        className='text-sm lg:text-lg text-primary-foreground uppercase tracking-wider lg:tracking-widest font-medium bg-primary rounded-full w-44 h-10 md:w-82 md:h-13  flex justify-center items-center opacity-0 linkButton'
+        className='text-sm lg:text-lg text-primary-foreground uppercase tracking-wider lg:tracking-widest font-medium bg-primary rounded-full w-44 h-10 md:w-82 md:h-13 lg:w-82 lg:h-11 text-center xl:p-8 flex justify-center items-center opacity-0 linkButton'
       >
         {text}
       </Link>
