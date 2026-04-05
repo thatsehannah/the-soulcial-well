@@ -14,7 +14,7 @@ const SoulcialWellOverview = () => {
   }, []);
 
   return (
-    <section className='xl:p-32 pt-30 pb-12 px-4 border border-green-500'>
+    <section className='xl:p-32 pt-30 pb-12 px-4'>
       <div className='grid grid-cols-1 xl:grid-cols-3 xl:mt-8 mt-4 w-full lg:gap-12 xl:p-8 p-2'>
         <div
           id='overview-img'

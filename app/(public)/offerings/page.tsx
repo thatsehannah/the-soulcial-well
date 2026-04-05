@@ -15,13 +15,14 @@ const OfferingPill = ({ text }: { text: string }) => {
 
 const Offerings = () => {
   const offerings = [
-    "Wellness Workshops",
-    "Self-Care Events",
-    "Community Building Experiences",
-    "Specialized Programs",
-    "Wellness Consultations",
-    "Personalized Coaching",
-    "Group Therapy & Support Circles",
+    "Community Activations & Programs",
+    "Campus & University Programs",
+    "Corporate & Organizational Workshops",
+    "Institutional & Nonprofit Programming",
+    "Speaking & Faciliation",
+    "Consulting & Curriculum Design",
+    "Volunteer & Community Engagement",
+    "Storytelling Circles",
   ];
 
   useGSAP(() => {
