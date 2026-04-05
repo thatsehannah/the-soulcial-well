@@ -14,7 +14,7 @@ const SoulcialWellOverview = () => {
   }, []);
 
   return (
-    <section className='xl:p-32 pt-30 pb-12 px-4'>
+    <section className='xl:p-32 pt-30 pb-12 px-4 border border-green-500'>
       <div className='grid grid-cols-1 xl:grid-cols-3 xl:mt-8 mt-4 w-full lg:gap-12 xl:p-8 p-2'>
         <div
           id='overview-img'
@@ -41,30 +41,16 @@ const SoulcialWellOverview = () => {
             />
           </div>
           <p>
-            We believe that self-care is more than solo rituals—it’s about
-            meaningful connection, shared experiences, and holistic well-being.
-            We create immersive, interactive experiences that blend mental
-            wellness, social connection, and personal growth, making self-care
-            engaging, dynamic, and fun.
+            Loneliness isn&apos;t just uncomfortable. It is a public health
+            crisis with real mental and physical consequences. At The Soulcial
+            Well, we exist to close that gap. We create immersive,
+            experientially designed spaces where people skip the small talk and
+            get to the real deal, because healing is more powerful when it
+            happens in community.
           </p>
-          <p>
-            Our approach is rooted in the idea that true well-being thrives in
-            community. Through thoughtfully designed events, creative
-            activities, and transformative conversations, we provide spaces
-            where people feel seen, heard, and empowered. Whether it’s deep
-            reflection, playful exploration, or offbeat conversations, we
-            challenge the idea that self-care has to be routine—because wellness
-            should be felt, not just practiced.
-          </p>
-          <p>
-            At The Soulcial Well, we bridge the gap between self-discovery and
-            social connection, ensuring that no one has to navigate their
-            journey alone. Ready to refill your well? Join us and experience
-            self-care in a whole new way.
-          </p>
+
           <p className='text-center'>
-            ✨ Rethink self-care. Reconnect with yourself. Thrive in community.
-            ✨
+            ✨ We don&apos;t talk about connection. We design it. ✨
           </p>
         </div>
       </div>
