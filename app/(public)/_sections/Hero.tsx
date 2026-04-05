@@ -109,8 +109,8 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className='flex flex-col justify-around lg:justify-between h-[100vh] p-4 relative'>
-      <div className='absolute left-0 xl:top-[36%] lg:top-[36%] md:top-[38%] top-[43%] w-[43vw] 2xl:h-65 xl:h-55 lg:h-48 md:h-34 h-20 left-arm'>
+    <section className='flex flex-col h-[100vh] p-4 relative'>
+      <div className='absolute left-0 xl:top-[36%] lg:top-[36%] md:top-[38%] top-[35%] w-[43vw] 2xl:h-65 xl:h-55 lg:h-48 md:h-34 h-22 left-arm'>
         <Image
           src='/assets/leftarm.png'
           alt='left arm'
@@ -118,7 +118,7 @@ const Hero = () => {
           quality={100}
         />
       </div>
-      <div className='absolute right-0 2xl:top-[24%] lg:top-[27%] md:top-[35%] top-[39%] w-[43vw] 2xl:h-63 xl:h-50 lg:h-48 md:h-27 h-20 right-arm'>
+      <div className='absolute right-0 2xl:top-[24%] lg:top-[27%] md:top-[35%] top-[32%] w-[43vw] 2xl:h-63 xl:h-50 lg:h-48 md:h-27 h-22 right-arm'>
         <Image
           src='/assets/rightarm.png'
           alt='left arm'
@@ -148,17 +148,17 @@ const Hero = () => {
             />
           </div>
         </div>
-        <div className='text-center mt-4 lg:mt-6'>
-          <p className='tagline xl:text-3xl text-2xl text-primary-foreground tracking-tighter'>
-            Community is the cure
-          </p>
-          <p className='sub-tagline xl:text-xl text-lg text-primary-foreground font-light mt-2'>
-            Loneliness is a public health crisis. We&apos;re doing something
-            about it.
-          </p>
-        </div>
       </div>
-      <div className='grid grid-cols-1 place-items-center gap-4 mb-8 lg:mt-40 border border-green-500'>
+      <div className='text-center mt-4'>
+        <p className='tagline xl:text-3xl text-2xl text-primary-foreground tracking-tighter'>
+          Community is the cure
+        </p>
+        <p className='sub-tagline xl:text-xl text-lg text-primary-foreground font-light mt-2'>
+          Loneliness is a public health crisis. We&apos;re doing something about
+          it.
+        </p>
+      </div>
+      <div className='grid grid-cols-1 place-items-center lg:gap-5 gap-6 mb-8 mt-44 xl:mt-40'>
         <LinkButton
           text='offerings'
           link='/offerings'
