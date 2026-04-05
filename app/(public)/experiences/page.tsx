@@ -41,17 +41,27 @@ const ExperiencesPage = async () => {
             />
           </div>
 
-          <div className='col-span-2 lg:p-12 py-6'>
+          <div className='col-span-2 lg:p-12 py-6 grid gap-6'>
             <p className='text-main-foreground lg:text-2xl text-xl text-center lg:text-start'>
-              Each{" "}
-              <em>
-                <b>Soulcial Well</b>
-              </em>{" "}
-              experience is more than just an event - it&apos;s a moment of
-              community, joy, and self-discovery. Click on any icon below to
-              revisit the vibes, view highlights, and feel the energy from past
-              gatherings. Your next favorite memory might just be one click
-              away.
+              Every Soulcial Well experience is designed with intention. No two
+              look exactly the same — we have gathered on the BeltLine, in
+              university spaces, at brunches, in open fields, and on national
+              conference stages. But underneath every activation is the same
+              arc: grounding, experience, reflection, connection, and a takeaway
+              that travels home with you.
+            </p>
+            <p className='text-main-foreground lg:text-2xl text-xl text-center lg:text-start'>
+              That consistency is not an accident. It is the Candid Conversation
+              framework at work — a mode of storytelling that meets people where
+              they are, in whatever setting makes sense, and creates the
+              conditions for something real to happen. Every experience gives
+              people a way to share who they are, where they come from, and what
+              they carry — and to be genuinely received by the people around
+              them.
+            </p>
+            <p className='text-main-foreground lg:text-2xl text-xl text-center lg:text-start'>
+              Browse below to see what that looks like across audiences, cities,
+              and formats.
             </p>
           </div>
         </div>
