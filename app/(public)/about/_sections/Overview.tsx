@@ -4,7 +4,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Image from "next/image";
 
-const SoulcialWellOverview = () => {
+const Overview = () => {
   useGSAP(() => {
     gsap.to("#overview-img", {
       opacity: 1,
@@ -58,4 +58,4 @@ const SoulcialWellOverview = () => {
   );
 };
 
-export default SoulcialWellOverview;
+export default Overview;

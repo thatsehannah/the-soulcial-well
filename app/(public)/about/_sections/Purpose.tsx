@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const SoulcialWellPurpose = () => {
+const Purpose = () => {
   return (
     <section className='flex lg:flex-row flex-col'>
       <div className='lg:w-1/2 w-full flex flex-col items-center justify-center lg:p-32 pt-16 pb-12 px-12 gap-18'>
@@ -44,4 +44,4 @@ const SoulcialWellPurpose = () => {
   );
 };
 
-export default SoulcialWellPurpose;
+export default Purpose;

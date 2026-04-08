@@ -8,7 +8,7 @@ import gsap from "gsap";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SoulcialWellOrigins = () => {
+const Origins = () => {
   const imageRef = useRef(null);
 
   useGSAP(() => {
@@ -85,4 +85,4 @@ const SoulcialWellOrigins = () => {
   );
 };
 
-export default SoulcialWellOrigins;
+export default Origins;

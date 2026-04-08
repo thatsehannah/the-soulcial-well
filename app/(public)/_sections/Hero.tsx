@@ -145,16 +145,8 @@ const Hero = ({ upcomingEvents }: HeroProps) => {
       </div>
       <div className='grid grid-cols-1 place-items-center lg:gap-5 gap-6 mb-6 mt-40 lg:mt-52 xl:mt-64'>
         <LinkButton
-          text='offerings'
-          link='/offerings'
-        />
-        <LinkButton
           text='about us'
           link='/about'
-        />
-        <LinkButton
-          text='Candid Conversations'
-          link='/framework'
         />
         <LinkButton
           text='experiences'
@@ -162,6 +154,14 @@ const Hero = ({ upcomingEvents }: HeroProps) => {
           badge={upcomingEvents}
           badgeUrl='/experiences#upcoming'
           tooltipText='A new experience is coming soon!'
+        />
+        <LinkButton
+          text='offerings'
+          link='/offerings'
+        />
+        <LinkButton
+          text='Candid Conversations'
+          link='/framework'
         />
         <LinkButton
           text='contact'

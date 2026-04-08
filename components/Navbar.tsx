@@ -118,7 +118,7 @@ const Navbar = () => {
                   href={item.link}
                   className={`opacity-0 text-2xl lg:hover:scale-110 transition-all ease-linear font-bold w-fit ${
                     isActive
-                      ? "bg-primary text-main-foreground w-full -ml-4 rounded-lg px-4 py-3 shadow-lg"
+                      ? "bg-primary text-main-foreground w-full -ml-4 rounded-lg px-4 py-3"
                       : "bg-none text-dark-green"
                   } menu-item`}
                   key={idx}

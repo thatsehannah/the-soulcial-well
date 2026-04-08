@@ -2,7 +2,7 @@ import React from "react";
 import { coreValues } from "../_data/coreValues";
 import CoreValue from "../_components/CoreValue";
 
-const SoulcialWellCoreValues = () => {
+const CoreValues = () => {
   return (
     <section className='px-12 pt-16 pb-16'>
       <p className='text-5xl lg:text-6xl text-center text-primary'>
@@ -30,4 +30,4 @@ const SoulcialWellCoreValues = () => {
   );
 };
 
-export default SoulcialWellCoreValues;
+export default CoreValues;

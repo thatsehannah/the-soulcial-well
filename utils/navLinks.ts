@@ -12,11 +12,11 @@ export const navLinks = [
     link: "/offerings",
   },
   {
-    text: "Contact",
-    link: "/contact",
-  },
-  {
     text: "Candid Conversations",
     link: "/framework",
+  },
+  {
+    text: "Contact",
+    link: "/contact",
   },
 ];

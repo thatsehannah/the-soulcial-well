@@ -17,12 +17,12 @@ export const teamMemberInfo: TeamMemberInfo[] = [
       degree: "Doctorate of Clinical Forensic Psychology",
       school: "The Chicago School",
     },
-    bio: `Dr. Wilma is a self-care advocate, social well-being architect, and the visionary behind The Soulcial Well. She blends mental wellness, community, and creativity to create immersive experiences that make self-care engaging and meaningful.
+    bio: `I am Dr. Wilma, a psychologist and social wellness architect with a simple but deeply held belief: healing doesn't happen in isolation. I built The Soulcial Well because I felt the gap myself and kept hearing it from the people around me. Everyone was craving real connection but the spaces for it felt forced, awkward, or just didn't exist.
 
-With expertise in psychological assessment, holistic wellness, and group facilitation, she believes self-discovery thrives in connection. Whether guiding deep reflections or curating transformative spaces, her work centers on authenticity, growth, and joy.
+So I created one. It started with an event and a deck of cards I made for honest dialogue — what became the Candid Conversation framework. That first event made clear there was a real gap I could fill, and I kept building as I moved from Los Angeles to Houston to Atlanta.
 
-A free spirit with a love for bold ideas, offbeat conversations, and themed experiences, Dr. Wil bridges personal wellness and collective care—because thriving shouldn’t happen in isolation. ✨
+At its core, Candid Conversation is a mode of storytelling. It creates the conditions for people to be authentic, vulnerable while being genuinely received by others. That kind of exchange is universal. It crosses language, culture, and background because the human need underneath it is the same everywhere.
 
-✨ Ready to rethink self-care? Connect with Dr. Wilma and step into a world where wellness is anything but routine.`,
+Today, Candid Conversation is the foundation of every Soulcial Well program. Each one is built around experiential learning design — meaning people don't just hear about connection, they practice it in real time and walk away with something they can actually apply in their daily lives. Every program has a curriculum I designed that can be adapted across different settings, populations, and audiences, because real connection shouldn't be a one-size-fits-all experience.`,
   },
 ];
