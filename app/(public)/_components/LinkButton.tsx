@@ -41,7 +41,7 @@ const LinkButton = ({
       <Link
         href={link}
         className='text-sm xl:text-lg text-primary-foreground uppercase tracking-wider lg:tracking-widest font-medium bg-primary rounded-full w-64 h-10 md:w-82 md:h-13 lg:w-70 lg:h-11 xl:w-96 text-center p-6
-         lg:p-6 xl:p-8 flex justify-center items-center opacity-100 linkButton'
+         lg:p-6 xl:p-8 flex justify-center items-center opacity-0 linkButton'
       >
         {text}
       </Link>

@@ -7,9 +7,6 @@ import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
 
-//this will make this page dynamic and fetch for experiences on every page request
-// export const dynamic = "force-dynamic";
-
 type HeroProps = {
   upcomingEvents: boolean;
 };
