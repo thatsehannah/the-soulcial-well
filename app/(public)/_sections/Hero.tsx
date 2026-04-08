@@ -1,49 +1,20 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
 import LinkButton from "../_components/LinkButton";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { checkForUpcomingExperiences } from "@/utils/clientActions";
 
 //this will make this page dynamic and fetch for experiences on every page request
-export const dynamic = "force-dynamic";
+// export const dynamic = "force-dynamic";
 
-const Hero = () => {
-  const [upcomingEvents, setUpcomingEvents] = useState(false);
+type HeroProps = {
+  upcomingEvents: boolean;
+};
 
-  useEffect(() => {
-    const anyUpcomingEvents = async () => {
-      const result = await checkForUpcomingExperiences();
-
-      if (result.data) {
-        setUpcomingEvents(result.data);
-      }
-    };
-
-    anyUpcomingEvents();
-
-    if (upcomingEvents) {
-      gsap.fromTo(
-        ".upcoming-badge",
-        {
-          opacity: 0,
-          scale: 1.4,
-          ease: "expo.inOut",
-        },
-        {
-          opacity: 1,
-          duration: 0.7,
-          delay: 6,
-          scale: 1,
-          ease: "expo.inOut",
-        },
-      );
-    }
-  }, [upcomingEvents]);
-
+const Hero = ({ upcomingEvents }: HeroProps) => {
   useGSAP(() => {
     document.fonts.ready.then(() => {
       const taglineSplit = new SplitText(".tagline", {
@@ -105,8 +76,25 @@ const Hero = () => {
           },
           "<",
         );
+      if (upcomingEvents) {
+        gsap.fromTo(
+          ".upcoming-badge",
+          {
+            opacity: 0,
+            scale: 1.4,
+            ease: "expo.inOut",
+          },
+          {
+            opacity: 1,
+            duration: 0.7,
+            delay: 6,
+            scale: 1,
+            ease: "expo.inOut",
+          },
+        );
+      }
     });
-  }, []);
+  }, [upcomingEvents]);
 
   return (
     <section className='flex flex-col p-4 relative'>

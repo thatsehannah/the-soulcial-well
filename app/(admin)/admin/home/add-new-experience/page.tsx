@@ -1,7 +1,7 @@
 import React from "react";
-import NewExperienceForm from "../_components/NewExperienceForm";
+import NewExperienceForm from "../../_components/NewExperienceForm";
 
-const AddNewExperience = () => {
+const AddNewExperienceView = () => {
   return (
     <main className='mt-24 flex-1'>
       <div className='flex flex-col'>
@@ -9,12 +9,10 @@ const AddNewExperience = () => {
         <h3 className='font-light'>
           Add a past or upcoming Soulcial Well experience.
         </h3>
-        <div className='flex mt-8'>
-          <NewExperienceForm />
-        </div>
+        <NewExperienceForm />
       </div>
     </main>
   );
 };
 
-export default AddNewExperience;
+export default AddNewExperienceView;

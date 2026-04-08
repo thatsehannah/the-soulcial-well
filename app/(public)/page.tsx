@@ -1,10 +1,13 @@
+import { checkForUpcomingExperiences } from "@/actions/experiences";
 import ConvoPopUp from "./_components/ConvoPopUp";
 import Hero from "./_sections/Hero";
 
-const Home = () => {
+const Home = async () => {
+  const result = await checkForUpcomingExperiences();
+
   return (
     <main>
-      <Hero />
+      <Hero upcomingEvents={result} />
       <ConvoPopUp />
     </main>
   );

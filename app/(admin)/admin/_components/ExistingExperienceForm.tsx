@@ -1,3 +1,5 @@
+import { updateExperience } from "@/actions/experiences";
+import { getFlyerUrl, uploadFilesInBatches } from "@/actions/storage";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
@@ -9,11 +11,6 @@ import {
 } from "@/components/ui/popover";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  getFlyerUrl,
-  updateExperience,
-  uploadFilesInBatches,
-} from "@/utils/clientActions";
 import { ExperienceItem } from "@/utils/types";
 import { format } from "date-fns";
 import React from "react";
@@ -23,7 +20,6 @@ import { toast } from "sonner";
 type ExistingExperienceFormProps = {
   existingExperience: ExperienceItem;
   closePopUp: () => void;
-  refreshAll: () => void;
 };
 
 type EditFormInput = {
@@ -40,7 +36,6 @@ type EditFormInput = {
 const ExistingExperienceForm = ({
   existingExperience,
   closePopUp,
-  refreshAll,
 }: ExistingExperienceFormProps) => {
   const { title, location, date, description, upcoming, upcomingDescription } =
     existingExperience;
@@ -72,11 +67,10 @@ const ExistingExperienceForm = ({
       updates.storageFolder = existingExperience.storageFolder;
 
       if (dirtyFields.flyer) {
-        const result = await getFlyerUrl(
+        updates.flyerUrl = await getFlyerUrl(
           formData.flyer,
           existingExperience.storageFolder!,
         );
-        updates.flyerUrl = result.data;
       }
 
       if (dirtyFields.images) {
@@ -95,9 +89,16 @@ const ExistingExperienceForm = ({
         updates.description = formData.pastDescription;
 
       const result = await updateExperience(updates);
-      toast.success(<p className='text-sm'>{result.successMessage}</p>);
+
+      if (result) {
+        toast.success(
+          <p className='text-sm'>
+            Updated {existingExperience.title} experience successfully.
+          </p>,
+        );
+      }
+
       closePopUp();
-      refreshAll();
     } catch (error) {
       console.error(error);
       const errorMessage =
