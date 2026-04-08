@@ -1,5 +1,11 @@
 "use client";
 
+import { createNewExperience } from "@/actions/experiences";
+import {
+  checkIfStorageFolderExists,
+  getFlyerUrl,
+  uploadFilesInBatches,
+} from "@/actions/storage";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Input } from "@/components/ui/input";
@@ -16,12 +22,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import {
-  createNewExperience,
-  getFlyerUrl,
-  uploadFilesInBatches,
-} from "@/utils/clientActions";
-import { checkIfStorageFolderExists } from "@/utils/serverActions";
 import { ExperienceItem } from "@/utils/types";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { format, isAfter, isBefore } from "date-fns";
@@ -154,8 +154,7 @@ const NewExperienceForm = () => {
         flyer,
       } = data;
 
-      const gfuResult = await getFlyerUrl(flyer as File, storageFolder!);
-      const flyerUrl = gfuResult.data;
+      const flyerUrl = await getFlyerUrl(flyer as File, storageFolder!);
 
       const newUpcomingExperienceItem: ExperienceItem = {
         title,
@@ -169,8 +168,14 @@ const NewExperienceForm = () => {
         storageFolder,
       };
 
-      const cneResult = await createNewExperience(newUpcomingExperienceItem);
-      toast.success(<p className='text-sm'>{cneResult.successMessage}</p>);
+      const result = await createNewExperience(newUpcomingExperienceItem);
+
+      if (result) {
+        toast.success(
+          <p className='text-sm'>{title} experience created successfully!</p>,
+        );
+      }
+
       reset();
     } catch (error) {
       console.log(error);
@@ -211,7 +216,13 @@ const NewExperienceForm = () => {
       };
 
       const result = await createNewExperience(newPastExperienceItem);
-      toast.success(<p className='text-sm'>{result.successMessage}</p>);
+
+      if (result) {
+        toast.success(
+          <p className='text-sm'>{title} experience created successfully!</p>,
+        );
+      }
+
       reset();
     } catch (error) {
       console.log(error);
@@ -224,7 +235,7 @@ const NewExperienceForm = () => {
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className='w-full'
+      className='mt-8 w-full'
     >
       <div className='mb-6'>
         <div className='flex flex-col gap-2'>

@@ -4,31 +4,31 @@ export const coreValues: CoreValueItem[] = [
   {
     title: "connection & community",
     imageSrc: "/core-values/connection_community.png",
-    text: "Fostering deep, meaningful relationships and a sense of belonging.",
+    text: "We believe belonging is a basic human need. Everything we build is designed to create it.",
   },
   {
     title: "authenticity",
     imageSrc: "/core-values/authenticity.png",
-    text: "Promoting true self-expression and geniune connections.",
+    text: "No performance. No small talk. Just real people showing up as they actually are.",
   },
   {
     title: "exploration & growth",
     imageSrc: "/core-values/exploration_growth.png",
-    text: "Encouraging curiosity, self-discovery, and continuous evolution.",
+    text: "We create space for people to get curious about themselves and each other, and to leave a little different than they came in.",
   },
   {
     title: "creativity",
     imageSrc: "/core-values/creativity.png",
-    text: "Inspiring new ideas, artistic expression, and innovative approaches to self-care.",
+    text: "Healing doesn't have to be heavy. We find joy, play, and creativity in the work because that's where real breakthroughs happen.",
   },
   {
     title: "intentionality",
     imageSrc: "/core-values/intentionality.png",
-    text: "Crafting experiences with depth, purpose, and meaning.",
+    text: "Nothing we do is accidental. Every detail is purposeful, every experience is designed, and every moment has a reason for being there.",
   },
   {
-    title: "playfulness",
+    title: "experiential design",
     imageSrc: "/core-values/playfulness.png",
-    text: "Making self-care, wellness, and personal growth engaging, fun, and transformative.",
+    text: "We don't talk about connection. We build experiences that create it, so people leave with something they can actually feel and use in their daily lives.",
   },
 ];

@@ -16,7 +16,7 @@ export const navLinks = [
     link: "/contact",
   },
   {
-    text: "Soul Tools",
-    link: "/soul-tools",
+    text: "Candid Conversations - The Framework",
+    link: "/framework",
   },
 ];

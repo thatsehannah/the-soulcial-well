@@ -16,12 +16,11 @@ const SoulcialWellPurpose = () => {
           />
         </div>
         <p className='text-xl text-justify'>
-          At The Soulcial Well, we believe that self-care is more powerful when
-          shared. We create immersive self-care and holistic wellness
-          experiences that blend connection, community, personal growth, and
-          creativity. Through thoughtfully curated events, we provide safe,
-          engaging spaces where people can connect, recharge, and cultivate
-          meaningful relationships that enhance their well-being.
+          We believe healing was never meant to happen in isolation. At The
+          Soulcial Well, we design immersive, psychologically grounded
+          experiences that bring people together, skip the small talk, and build
+          the kind of connection that actually changes how you move through the
+          world.
         </p>
       </div>
       <div className='lg:w-1/2 w-full flex flex-col items-center justify-center bg-primary lg:p-32 pt-16 pb-12 px-12 gap-8'>
@@ -36,13 +35,9 @@ const SoulcialWellPurpose = () => {
           />
         </div>
         <p className='text-xl text-justify'>
-          Our vision is to create a transformative community that inspires and
-          uplifts individuals from all walks of life. Through impactful events,
-          rejuvenating retreats, and supportive workshops, The Soulcial Well
-          strives to be a beacon of mental wellness, where people can connect,
-          heal, and grow. We aim to foster a future where happiness, personal
-          growth, and meaningful connections are within reach for all, and
-          everyone feels empowered to thrive in their own journey.
+          A world where community is medicine. Where no one has to navigate
+          their journey in isolation, and where the antidote to loneliness is as
+          simple as one honest conversation.
         </p>
       </div>
     </section>

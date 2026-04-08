@@ -4,9 +4,9 @@ import React, { ReactNode, useEffect, useState } from "react";
 import FilmRoll from "./FilmRoll";
 import { ExperienceItem } from "@/utils/types";
 import { formatTitle } from "../_utils/formatTitle";
-import { fetchPhotosFromStorage } from "@/utils/clientActions";
 import { MessageSquareWarning } from "lucide-react";
 import LoadingIndicator from "@/components/LoadingIndicator";
+import { fetchMediaFromStorage } from "@/actions/storage";
 
 type ExperienceProps = {
   item: ExperienceItem;
@@ -22,10 +22,9 @@ const Experience = ({ item, index }: ExperienceProps) => {
   useEffect(() => {
     setErrorFetchingPhotos(false);
     const fetchMedia = async () => {
-      const response = await fetchPhotosFromStorage(item.storageFolder!);
+      const result = await fetchMediaFromStorage(item.storageFolder!);
 
-      if (response.data) {
-        const result = response.data;
+      if (result && result.length > 0) {
         const media = result.filter((imageUrl) => imageUrl !== item.flyerUrl);
         setMediaUrls(media);
         setMediaLoaded(true);

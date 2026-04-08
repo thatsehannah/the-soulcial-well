@@ -9,10 +9,8 @@ const SoulcialWellCoreValues = () => {
         Our Core <span className='font-script'>Values</span>
       </p>
       <p className='mt-6 text-center text-xl'>
-        At The Soulcial Well, our core values drive everything we do. They
-        reflect our commitment to holistic well-being, personal growth, and
-        meaningful connections, ensuring that each experience empowers and
-        supports you on your journey.
+        Everything we do is rooted in these six values. They show up in every
+        experience, every conversation, and every space we create.
       </p>
       <div className='grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4 lg:gap-12 xl:gap-4 xl:mt-8 mt-4'>
         {coreValues.map((value, idx) => {

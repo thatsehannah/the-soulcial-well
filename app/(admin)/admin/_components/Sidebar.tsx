@@ -2,18 +2,16 @@
 
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/context/AuthContext";
-import { adminViews, ViewKey } from "@/utils/adminSidebarLinks";
+import { adminViews } from "@/utils/adminSidebarLinks";
 import { LogOut } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
-type SidebarProps = {
-  activeView: ViewKey;
-  onViewChange: (view: ViewKey) => void;
-};
-
-const Sidebar = ({ activeView, onViewChange }: SidebarProps) => {
+const Sidebar = () => {
   const { logout } = useAuth();
+  const pathname = usePathname();
 
   return (
     <aside className='w-[18rem] bg-neutral-100 border-r fixed h-full flex flex-col'>
@@ -48,16 +46,20 @@ const Sidebar = ({ activeView, onViewChange }: SidebarProps) => {
       <div className='flex-1'>
         <div className='flex flex-col justify-between items-center h-full pb-6'>
           <nav className='flex-1 flex flex-col gap-1 w-full'>
-            {Object.entries(adminViews).map(([key, view]) => (
-              <button
-                key={key}
-                onClick={() => onViewChange(key as ViewKey)}
-                className={`flex items-center gap-3 w-full cursor-pointer ${activeView === key ? "bg-dark-green text-secondary font-bold" : "bg-neutral-300 font-light"} p-4 font-admin`}
-              >
-                <span>{<view.icon />}</span>
-                <p className='text-[1rem]'>{view.label}</p>
-              </button>
-            ))}
+            {Object.entries(adminViews).map(([key, view]) => {
+              const isActiveView = pathname === view.href;
+
+              return (
+                <Link
+                  key={key}
+                  href={view.href}
+                  className={`flex items-center gap-3 w-full cursor-pointer ${isActiveView ? "bg-dark-green text-secondary font-bold" : "bg-neutral-300 font-light"} p-4 font-admin`}
+                >
+                  <span>{<view.icon />}</span>
+                  <p className='text-[1rem]'>{view.label}</p>
+                </Link>
+              );
+            })}
           </nav>
           <div className='flex justify-center items-center w-full px-4'>
             <Button
