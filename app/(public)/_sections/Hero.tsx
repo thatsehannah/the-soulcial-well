@@ -94,8 +94,8 @@ const Hero = ({ upcomingEvents }: HeroProps) => {
   }, [upcomingEvents]);
 
   return (
-    <section className='flex flex-col p-4 relative'>
-      <div className='absolute left-0 xl:top-[34%] lg:top-[32%] md:top-[38%] top-[35%] w-[43vw] 2xl:h-65 xl:h-60 lg:h-48 md:h-34 h-22 left-arm'>
+    <section className='flex flex-col p-4 relative md:h-[85vh] lg:h-auto'>
+      <div className='absolute left-0 xl:top-[34%] lg:top-[32%] md:top-[32%] top-[35%] w-[43vw] 2xl:h-65 xl:h-60 lg:h-48 md:h-39 h-22 left-arm'>
         <Image
           src='/assets/leftarm.png'
           alt='left arm'
@@ -103,7 +103,7 @@ const Hero = ({ upcomingEvents }: HeroProps) => {
           quality={100}
         />
       </div>
-      <div className='absolute right-0 2xl:top-[24%] xl:top-[26%] lg:top-[26%] md:top-[35%] top-[32%] w-[43vw] 2xl:h-63 xl:h-56 lg:h-40 md:h-27 h-22 right-arm'>
+      <div className='absolute right-0 2xl:top-[24%] xl:top-[26%] lg:top-[26%] md:top-[26%] top-[32%] w-[43vw] 2xl:h-63 xl:h-56 lg:h-40 md:h-37 h-22 right-arm'>
         <Image
           src='/assets/rightarm.png'
           alt='left arm'
@@ -143,7 +143,7 @@ const Hero = ({ upcomingEvents }: HeroProps) => {
           it.
         </p>
       </div>
-      <div className='grid grid-cols-1 place-items-center lg:gap-5 gap-6 mb-6 mt-40 lg:mt-52 xl:mt-64'>
+      <div className='grid grid-cols-1 place-items-center lg:gap-5 gap-6 mb-6 mt-40 md:mt-78 lg:mt-52 xl:mt-64'>
         <LinkButton
           text='about us'
           link='/about'
