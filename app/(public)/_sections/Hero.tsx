@@ -136,7 +136,7 @@ const Hero = ({ upcomingEvents }: HeroProps) => {
       </div>
       <div className='text-center mt-4'>
         <p className='tagline xl:text-3xl text-2xl text-primary-foreground tracking-tighter'>
-          Community is the cure
+          Leave More Known Than Before
         </p>
         <p className='sub-tagline xl:text-xl text-lg text-primary-foreground font-light mt-2'>
           Loneliness is a public health crisis. We&apos;re doing something about
